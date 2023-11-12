@@ -13,9 +13,21 @@ module.exports = {
         options: { presets: ["@babel/env"] }
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
+        test: /\.(css|less)$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "less-loader"
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
