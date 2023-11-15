@@ -42,7 +42,8 @@ module.exports = {
       publicPath: '/dist/'
     },
     port: 3000,
-    hot: "only"
+    hot: "only",
+    historyApiFallback: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };

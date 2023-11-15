@@ -1,19 +1,42 @@
-.navbar-root {
-  height: 80px;
-  background-color: #212b28;
-  color: #f5f9ff;
-  position: fixed;
+@import "./../../styles.css";
+.navbar-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.navbar-item-anchor {
+  text-decoration: none;
+  position: relative;
   z-index: 10;
-  width: 100%;
-
-  .navbar-container {
+  color: var(--fontColor);
+  &:focus,
+  :hover {
+    color: var(--fontColorActive);
+  }
+}
+.navbar-item-hover {
+  height: 10px;
+  position: absolute;
+  top: 14px;
+  background-color: var(--stylingColorTransparent);
+  transition: 450ms;
+  width: 0px;
+  left: 10px;
+  z-index: 2;
+  &.isHovered {
     width: 80%;
-    margin: auto;
-
-    .navbar-title {
-      width: 100px;
-      display: flex;
-      text-align: center;
-    }
+  }
+}
+.navbar-item {
+  margin: 8px;
+  font-size: 20px;
+  font-family: "Amaranth", Helvetica, Arial, Lucida, sans-serif;
+  font-size: 1.4em;
+  line-height: 1.3em;
+  font-weight: 400;
+  text-transform: uppercase;
+  &.selected {
+    background-color: var(--stylingColor);
+    transition: 400ms;
   }
 }

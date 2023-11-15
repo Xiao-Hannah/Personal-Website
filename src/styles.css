@@ -1,5 +1,7 @@
 :root {
-  --background: #fffbf5;
-  --darkText: #1a1a1a;
-  --turquoise: #3a424d;
+  --stylingColor: rgb(171, 199, 214);
+  --stylingColorTransparent: rgb(171, 199, 214, 0.5);
+  --fontColor: #0c394e;
+  --fontColorLight: #608da2;
+  --fontColorActive: #135777;
 }

@@ -1,61 +1,13 @@
 @import "./../../styles.css";
-.toolbar-offset {
-  padding-top: 80px;
-}
 
-.cat-background {
-  width: 100%;
-}
-
-.home-header-container {
-  padding-left: 100px;
-  color: #1a1a1a;
-}
-
-.home-content-container {
-  padding: 100px 0px;
-  margin: 0 10%;
-}
-
-.intro-container {
-  padding: 50px;
-  background-color: rgba(232, 194, 194, 0.65);
-  color: white;
-  display: flex;
-  .intro-image-container {
-    width: 35%;
-    margin-right: 30px;
-    .intro-image-headshot {
-      padding: 10px;
-      background-color: var(--background);
-      width: 100%;
-      border-radius: 8px;
-    }
-    .intro-image-caption-container {
-      width: 106%;
-      text-align: center;
-      color: var(--turquoise);
-      .intro-image-caption-header {
-        font-size: 23px;
-      }
-      .intro-image-caption-subheader {
-        font-size: 18px;
-        font-weight: 700;
-      }
-    }
+.home-title {
+  padding: 180px 0px 206px 156px;
+  h1 {
+    width: fit-content;
   }
-  .intro-text-container {
-    width: 60%;
-    margin: 10px;
-    left: 40px;
-    position: relative;
-    color: var(--turquoise);
-    .intro-text-title {
-      font-size: 40px;
-      font-weight: 500;
-    }
-    .intro-text-content {
-      font-size: 20px;
-    }
-  }
+}
+.home-welcome {
+  padding-left: 156px;
+  padding-top: 120px;
+  width: 60%;
 }
