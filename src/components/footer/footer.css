@@ -1,6 +1,29 @@
-.footer-container{
-    width: 100%;
-    margin-top: 300px;
-    background-color: var(--stylingColor);
-    height: 500px;
+.footer-container {
+  width: 100%;
+  margin-top: 300px;
+  background-color: var(--stylingColor);
+  height: 500px;
+
+  .footer-content {
+    padding: 150px;
+    h2 {
+      font-family: "Fira Sans";
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 30px;
+      margin: 10px 0px;
+      a {
+        color: var(--fontColorLight);
+        text-decoration: none;
+        &:hover {
+          color: var(--fontColorActive);
+        }
+        &:active,
+        :focus {
+          color: var(--fontColor);
+        }
+      }
+    }
+  }
 }

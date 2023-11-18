@@ -8,9 +8,7 @@ export const Home = () => {
         <h1> Hannah Xiao </h1>
       </div>
       <div className="home-welcome">
-        <h2>
-          <b> Hello! Welcome</b>
-        </h2>
+        <h2>Hello! Welcome</h2>
         <h2>
           I'm Hannah Xiao, an economics and anthropology student at Barnard
           College, weaving together the realms of academia and UX design. I'm

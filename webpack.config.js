@@ -10,40 +10,41 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
+        options: { presets: ["@babel/env"] },
       },
       {
         test: /\.(css|less)$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "less-loader"
-        ]
+        use: ["style-loader", "css-loader", "less-loader"],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
           },
         ],
       },
-    ]
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+    ],
   },
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/dist/",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   devServer: {
-    static: path.join(__dirname, 'public/'),
+    static: path.join(__dirname, "public/"),
     devMiddleware: {
-      publicPath: '/dist/'
+      publicPath: "/dist/",
     },
     port: 3000,
     hot: "only",
-    historyApiFallback: true
+    historyApiFallback: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  watch: true,
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 };

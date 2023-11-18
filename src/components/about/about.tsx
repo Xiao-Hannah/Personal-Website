@@ -1,8 +1,9 @@
 import React from "react";
 import "./about.css";
 import aboutImage from "./../../assets/images/about.jpg";
+import { LinkItem } from "../../models/LinkItem";
 
-const subtitleLinks: SubtitleLinks[] = [
+const subtitleLinks: LinkItem[] = [
   {
     displayName: "hx2313@barnard.edu",
     link: "mailto:hx2313@barnard.edu?Subject=Hello",
@@ -14,10 +15,6 @@ const subtitleLinks: SubtitleLinks[] = [
   { displayName: "Résumé", link: "http://google.com" },
 ];
 
-interface SubtitleLinks {
-  displayName: string;
-  link: string;
-}
 export const About = () => {
   return (
     <div className="about-container">
