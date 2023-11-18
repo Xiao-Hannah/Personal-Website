@@ -43,6 +43,31 @@ export const About = () => {
       <div className="about-image-container">
         <img src={aboutImage} alt="about main image" className="about-image" />
       </div>
+      <div className="about-content-container">
+        <img
+          src={aboutImage}
+          alt="about main image"
+          className="about-content-image"
+        />
+
+        <div className="about-content-text-container">
+          <h3 className="about-content-text-title">
+            AS AN INTERDISCIPLINARY DESIGNER
+          </h3>
+          <div className="about-content-text">
+            <p>
+              My journey has spanned marketing, consulting, and market research,
+              equipping me with a diverse skill set. In creating strategies for
+              various corporations, I've honed my ability to derive valuable
+              insights from user research. I embrace challenges and excel in
+              connecting research with practical design solutions. I'm a firm
+              believer in a problem-solving approach and collaborative efforts
+              to develop successful, human-centric products that resonate with
+              users.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
