@@ -1,7 +1,8 @@
 import React from "react";
 import "./about.less";
 import aboutImage from "./../../assets/images/about.jpg";
-import aboutContent1 from "./../../assets/images/about_image1.png";
+import aboutContent1 from "./../../assets/images/about1.jpg";
+import aboutContent2 from "./../../assets/images/about2.jpg";
 import { LinkItem } from "../../models/LinkItem";
 import resume from "./../../assets/files/resume.pdf";
 
@@ -66,6 +67,30 @@ export const About = () => {
               believer in a problem-solving approach and collaborative efforts
               to develop successful, human-centric products that resonate with
               users.
+            </p>
+          </div>
+        </div>
+        <img
+          src={aboutContent2}
+          alt="about content image 1"
+          className="about-content-image"
+        />
+
+        <div className="about-content-text-container">
+          <h3 className="about-content-text-title">
+            EXPLORING LIVES THROUGH ETHNOGRAPHY
+          </h3>
+          <div className="about-content-text">
+            <p>
+              My passion for ethnography is rooted in its ability to weave
+              through the intricate social networks and personal narratives of
+              people. More than just storytelling, it captures the essence of
+              life. Ethnography allows us to see the daily joys and struggles of
+              people, as well as the influences of power, culture, ideology, and
+              social structures. Ethnography's true strength lies in its focus
+              on the individual, providing a magnified view of larger social
+              processes and institutional transformations, grounded in the
+              detailed study of diverse experiences.
             </p>
           </div>
         </div>
