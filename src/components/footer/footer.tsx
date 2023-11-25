@@ -1,6 +1,7 @@
 import React from "react";
 import { LinkItem } from "../../models/LinkItem";
-import "./footer.css";
+import "./footer.less";
+import resume from "./../../assets/files/resume.pdf";
 
 const footerOptions: LinkItem[] = [
   {
@@ -11,7 +12,7 @@ const footerOptions: LinkItem[] = [
     displayName: "linkedin",
     link: "https://www.linkedin.com/in/hannah-x/",
   },
-  { displayName: "Résumé", link: "http://google.com" },
+  { displayName: "Résumé", link: resume },
 ];
 
 export const Footer = () => {

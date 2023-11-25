@@ -1,7 +1,9 @@
 import React from "react";
-import "./about.css";
+import "./about.less";
 import aboutImage from "./../../assets/images/about.jpg";
+import aboutContent1 from "./../../assets/images/about_image1.png";
 import { LinkItem } from "../../models/LinkItem";
+import resume from "./../../assets/files/resume.pdf";
 
 const subtitleLinks: LinkItem[] = [
   {
@@ -12,7 +14,7 @@ const subtitleLinks: LinkItem[] = [
     displayName: "Instagram",
     link: "https://instagram.com/hanx0628?igshid=MTk0NTkyODZkYg==",
   },
-  { displayName: "Résumé", link: "http://google.com" },
+  { displayName: "Résumé", link: resume },
 ];
 
 export const About = () => {
@@ -45,8 +47,8 @@ export const About = () => {
       </div>
       <div className="about-content-container">
         <img
-          src={aboutImage}
-          alt="about main image"
+          src={aboutContent1}
+          alt="about content image 1"
           className="about-content-image"
         />
 
