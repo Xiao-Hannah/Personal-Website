@@ -5,6 +5,8 @@ import aboutContent1 from "./../../assets/images/about1.jpg";
 import aboutContent2 from "./../../assets/images/about2.jpg";
 import { LinkItem } from "../../models/LinkItem";
 import resume from "./../../assets/files/resume.pdf";
+import { StylingBlock } from "../StylingBlock";
+import { motion } from "framer-motion";
 
 const subtitleLinks: LinkItem[] = [
   {
@@ -20,7 +22,11 @@ const subtitleLinks: LinkItem[] = [
 
 export const About = () => {
   return (
-    <div className="about-container">
+    <motion.div
+      className="about-container"
+      initial={{ right: "500px" }}
+      animate={{ left: "0px" }}
+    >
       <div className="about-title">
         <h1> Oh? Bello There! </h1>
         <div className="about-subtitle">
@@ -95,6 +101,6 @@ export const About = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
