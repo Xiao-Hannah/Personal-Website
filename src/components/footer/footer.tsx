@@ -9,7 +9,7 @@ const footerOptions: LinkItem[] = [
     link: "mailto:hx2313@barnard.edu?Subject=Hello",
   },
   {
-    displayName: "linkedin",
+    displayName: "LinkedIn",
     link: "https://www.linkedin.com/in/hannah-x/",
   },
   { displayName: "Résumé", link: resume },
