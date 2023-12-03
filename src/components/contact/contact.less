@@ -1,23 +1,30 @@
-.website-content {
-  z-index: 30;
-}
-.fourohfour-container {
+.contact-container {
   padding-top: 100px;
   width: 100%;
   height: 30vh;
 }
-.fourohfour-content {
+.contact-content {
   justify-content: center;
   display: flex;
+  width: 50%;
+  margin: auto;
   flex-direction: column;
   height: 100%;
   align-items: center;
+  @media only screen and (max-width: 1200px) {
+    h1 {
+      font-size: 24px;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    width: 90%;
+  }
+
 }
 
-.contact-button {
+.fourohfour-button-back {
   padding: 6px;
   border-radius: 8px;
   background-color: var(--stylingColor);
   text-decoration: none;
-  cursor: pointer;
 }

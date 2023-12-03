@@ -1,0 +1,35 @@
+@import "./../../styles.css";
+.fun-container {
+  padding-top: 100px;
+  width: 100%;
+}
+
+.fun-item-block {
+  display: flex;
+  padding: 20px;
+  .fun-item-styling-block {
+    width: 20%;
+    height: 80px;
+    background-color: var(--stylingColor);
+  }
+  .fun-item-text-container {
+    margin-left: 30px;
+    .fun-item-text-title {
+    }
+    .fun-item-text-description {
+      margin: 0;
+      color: var(--fontColorLight);
+    }
+  }
+}
+
+.fun-item-container-reverse {
+  .fun-item-block {
+    flex-direction: row-reverse;
+
+    .fun-item-text-container {
+      text-align: right;
+      margin-right: 30px;
+    }
+  }
+}

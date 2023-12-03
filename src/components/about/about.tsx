@@ -5,7 +5,6 @@ import aboutContent1 from "./../../assets/images/about1.jpg";
 import aboutContent2 from "./../../assets/images/about2.jpg";
 import { LinkItem } from "../../models/LinkItem";
 import resume from "./../../assets/files/resume.pdf";
-import { StylingBlock } from "../StylingBlock";
 import { motion } from "framer-motion";
 
 const subtitleLinks: LinkItem[] = [

@@ -5,15 +5,19 @@ import { Home } from "./home/home";
 import { FourOhFour } from "./website/404";
 import { AnimatePresence } from "framer-motion";
 import { StylingBlock } from "./StylingBlock";
+import { Contact } from "./contact/contact";
+import { Fun } from "./fun/fun";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
   return (
     <AnimatePresence>
-      <StylingBlock locationPath={location.pathname}/>
+      <StylingBlock locationPath={location.pathname} />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/for fun" element={<Fun />} />
         <Route path="*" element={<FourOhFour />} />
       </Routes>
     </AnimatePresence>

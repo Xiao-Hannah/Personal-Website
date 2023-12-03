@@ -1,0 +1,65 @@
+@import "./../../styles.css";
+
+.about-title {
+  padding: 180px 0px 100px 76px;
+  h1 {
+    width: fit-content;
+    font-size: 55px;
+    letter-spacing: 2px;
+  }
+  .about-subtitle {
+    padding-top: 30px;
+    h2 {
+      font-size: 30px;
+      margin: 10px 0px;
+      a {
+        color: var(--fontColorLight);
+        text-decoration: none;
+        &:hover {
+          color: var(--fontColorActive);
+        }
+        &:active,
+        :focus {
+          color: var(--fontColor);
+        }
+      }
+    }
+  }
+}
+
+.about-description {
+  margin: 48px 20px 100px auto;
+  width: 70%;
+  line-height: 32px;
+  font-size: 22px;
+}
+
+.about-image-container {
+  @media only screen and (min-width: 1200px) {
+    width: 70%;
+    padding-bottom: 100px;
+    margin: 20px 0px 0px auto;
+  }
+  .about-image {
+    width: 80%;
+    display: block;
+    margin: auto;
+    max-width: 1000px;
+    @media only screen and (min-width: 1200px) {
+      width: 60%;
+    }
+  }
+}
+
+.about-content-container {
+  display: grid;
+  grid-template-columns: 3fr 5fr;
+  grid-gap: 100px;
+  padding: 20px 4%;
+  .about-content-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .about-content-text-container{ }
+}
