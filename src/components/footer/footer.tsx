@@ -2,6 +2,7 @@ import React from "react";
 import { LinkItem } from "../../models/LinkItem";
 import "./footer.less";
 import resume from "./../../assets/files/resume.pdf";
+import catImage from "./../../assets/images/cat.png";
 
 const footerOptions: LinkItem[] = [
   {
@@ -29,6 +30,14 @@ export const Footer = () => {
             </h3>
           );
         })}
+        <div className="footer-logo">
+          <img
+            src={catImage}
+            style={{ display: "inline-flex" }}
+            height={"28px"}
+          />
+          <p>© Hannah Xiao 2023 </p>
+        </div>
       </div>
     </div>
   );

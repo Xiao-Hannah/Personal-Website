@@ -2,6 +2,7 @@ import React from "react";
 import "./fun.less";
 import {
   archeologyImages,
+  funImages,
   photographyImages,
   travellingImages,
 } from "./images";
@@ -35,7 +36,7 @@ const items: FunItem[] = [
   {
     title: "Trying new things",
     description: "Venturing out of my comfort zone",
-    images: [],
+    images: funImages,
   },
 ];
 export const Fun = () => {
