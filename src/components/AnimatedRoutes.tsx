@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { StylingBlock } from "./StylingBlock";
 import { Contact } from "./contact/contact";
 import { Fun } from "./fun/fun";
+import { FridgeFriend } from "./projects/fridgeFriend";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
@@ -18,6 +19,7 @@ export const AnimatedRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/for fun" element={<Fun />} />
+        <Route path="/fridgeFriend" element={<FridgeFriend />} />
         <Route path="*" element={<FourOhFour />} />
       </Routes>
     </AnimatePresence>

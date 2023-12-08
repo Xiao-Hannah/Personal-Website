@@ -1,8 +1,8 @@
 import React from "react";
 import "./about.less";
-import aboutImage from "./../../assets/images/about.jpg";
-import aboutContent1 from "./../../assets/images/about1.jpg";
-import aboutContent2 from "./../../assets/images/about2.jpg";
+import aboutImage from "./../../assets/images/about/about.jpg";
+import aboutContent1 from "./../../assets/images/about/about1.jpg";
+import aboutContent2 from "./../../assets/images/about/about2.jpg";
 import { LinkItem } from "../../models/LinkItem";
 import resume from "./../../assets/files/resume.pdf";
 import { motion } from "framer-motion";

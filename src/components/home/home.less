@@ -19,3 +19,44 @@
     font-weight: 700;
   }
 }
+.home-projects-container {
+  padding-top: 120px;
+  margin: 0 156px;
+  .home-project-container {
+    display: flex;
+    justify-content: space-between;
+    .home-project-text-container {
+      width: 55%;
+      h3 {
+        font-size: 22px;
+      }
+
+      .home-project-link {
+        font-family: "Fira Sans";
+        font-size: 1.4em;
+        line-height: 1.3em;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-decoration: none;
+        position: relative;
+        color: var(--fontColor);
+        display: block;
+        width: 262px;
+        .home-project-link-hover {
+          height: 3px;
+          background-color: var(--fontColor);
+          position: relative;
+          display: block;
+          top: 28px;
+          width: 0px;
+          transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+        }
+        &:hover {
+          .home-project-link-hover {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
