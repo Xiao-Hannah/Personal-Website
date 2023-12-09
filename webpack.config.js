@@ -48,6 +48,6 @@ module.exports = {
     hot: "only",
     historyApiFallback: true,
   },
-  watch: true,
+  watch: process.env.NODE_ENV === "development" && true,
   plugins: [new webpack.HotModuleReplacementPlugin()],
 };

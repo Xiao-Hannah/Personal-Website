@@ -40,7 +40,7 @@ export const Home = () => {
         <h2>
           I'm Hannah Xiao, an economics and anthropology student at Barnard
           College, weaving together the realms of academia and UX design. I'm
-          currently in love with Eric Wu :D
+          currently in love with Eric Wu :D!
         </h2>
       </div>
       <div className="home-projects-container">

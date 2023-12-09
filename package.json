@@ -7,6 +7,7 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.0",
     "less-loader": "^11.1.3",
     "react-router-dom": "^6.20.0",
     "style-loader": "^3.3.3",
@@ -30,8 +31,15 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development"
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "url": "git+https://github.com/Wu-Bowen/Hannah.git"
   },
   "author": "Eric",
+  "homepage": "http://Wu-Bowen.github.io/Hannah",
   "license": "ISC"
 }
