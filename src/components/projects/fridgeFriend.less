@@ -1,10 +1,41 @@
 .fridgeFriend-container {
-    position: relative;
+  position: relative;
+}
+.fridgeFriend-title {
+  padding: 180px 100px 206px 100px;
+  @media only screen and (max-width: 680px) {
+    padding: 180px 20px 206px 20px;
   }
-  .fridgeFriend-title {
-    padding: 180px 0px 206px 134px;
-    transition: opacity 500ms ease-in;
-    h1 {
-      width: fit-content;
+  transition: opacity 500ms ease-in;
+  h1 {
+    font-size: 60px;
+    width: fit-content;
+  }
+}
+.fridgeFriend-header-container {
+  position: relative;
+  margin-top: 180px;
+  display: flex;
+  justify-content: space-between;
+  .fridgeFriend-header-info-container {
+    display: flex;
+    width: 30%;
+    @media only screen and (max-width: 1380px) {
+      width: 100%;
+      justify-content: space-between;
+    }
+    p {
+      width: 250px;
     }
   }
+  .fridgeFriend-header-about-container {
+    width: 60%;
+    @media only screen and (max-width: 1380px) {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 1380px) {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+}
