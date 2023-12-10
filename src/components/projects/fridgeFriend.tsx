@@ -1,6 +1,10 @@
 import React from "react";
 import "./fridgeFriend.less";
 import "./tablecontent.less";
+import lowFi1 from "./../../assets/images/fridgeFriend/low-fi_1.png";
+import compost1 from "./../../assets/images/fridgeFriend/compost1.png";
+import compost2 from "./../../assets/images/fridgeFriend/compost2.png";
+import lowFi2 from "./../../assets/images/fridgeFriend/low-fi_2.png";
 
 export const FridgeFriend = () => {
   return (
@@ -86,7 +90,7 @@ export const FridgeFriend = () => {
               An innovative solution to create a convenient lifestyle that
               reduces waste and saves money.
             </h2>
-            <p className="fridgeFriend-body-description">
+            <p className="fridgeFriend-body-description paddingTop">
               FridgeFriend is a groundbreaking solution that redefines kitchen
               efficiency. By integrating in-fridge cameras with smart
               technology, it tracks and manages your groceries, alerting you to
@@ -103,7 +107,7 @@ export const FridgeFriend = () => {
             <h2 className="fridgeFriend-body-subtitle">
               How to make New York a more sustainable city?
             </h2>
-            <div className="fridgeFriend-body-description">
+            <div className="fridgeFriend-body-description paddingTop">
               <p>
                 <b> Focus: Food Waste</b>
               </p>
@@ -145,9 +149,9 @@ export const FridgeFriend = () => {
               className="fridgeFriend-body-title"
               style={{ paddingTop: "30px" }}
             >
-              1st Round of Ideation
+              Ideation and Brainstorming
             </h3>
-            <h3>
+            <h3 className="paddingTop">
               IDEA 1: Smart Fridge App Support and Educate People on Mindful
               Shopping and Reducing Waste
             </h3>
@@ -189,6 +193,122 @@ export const FridgeFriend = () => {
                   </p>
                 </li>
               </ol>
+            </div>
+            <h3 className="fridgeFriend-body-title">Challenges</h3>
+            <div className="fridgeFriend-body-description">
+              <ul>
+                <li>
+                  <p>
+                    The initiative might cater to a niche audience, possibly not
+                    reflecting the diverse perspectives of NYC residents.
+                    Additionally, mindful shopping tools may not be perceived as
+                    essential.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Dependence on a mobile app could exclude individuals without
+                    access to smart devices or the internet.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <h3 className="fridgeFriend-body-title">Competitors</h3>
+            <div className="fridgeFriend-body-description">
+              <ul>
+                <li>
+                  <p>
+                    Existing apps like "<u>NoWaste</u>" and "<u>Fridge Pal</u>"
+                    provide similar services, helping users manage food
+                    inventory, suggesting recipes, and reminding them of
+                    expiration dates.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div className="fridgeFriend-image">
+              <img src={lowFi1} alt={"idea 1 figma design"} width={"100%"} />
+            </div>
+            <h3 className={"paddingTop"}>
+              IDEA 2: Compost Bin with Garden Facilitate the Redistribution of
+              Surplus Food
+            </h3>
+            <div className="fridgeFriend-body-description">
+              <p>
+                <b> Key Features</b>
+              </p>
+              <ol>
+                <li>
+                  <p>
+                    <b>Straightforward Composting </b>
+                  </p>
+                  <p>
+                    Food scraps go in one location where they don't have to be
+                    removed or dealt with directly for long periods of time.
+                    Consumers won't have to find compost locations or worry
+                    about emptying their bin every week and confusion around
+                    separation is eliminated.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Mitigates Smell </b>
+                  </p>
+                  <p>
+                    Prevents the compost smell from pervading the home by
+                    processing it internally, without any need to open up the
+                    composter and mix the scraps yourself.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Low Cost Produce at Home </b>
+                  </p>
+                  <p>
+                    Using the food scraps as compost for a garden allows people
+                    to use their old food to grow new food, saving them more
+                    money in the long run while also helping the environment.
+                    Allows communities to take their waste and turn it into
+                    something needed.
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <h3 className="fridgeFriend-body-title">Challenges</h3>
+            <div className="fridgeFriend-body-description">
+              <ul>
+                <li>
+                  <p>
+                    Overcoming ingrained preferences for aesthetically pleasing
+                    produce requires a significant shift in consumer habits.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Beyond changing perceptions, there may be a need for
+                    additional incentives, such as pricing adjustments, to
+                    encourage the purchase of imperfect produce.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <h3 className="fridgeFriend-body-title">Competitors</h3>
+            <div className="fridgeFriend-body-description">
+              <ul>
+                <li>
+                  <p>
+                    Businesses like "<u>Imperfect Foods</u>" and "
+                    <u>Misfits Market</u>" have already established themselves
+                    in the market, offering discounted imperfect produce
+                    directly to consumers and contributing to waste reduction.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div className="fridgeFriend-side-by-side-image">
+              <img src={compost1} alt={"idea 2 image"} width={"50%"} />
+              <img src={compost2} alt={"idea 2 image2"} width={"50%"} />
             </div>
           </div>
         </div>

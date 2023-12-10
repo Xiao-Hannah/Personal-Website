@@ -16,6 +16,12 @@ jspm_packages/
 # Distribution directories
 dist/
 
+### VisualStudioCode ###
+.vscode/*      # Maybe .vscode/**/* instead - see comments
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # Typescript v1 declaration files
 typings/
 
