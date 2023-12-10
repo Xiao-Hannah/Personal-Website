@@ -24,7 +24,8 @@
     "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-hash-link": "^2.4.3"
+    "react-router-hash-link": "^2.4.3",
+    "react-scroll": "^1.9.0"
   },
   "name": "website",
   "description": "Hannah's Website",

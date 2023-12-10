@@ -5,6 +5,7 @@ import lowFi1 from "./../../assets/images/fridgeFriend/low-fi_1.png";
 import compost1 from "./../../assets/images/fridgeFriend/compost1.png";
 import compost2 from "./../../assets/images/fridgeFriend/compost2.png";
 import lowFi2 from "./../../assets/images/fridgeFriend/low-fi_2.png";
+import { Element, Link } from "react-scroll";
 
 export const FridgeFriend = () => {
   return (
@@ -58,34 +59,92 @@ export const FridgeFriend = () => {
       </div>
       <div className="table-content-container">
         <div className="table-content">
-          <div>
+          <Link
+            className="table-content-item"
+            to="solution"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Solution </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="process"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Process </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="ideation"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Ideation </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="evaulation"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Evaulation </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="iteration"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Iteration </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="prototype"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Prototype </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="response"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Business Response </h3>
-          </div>
-          <div>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="retrospective"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <h3> Retrospective </h3>
-          </div>
+          </Link>
         </div>
         <div className="table-content-text">
           <div className="fridgeFriend-body">
-            <h3 className="fridgeFriend-body-title"> Solution </h3>
+            <Element name="solution">
+              <h3 className="fridgeFriend-body-title"> Solution </h3>
+            </Element>
             <h2 className="fridgeFriend-body-subtitle">
               An innovative solution to create a convenient lifestyle that
               reduces waste and saves money.
@@ -103,7 +162,9 @@ export const FridgeFriend = () => {
             </p>
           </div>
           <div className="fridgeFriend-body">
-            <h3 className="fridgeFriend-body-title"> Process </h3>
+            <Element name="process">
+              <h3 className="fridgeFriend-body-title"> Process </h3>
+            </Element>
             <h2 className="fridgeFriend-body-subtitle">
               How to make New York a more sustainable city?
             </h2>
@@ -144,15 +205,14 @@ export const FridgeFriend = () => {
                 ideas to solve the problems.
               </p>
             </div>
+            <Element name="ideation">
+              <h3 className="fridgeFriend-body-title paddingTop">
+                Ideation and Brainstorming
+              </h3>
+            </Element>
 
-            <h3
-              className="fridgeFriend-body-title"
-              style={{ paddingTop: "30px" }}
-            >
-              Ideation and Brainstorming
-            </h3>
             <h3 className="paddingTop">
-              IDEA 1: Smart Fridge App Support and Educate People on Mindful
+              Idea 1: Smart Fridge App Support and Educate People on Mindful
               Shopping and Reducing Waste
             </h3>
             <div className="fridgeFriend-body-description">
@@ -231,7 +291,7 @@ export const FridgeFriend = () => {
               <img src={lowFi1} alt={"idea 1 figma design"} width={"100%"} />
             </div>
             <h3 className={"paddingTop"}>
-              IDEA 2: Compost Bin with Garden Facilitate the Redistribution of
+              Idea 2: Compost Bin with Garden Facilitate the Redistribution of
               Surplus Food
             </h3>
             <div className="fridgeFriend-body-description">
@@ -311,7 +371,7 @@ export const FridgeFriend = () => {
               <img src={compost2} alt={"idea 2 image2"} width={"50%"} />
             </div>
             <h3 className={"paddingTop"}>
-              IDEA 3: Local Farmers and Imperfect Produce Delivery App Normalize
+              Idea 3: Local Farmers and Imperfect Produce Delivery App Normalize
               Imperfect Produce
             </h3>
             <div className="fridgeFriend-body-description">
