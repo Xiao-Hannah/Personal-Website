@@ -37,9 +37,9 @@
     "deploy": "gh-pages -d dist"
   },
   "repository": {
-    "url": "git+https://github.com/Wu-Bowen/Hannah.git"
+    "url": "git+https://github.com/Hannah.git"
   },
   "author": "Eric",
-  "homepage": "http://Wu-Bowen.github.io/Hannah",
+  "homepage": "https://Xiao-Hannah.github.io",
   "license": "ISC"
 }

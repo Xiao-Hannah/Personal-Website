@@ -17,12 +17,23 @@ module.exports = {
         use: ["style-loader", "css-loader", "less-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|pdf)$/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
         use: [
           {
             loader: "file-loader",
             options: {
-              name: "[name].[ext]",
+              name: "assets/images/[name].[ext]",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(pdf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "assets/files/[name].[ext]",
             },
           },
         ],
@@ -30,13 +41,16 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
+        generator : {
+          filename : 'assets/fonts/[name][ext][query]',
+        }
       },
     ],
   },
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    publicPath: "/",
     filename: "bundle.js",
   },
   devServer: {
