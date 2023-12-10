@@ -310,6 +310,86 @@ export const FridgeFriend = () => {
               <img src={compost1} alt={"idea 2 image"} width={"50%"} />
               <img src={compost2} alt={"idea 2 image2"} width={"50%"} />
             </div>
+            <h3 className={"paddingTop"}>
+              IDEA 3: Local Farmers and Imperfect Produce Delivery App Normalize
+              Imperfect Produce
+            </h3>
+            <div className="fridgeFriend-body-description">
+              <p>
+                <b> Key Features</b>
+              </p>
+              <ol>
+                <li>
+                  <p>
+                    <b>Real-Time Shopping </b>
+                  </p>
+                  <p>
+                    Farm-to-Table Transparency: Experience complete transparency
+                    in our supply chain. Know exactly where your food comes from
+                    and who the farmers are.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Supporting Local Farmers </b>
+                  </p>
+                  <p>
+                    By purchasing through our app, you directly support local
+                    farmers, contributing to a more sustainable agricultural
+                    ecosystem.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Customizable Meal plans </b>
+                  </p>
+                  <p>
+                    Tailor your meal plans with a wide range of "imperfect"
+                    products. Discover new flavors and support local agriculture
+                    with every meal.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b> Nutrition Analysis </b>
+                  </p>
+                  <p>
+                    Subscribers to our meal plans receive personalized
+                    nutritional analysis, taking into account the source and
+                    quality of ingredients from our supply chain
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <h3 className="fridgeFriend-body-title">Challenges</h3>
+            <div className="fridgeFriend-body-description">
+              <ul>
+                <li>
+                  <p>
+                    Potential skepticism regarding the safety and quality of
+                    surplus food could deter participation. Ensuring timely
+                    redistribution of food to prevent spoilage presents
+                    substantial logistical hurdles.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <h3 className="fridgeFriend-body-title">Competitors</h3>
+            <div className="fridgeFriend-body-description">
+              <ul>
+                <li>
+                  <p>
+                    Platforms like "<u>Too Good To Go</u>" and "<u>OLIO</u>" are
+                    prominent players in this space, facilitating the sale of
+                    surplus food at reduced prices and encouraging food sharing
+                    among communities.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div className="fridgeFriend-image">
+              <img src={lowFi2} alt={"idea 3 figma design"} width={"100%"} />
+            </div>
           </div>
         </div>
       </div>
