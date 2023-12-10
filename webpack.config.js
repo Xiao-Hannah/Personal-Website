@@ -1,9 +1,10 @@
 const path = require("path");
 const webpack = require("webpack");
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: "./src/index.js",
-  mode: "development",
+  mode: isProd ? "production" : "development",
   module: {
     rules: [
       {
@@ -41,16 +42,16 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
-        generator : {
-          filename : 'assets/fonts/[name][ext][query]',
-        }
+        generator: {
+          filename: "assets/fonts/[name][ext][query]",
+        },
       },
     ],
   },
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/",
+    publicPath: isProd ? "/" : "/dist/",
     filename: "bundle.js",
   },
   devServer: {
