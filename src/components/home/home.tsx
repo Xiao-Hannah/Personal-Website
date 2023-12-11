@@ -27,22 +27,26 @@ const projects: Projects[] = [
 
 export const Home = () => {
   return (
-    <motion.div
-      className="home-container"
-      initial={{ right: "500px" }}
-      animate={{ left: "0px" }}
-    >
-      <div className="home-title">
+    <div className="home-container">
+      <motion.div
+        className="home-title"
+        initial={{ transform: "translateX(-1000px)" }}
+        animate={{ transform: "translateX(0px)" }}
+      >
         <h1> Hannah Xiao </h1>
-      </div>
-      <div className="home-welcome">
+      </motion.div>
+      <motion.div
+        className="home-welcome"
+        initial={{ transform: "translateX(2000px)" }}
+        animate={{ transform: "translateX(0px)" }}
+        transition={{ delay: 0.5 }}
+      >
         <h2>Hello! Welcome</h2>
         <h2>
           I'm Hannah Xiao, an economics and anthropology student at Barnard
-          College, weaving together the realms of academia and UX design. I'm
-          currently in love with Eric Wu :D!
+          College, weaving together the realms of academia and UX design.
         </h2>
-      </div>
+      </motion.div>
       <div className="home-projects-container">
         {projects.map((project, index) => {
           return (
@@ -58,9 +62,9 @@ export const Home = () => {
                   return <h3 key={descriptionIndex}> {description} </h3>;
                 })}
                 <div />
-                
+
                 <NavLink to={project.link} className={"home-project-link"}>
-                <div className="home-project-link-hover" />
+                  <div className="home-project-link-hover" />
                   {`View ${project.title} now`}
                 </NavLink>
               </div>
@@ -68,6 +72,6 @@ export const Home = () => {
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 };

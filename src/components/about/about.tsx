@@ -21,12 +21,12 @@ const subtitleLinks: LinkItem[] = [
 
 export const About = () => {
   return (
-    <motion.div
-      className="about-container"
-      initial={{ right: "500px" }}
-      animate={{ left: "0px" }}
-    >
-      <div className="about-title">
+    <div className="about-container">
+      <motion.div
+        className="about-title"
+        initial={{ right: "500px" }}
+        animate={{ left: "0px" }}
+      >
         <h1> Oh? Bello There! </h1>
         <div className="about-subtitle">
           {subtitleLinks.map((subtitleLink, index) => {
@@ -39,18 +39,28 @@ export const About = () => {
             );
           })}
         </div>
-      </div>
-      <div className="about-description">
+      </motion.div>
+      <motion.div
+        className="about-description"
+        initial={{ transform: "translateX(2000px)" }}
+        animate={{ transform: "translateX(0px)" }}
+        transition={{ delay: 0.5 }}
+      >
         <h3>
           Design, for me, is like a boat navigating the vast, boudless sea of
           life. Life itself is a journey of discovery, experience, and creation,
           where we forge connections witht he world around us. These
           experiences, in turn shape or inner selves
         </h3>
-      </div>
-      <div className="about-image-container">
+      </motion.div>
+      <motion.div
+        className="about-image-container"
+        initial={{ transform: "translateX(2000px)" }}
+        animate={{ transform: "translateX(0px)" }}
+        transition={{ delay: 0.5 }}
+      >
         <img src={aboutImage} alt="about main image" className="about-image" />
-      </div>
+      </motion.div>
       <div className="about-content-container">
         <img
           src={aboutContent1}
@@ -100,6 +110,6 @@ export const About = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
