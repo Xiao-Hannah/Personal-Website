@@ -68,6 +68,11 @@ export const Navbar = ({ selectedItem }: NavbarProps) => {
                     ? "navbar-item-hover isHovered"
                     : "navbar-item-hover"
                 }
+                style={{
+                  backgroundColor:
+                    pages[location.pathname] ?? constants.baseColor,
+                  opacity: 0.5,
+                }}
               />
               <div
                 className={
