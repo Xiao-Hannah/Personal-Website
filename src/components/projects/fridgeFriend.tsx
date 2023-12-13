@@ -713,7 +713,6 @@ export const FridgeFriend = () => {
                   </div>
                 );
               })}
-              ;
             </div>
           </div>
           <div className="fridgeFriend-body">
