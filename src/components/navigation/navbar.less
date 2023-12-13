@@ -43,3 +43,111 @@
     transition: 400ms;
   }
 }
+
+.navbar-hamburger-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 41;
+  padding: 15px;
+  border: 0;
+  background-color: transparent;
+  text-transform: none;
+  transition-timing-function: linear;
+  transition-duration: 0.15s;
+  transition-property: opacity, filter;
+  cursor: pointer;
+
+  .navbar-hamburger-inner {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 24px;
+
+    .navbar-hamburger-icon {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 30px;
+      height: 2px;
+      border-radius: 4px;
+      background-color: var(--fontColor);
+      transition-duration: 0.22s;
+      transition-property: transform;
+      transition-delay: 0.12s;
+      transform: rotate(225deg);
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      &:before,
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: auto;
+        right: 0;
+        width: 30px;
+        height: 2px;
+        border-radius: 4px;
+        background-color: var(--fontColor);
+        transition-timing-function: ease;
+        transition-duration: 0.15s;
+        transition-property: transform;
+      }
+      &:before {
+        width: 100%;
+        top: 0;
+        opacity: 0;
+        transition: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+      }
+      &:after {
+        width: 100%;
+        bottom: 0;
+        transform: rotate(-90deg);
+        transition: top 0.1s ease-out, opacity 0.1s ease-out 0.12s;
+      }
+      &.is-open {
+        transition-delay: 0s;
+        transform: rotate(0deg);
+        transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        &:before {
+          width: 120%;
+          top: -10px;
+          opacity: 1;
+          transition: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
+        }
+        &:after {
+          width: 80%;
+          bottom: -10px;
+          transform: rotate(0);
+          transition: bottom 0.1s ease-in 0.25s,
+            transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+      }
+    }
+  }
+}
+
+.navbar-sidebar {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 50px 10px;
+  width: min(75vw, 400px);
+  height: 100vh;
+  outline: 0;
+  box-shadow: 0 10px 30px -15px var(--fontColorActive);
+  z-index: 40;
+  transform: translateX(0vw);
+  visibility: visible;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &.is-open {
+    visibility: hidden;
+    transform: translateX(100vw);
+  }
+}

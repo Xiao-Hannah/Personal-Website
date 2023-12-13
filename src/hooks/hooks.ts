@@ -24,6 +24,11 @@ export const useWindowDimensions =() => {
   return windowDimensions;
 }
 
+export const useIsMobile = () => {
+  const { width } = useWindowDimensions();
+  return width <= 700;
+}
+
 export const ScrollRouter = () =>{
     const { pathname } = useLocation();
   

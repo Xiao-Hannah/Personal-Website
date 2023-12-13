@@ -7,12 +7,15 @@
   padding: 180px 0px 206px 134px;
   transition: opacity 500ms ease-in;
   position: relative;
+  @media only screen and (max-width: 800px) {
+    padding: 180px 0px 206px 34px;
+  }
   h1 {
     width: fit-content;
   }
 }
 .home-welcome {
-  position:relative;
+  position: relative;
   padding-left: 156px;
   padding-top: 120px;
   width: 60%;
@@ -20,17 +23,41 @@
     font-family: "Fira Sans";
     font-weight: 700;
   }
+  @media only screen and (max-width: 800px) {
+    padding-top: 40px;
+    padding-left: 46px;
+    width: 80%;
+  }
 }
 .home-projects-container {
   padding-top: 120px;
   margin: 0 156px;
+  @media only screen and (max-width: 800px) {
+    padding-top: 30px;
+    margin: 0 76px;
+  }
+  @media only screen and (max-width: 500px) {
+    margin: 0 36px;
+  }
   .home-project-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+    .home-project-image {
+      align-self: center;
+      width: 40%;
+      @media only screen and (max-width: 600px) {
+        width: 100%;
+      }
+    }
     .home-project-text-container {
       width: 55%;
-      h3 {
-        font-size: 22px;
+      @media only screen and (max-width: 600px) {
+        width: 100%;
+        text-align: center;
       }
 
       .home-project-link {

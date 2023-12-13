@@ -6,12 +6,21 @@
 
   .footer-content {
     padding: 100px;
+    @media only screen and (max-width: 800px) {
+      padding: 30px;
+    }
     h2 {
       font-family: "Fira Sans";
       font-size: 20px;
     }
     h3 {
       font-size: 30px;
+      @media only screen and (max-width: 600px) {
+        font-size: 25px;
+      }
+      @media only screen and (max-width: 600px) {
+        font-size: 22px;
+      }
       margin: 10px 0px;
       a {
         color: var(--fontColorLight);

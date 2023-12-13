@@ -54,7 +54,6 @@ export const Home = () => {
               <img
                 className="home-project-image"
                 src={project.image}
-                height={"530px"}
               />
               <div className="home-project-text-container">
                 <h2> {project.title}</h2>

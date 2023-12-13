@@ -11,8 +11,10 @@
   .fridgeFriend-title-container {
     height: 320px;
     h1 {
-      font-size: 60px;
-      width: fit-content;
+      @media only screen and (max-width: 400px) {
+        font-size: 30px;
+        overflow-x: hidden;
+      }
     }
   }
 }
@@ -53,6 +55,9 @@
 .fridgeFriend-body {
   padding: 30px;
 
+  @media only screen and (max-width: 600px) {
+    padding: 5px;
+  }
   .fridgeFriend-body-title {
     text-transform: uppercase;
     color: #759675;
@@ -78,6 +83,9 @@
 .fridgeFriend-testing-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1.5fr;
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: auto;
+  }
 }
 .frigeFriend-testing-item-image-container {
   height: 250px;

@@ -64,23 +64,44 @@ h1 {
   letter-spacing: 5px;
   text-align: left;
   margin: 0px;
+  @media only screen and (max-width: 800px) {
+    font-size: 50px;
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: 40px;
+  }
 }
 
 h2 {
   font-size: 40px;
   margin: 0px;
   font-weight: 500;
+  @media only screen and (max-width: 800px) {
+    font-size: 30px;
+  }
+  @media only screen and (max-width: 800px) {
+    font-size: 26px;
+  }
+}
+h3 {
+  @media only screen and (max-width: 800px) {
+    font-size: 20px;
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: 18px;
+  }
 }
 
 p {
   font-family: "Montserrat";
   font-size: 18px;
   color: var(--fontColor);
+  @media only screen and (max-width: 800px) {
+    font-size: 16px;
+  }
 }
 
 .styling-block {
-  width: 500px;
-  height: 500px;
   position: absolute;
   z-index: 0;
   p {

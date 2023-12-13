@@ -252,6 +252,30 @@ export const FridgeFriend = () => {
               FridgeFriend is the future of smart, waste-free, and efficient
               household food management.
             </p>
+            <div className="fridgeFriend-image">
+              <img
+                src={hiFi}
+                alt={"high fidelity figma design"}
+                width={"100%"}
+              />
+            </div>
+            <div className="avo-item-image-container-parent">
+              <div className="avo-item-image-container">
+                {avoImages.map((image, i) => {
+                  return <img key={i} src={image} height={"400px"} />;
+                })}
+              </div>
+            </div>
+
+            <iframe
+              src={`https://www.youtube.com/embed/y9LqWhmTMeQ`}
+              width={(width * 2) / 3}
+              height={(height * 2) / 3}
+              style={{ display: "block", margin: "auto" }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
           </div>
           <div className="fridgeFriend-body">
             <Element name="process">
@@ -655,30 +679,6 @@ export const FridgeFriend = () => {
                 inventories in kitchen.
               </p>
             </div>
-            <div className="fridgeFriend-image">
-              <img
-                src={hiFi}
-                alt={"high fidelity figma design"}
-                width={"100%"}
-              />
-            </div>
-            <div className="avo-item-image-container-parent">
-              <div className="avo-item-image-container">
-                {avoImages.map((image, i) => {
-                  return <img key={i} src={image} height={"400px"} />;
-                })}
-              </div>
-            </div>
-
-            <iframe
-              src={`https://www.youtube.com/embed/y9LqWhmTMeQ`}
-              width={(width * 2) / 3}
-              height={(height * 2) / 3}
-              style={{ display: "block", margin: "auto" }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Embedded youtube"
-            />
           </div>
           <div className="fridgeFriend-body">
             <Element name="userExperience">
