@@ -80,6 +80,14 @@ export const Navbar = ({ selectedItem }: NavbarProps) => {
                     ? "navbar-item selected"
                     : "navbar-item"
                 }
+                style={
+                  itemSelected === index
+                    ? {
+                        backgroundColor:
+                          pages[location.pathname] ?? constants.baseColor,
+                      }
+                    : {}
+                }
               >
                 {navbarItem.displayName}
               </div>
@@ -125,6 +133,14 @@ export const Navbar = ({ selectedItem }: NavbarProps) => {
                   onMouseLeave={() => {
                     setItemHovered(-1);
                   }}
+                  style={
+                    itemSelected === index
+                      ? {
+                          backgroundColor:
+                            pages[location.pathname] ?? constants.baseColor,
+                        }
+                      : {}
+                  }
                 >
                   <div
                     className={
