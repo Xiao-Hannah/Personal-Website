@@ -15,10 +15,7 @@ const projects: Projects[] = [
   {
     title: "Fridge Friend",
     description: [
-      "Discover a stress-free kitchen routine with Fridge Friend, the ultimate app for efficient grocery and kitchen essentials management",
-      "Fridge Friend's auto-restocking feature ensures a hassle-free experience by tracking fridge usage and automating essential orders",
-      "Enjoy seamless integration with local stores, receiving fresh produce and preferred brands at your doorstep. Fridge Friend intelligently adapts to your schedule and events, providing a customized kitchen management solution. Save time and reduce waste with Fridge Friend purchasing only what you need, contributing to a more sustainable kitchen approach",
-      "More than an app, Fridge Friend simplifies your routine and enhances your kitchen experience for a streamlined, stress-free lifestyle",
+      "FridgeFriend represents an innovative leap in kitchen efficiency. This solution ingeniously combines in-fridge cameras, an automated recipe generator, and a smart shopping assistant. It's designed to significantly reduce food waste while simultaneously optimizing grocery planning and shopping.",
     ],
     image: avocado,
     link: "/fridgeFriend",
@@ -51,10 +48,7 @@ export const Home = () => {
         {projects.map((project, index) => {
           return (
             <div className="home-project-container" key={index}>
-              <img
-                className="home-project-image"
-                src={project.image}
-              />
+              <img className="home-project-image" src={project.image} />
               <div className="home-project-text-container">
                 <h2> {project.title}</h2>
                 {project.description.map((description, descriptionIndex) => {
