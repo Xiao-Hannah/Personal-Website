@@ -32,7 +32,13 @@ import evaluation3 from "./../../assets/images/fridgeFriend/testing/Evaluation-3
 import arrow from "./../../assets/images/fridgeFriend/ideation/arrow.svg";
 import arrow2 from "./../../assets/images/fridgeFriend/ideation/arrow2.svg";
 import arrow3 from "./../../assets/images/fridgeFriend/ideation/arrow3.svg";
-import stakeholder from "./../../assets/images/fridgeFriend/stakeholder.png";
+import iteration1 from "./../../assets/images/fridgeFriend/iteration/1.png";
+import iteration2 from "./../../assets/images/fridgeFriend/iteration/2.png";
+import iteration3 from "./../../assets/images/fridgeFriend/iteration/3.png";
+import iteration4 from "./../../assets/images/fridgeFriend/iteration/4.png";
+import iteration5 from "./../../assets/images/fridgeFriend/iteration/5.png";
+import iteration6 from "./../../assets/images/fridgeFriend/iteration/6.png";
+import iteration7 from "./../../assets/images/fridgeFriend/iteration/7.png";
 import { Element, Link } from "react-scroll";
 import { useWindowDimensions } from "../../hooks/hooks";
 
@@ -80,26 +86,77 @@ const userTestObjects: UserTestObject[] = [
   },
 ];
 
-interface UserExperienceObject {
+interface PhoneImageObject {
   image: string;
-  text: string;
+  title: string;
+}
+
+interface UserExperienceObject {
+  title: string;
+  description: string;
+  image: string;
+  phoneImages: PhoneImageObject[];
 }
 const userExperienceObjects: UserExperienceObject[] = [
   {
+    title: "Live View of Fridge Contents",
+    description:
+      "Joy uses her phone to check her grocery list in the supermarket, guided efficiently by her FridgeFriend app which syncs with her fridge at home.",
+    phoneImages: [
+      {
+        title: "Home Page",
+        image: iteration1,
+      },
+      {
+        title: "Inside Fridge",
+        image: iteration2,
+      },
+    ],
     image: supermarket,
-    text: "Joy uses her phone to check her grocery list in the supermarket, guided efficiently by her FridgeFriend app which syncs with her fridge at home.",
   },
   {
+    title: "Notification of Near-Expiry Food",
+    description:
+      "Relaxing at home, she receives an alert from the app, prompting her to easily order fresh milk before her current supply expires.",
+    phoneImages: [
+      {
+        title: "Notification",
+        image: iteration3,
+      },
+      {
+        title: "Expiration Alert",
+        image: iteration4,
+      },
+    ],
     image: fridge,
-    text: "Relaxing at home, she receives an alert from the app, prompting her to easily order fresh milk before her current supply expires.",
   },
   {
+    title: "Automatic Restocking Feature",
+    description:
+      "She greets a delivery of fresh produce at her door, auto-restocked by FridgeFriend, ensuring she always has fresh ingredients on hand.",
+    phoneImages: [
+      {
+        title: "Grocery",
+        image: iteration5,
+      },
+      {
+        title: "Restocking",
+        image: iteration6,
+      },
+    ],
     image: couch,
-    text: "She greets a delivery of fresh produce at her door, auto-restocked by FridgeFriend, ensuring she always has fresh ingredients on hand.",
   },
   {
+    title: "Smart Recipe Generator",
+    description:
+      "In her kitchen, she follows a FridgeFriend recipe on her phone, using ingredients the app knows she has, for a delicious, no-waste meal.",
+    phoneImages: [
+      {
+        title: "recipe",
+        image: iteration7,
+      },
+    ],
     image: kitchen,
-    text: "In her kitchen, she follows a FridgeFriend recipe on her phone, using ingredients the app knows she has, for a delicious, no-waste meal.",
   },
 ];
 
@@ -223,30 +280,6 @@ export const FridgeFriend = () => {
             offset={-100}
           >
             <h3 className="fridge-friend-table-content-text"> Iteration </h3>
-          </Link>
-          <Link
-            className="table-content-item"
-            to="userExperience"
-            spy={true}
-            smooth={true}
-            duration={500}
-            offset={-100}
-          >
-            <h3 className="fridge-friend-table-content-text">
-              User Experience
-            </h3>
-          </Link>
-          <Link
-            className="table-content-item"
-            to="businessResponse"
-            spy={true}
-            smooth={true}
-            duration={500}
-            offset={-100}
-          >
-            <h3 className="fridge-friend-table-content-text">
-              Business Response
-            </h3>
           </Link>
         </div>
         <div className="table-content-text">
@@ -844,8 +877,57 @@ export const FridgeFriend = () => {
                 </div>
               </div>
             </div>
+
+            <h2 className="fridgeFriend-body-subtitle">
+              Ideal User Experience
+            </h2>
+
+            <div className="fridgeFriend-body-description paddingTop">
+              {userExperienceObjects.map((userExperienceObject, index) => {
+                return (
+                  <div
+                    className={"fridgeFriend-user-experience-item"}
+                    key={index}
+                  >
+                    <h3 className="fridgeFriend-body-topic-title paddingTop">
+                      {userExperienceObject.title}
+                    </h3>
+                    <p> {userExperienceObject.description}</p>
+                    <div className="fridgeFriend-user-experience-item-image-container">
+                      <img
+                        width={"100%"}
+                        src={userExperienceObject.image}
+                        alt={"user experience image"}
+                      />
+                      <div className="fridgeFriend-user-experience-item-phone-image-container">
+                        {userExperienceObject.phoneImages.map(
+                          (phoneImage, phoneImageIndex) => {
+                            return (
+                              <div
+                                className="fridgeFriend-user-experience-item-phone-image"
+                                key={phoneImageIndex}
+                              >
+                                <img
+                                  width={"60%"}
+                                  src={phoneImage.image}
+                                  alt={"user experience image"}
+                                />
+                                <h3 className="fridgeFriend-body-topic-title paddingTop">
+                                  {phoneImage.title}
+                                </h3>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="fridgeFriend-body">
+
+          {/* <div className="fridgeFriend-body">
             <Element name="userExperience">
               <h3 className="fridgeFriend-body-title"> User Experience </h3>
             </Element>
@@ -879,86 +961,7 @@ export const FridgeFriend = () => {
                 );
               })}
             </div>
-          </div>
-          <div className="fridgeFriend-body">
-            <Element name="businessResponse">
-              <h3 className="fridgeFriend-body-title"> Business Response </h3>
-            </Element>
-            <h2 className="fridgeFriend-body-subtitle">Stakeholder System</h2>
-
-            <div className="fridgeFriend-image">
-              <img
-                src={stakeholder}
-                alt={"stakeholder system"}
-                width={"100%"}
-              />
-            </div>
-            <h2 className="fridgeFriend-body-subtitle paddingTop">
-              Value to our stakeholders
-            </h2>
-            <div className="fridgeFriend-body-description paddingTop">
-              <p>
-                <b>For Users: </b>
-              </p>
-              <ul>
-                <li>
-                  <p>
-                    <b>Time-saving Magic:</b> FridgeFriend's 360-angle AI camera
-                    takes the guesswork out of managing food freshness, saving
-                    users' time by providing instant expiration dates and
-                    alerts.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <b>Financial Wizardry:</b> Users can see the money they save
-                    by reducing food waste, empowering them to make mindful
-                    decisions and save on grocery costs.
-                  </p>
-                </li>
-              </ul>
-              <p>
-                <b>For Investors: </b>
-              </p>
-              <ul>
-                <li>
-                  <p>
-                    <b>Innovation Elixir:</b> FridgeFriend's cutting-edge
-                    technology, including the AI camera and auto-restocking,
-                    positions it as a pioneer in the smart home and kitchen
-                    space.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <b>Monetary Enchantment:</b> The potential for user growth
-                    and engagement, driven by the app's unique features, creates
-                    a promising investment opportunity.
-                  </p>
-                </li>
-              </ul>
-              <p>
-                <b>For Partners: </b>
-              </p>
-              <ul>
-                <li>
-                  <p>
-                    <b>Collaboration Spell:</b> FridgeFriend offers
-                    collaboration opportunities, especially for grocery
-                    providers, through the "buy again" and "auto-restock"
-                    features.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <b>Ecosystem Expansion:</b> Partners can benefit from being
-                    part of an innovative ecosystem that enhances user
-                    experience and engagement.
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
