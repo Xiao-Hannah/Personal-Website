@@ -921,7 +921,7 @@ export const FridgeFriend = () => {
                                 key={phoneImageIndex}
                               >
                                 <img
-                                  width={"60%"}
+                                  width={"180px"}
                                   src={phoneImage.image}
                                   alt={"user experience image"}
                                 />
@@ -945,10 +945,12 @@ export const FridgeFriend = () => {
             </Element>
 
             <div className="fridgeFriend-body-description paddingTop">
-              Throughout this project, our team embraced the full spectrum of
-              human-centered design, from pinpointing the core problem to
-              iterating on solutions. With each feedback session, we leveraged
-              insights to enhance subsequent iterations.
+              <p>
+                Throughout this project, our team embraced the full spectrum of
+                human-centered design, from pinpointing the core problem to
+                iterating on solutions. With each feedback session, we leveraged
+                insights to enhance subsequent iterations.
+              </p>
             </div>
             <h3 className="fridgeFriend-body-topic-title paddingTop">
               Takeaway 1
