@@ -926,42 +926,6 @@ export const FridgeFriend = () => {
               })}
             </div>
           </div>
-
-          {/* <div className="fridgeFriend-body">
-            <Element name="userExperience">
-              <h3 className="fridgeFriend-body-title"> User Experience </h3>
-            </Element>
-            <h2 className="fridgeFriend-body-subtitle">
-              Creating ideal customer experiences in different scenarios
-            </h2>
-            <div className="fridgeFriend-body-description paddingTop">
-              {userExperienceObjects.map((userExperienceObject, index) => {
-                return (
-                  <div
-                    className={
-                      index % 2 === 1
-                        ? "fridgeFriend-user-experience-item"
-                        : "fridgeFriend-user-experience-item reverse"
-                    }
-                    key={index}
-                  >
-                    <div className="fridgeFriend-user-experience-item-image-container">
-                      <img
-                        width={"100%"}
-                        src={userExperienceObject.image}
-                        alt={"user experience image"}
-                      />
-                    </div>
-                    <div className="fridgeFriend-user-experience-item-text-container">
-                      <p className="fridgeFriend-user-experience-item-text">
-                        {userExperienceObject.text}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div> */}
         </div>
       </div>
     </div>
