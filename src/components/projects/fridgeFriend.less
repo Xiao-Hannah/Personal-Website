@@ -54,6 +54,10 @@
     @media only screen and (max-width: 1350px) {
       width: 100%;
     }
+
+    .fridgeFriend-header-about-title {
+      color: #759675;
+    }
   }
   @media only screen and (max-width: 1350px) {
     flex-direction: column;
@@ -71,22 +75,168 @@
     text-transform: uppercase;
     color: #759675;
   }
+  .fridgeFriend-body-topic-title {
+    text-transform: uppercase;
+    color: #759675;
+    font-weight: 400;
+  }
 
   .fridgeFriend-body-subtitle {
     text-transform: uppercase;
     font-size: 28px;
+    font-weight: 700;
+  }
+  .fridgeFriend-body-subtitle-2 {
+    text-transform: uppercase;
+    font-size: 24px;
   }
 }
-.fridgeFriend-side-by-side-image {
-  display: flex;
+
+.paddingTop-section {
+  padding-top: 30px;
 }
 
 .paddingTop {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .fridge-friend-table-content-text {
   color: #759675;
+}
+
+.fridgeFriend-solution-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  @media only screen and (max-width: 1250px) {
+    display: flex;
+    flex-direction: column;
+  }
+  .fridgeFriend-solution-twin {
+    display: grid;
+    grid-template-columns: 0.7fr 1.4fr;
+    align-items: center;
+
+    @media only screen and (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
+    .fridgeFriend-solution-twin-1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: auto;
+  }
+}
+
+.fridgeFriend-solution-chat {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  @media only screen and (max-width: 1250px) {
+    display: flex;
+    flex-direction: column;
+  }
+  .fridgeFriend-solution-chat-row {
+    display: flex;
+    @media only screen and (max-width: 1250px) {
+      flex-direction: column;
+    }
+    .fridgeFriend-solution-chat-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23759675FF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      p {
+        margin: auto;
+        padding: 20px;
+      }
+    }
+    .box-design1 {
+      width: 350px;
+      height: 140px;
+      margin: 10px 2% 10px 15%;
+    }
+    .box-design2 {
+      width: 400px;
+      height: 60px;
+      margin: 30px 5%;
+    }
+    .box-design3 {
+      width: 300px;
+      height: 100px;
+      margin: 10px 4% 0px 10%;
+    }
+    .box-design4 {
+      width: 400px;
+      height: 100px;
+      margin: 10px 2% 0px 1%;
+    }
+    @media only screen and (max-width: 1250px) {
+      .box-design1,
+      .box-design2,
+      .box-design3,
+      .box-design4 {
+        width: 100%;
+        height: 120px;
+        margin: 10px;
+      }
+    }
+  }
+}
+.fridgeFriend-ideation1-container {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 2fr;
+  width: 95%;
+  margin: auto;
+  align-items: center;
+  @media only screen and (max-width: 1050px) {
+    grid-template-columns: auto;
+    .fridgeFriend-body-topic-title {
+      text-align: center;
+      padding-bottom: 30px;
+    }
+    img {
+      width: 60%;
+      margin: auto;
+    }
+  }
+}
+
+.fridgeFriend-ideation2-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 95%;
+  margin: auto;
+  align-items: center;
+  .fridgeFriend-body-description {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    .fridgeFriend-body-description {
+      width: 100%;
+    }
+  }
+}
+
+.fridgeFriend-ideation3-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: auto;
+    img {
+      width: 70%;
+      margin: auto;
+    }
+  }
 }
 
 .fridgeFriend-testing-container {
@@ -160,4 +310,37 @@
       padding: 10px;
     }
   }
+}
+
+.arrow {
+  position: absolute;
+  width: 20%;
+  @media only screen and (max-width: 1100px) {
+    display: none;
+  }
+}
+.arrow1 {
+  padding-left: 10%;
+  padding-bottom: 13%;
+}
+.arrow2 {
+  padding-left: 10%;
+  padding-top: 12%;
+}
+.arrow3 {
+  padding-left: 13%;
+}
+
+.fridgeFriend-link {
+  color: #759675;
+  &:visited {
+    color: #1e551e;
+  }
+  &:active {
+    color: #428442;
+  }
+}
+
+.fridgeFriend-color {
+  color: #759675;
 }

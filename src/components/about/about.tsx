@@ -27,7 +27,7 @@ export const About = () => {
         initial={{ right: "500px" }}
         animate={{ left: "0px" }}
       >
-        <h1> Oh? Bello There! </h1>
+        <h1> Oh? Hello There! </h1>
         <div className="about-subtitle">
           {subtitleLinks.map((subtitleLink, index) => {
             return (
@@ -50,7 +50,7 @@ export const About = () => {
           Design, for me, is like a boat navigating the vast, boudless sea of
           life. Life itself is a journey of discovery, experience, and creation,
           where we forge connections witht he world around us. These
-          experiences, in turn shape or inner selves
+          experiences, in turn shape our inner selves
         </h3>
       </motion.div>
       <motion.div

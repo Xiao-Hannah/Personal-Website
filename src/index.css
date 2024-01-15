@@ -128,3 +128,7 @@ ol {
     color: var(--fontColor);
   }
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
