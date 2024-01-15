@@ -269,7 +269,10 @@ export const FridgeFriend = () => {
             duration={500}
             offset={-100}
           >
-            <h3 className="fridge-friend-table-content-text"> User Testing </h3>
+            <h3 className="fridge-friend-table-content-text">
+              {" "}
+              Testing & Evaluation{" "}
+            </h3>
           </Link>
           <Link
             className="table-content-item"
@@ -280,6 +283,16 @@ export const FridgeFriend = () => {
             offset={-100}
           >
             <h3 className="fridge-friend-table-content-text"> Iteration </h3>
+          </Link>
+          <Link
+            className="table-content-item"
+            to="reflection"
+            spy={true}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
+            <h3 className="fridge-friend-table-content-text"> Reflection </h3>
           </Link>
         </div>
         <div className="table-content-text">
@@ -925,6 +938,50 @@ export const FridgeFriend = () => {
                 );
               })}
             </div>
+          </div>
+          <div className="fridgeFriend-body">
+            <Element name="reflection">
+              <h3 className="fridgeFriend-body-title">Reflection</h3>
+            </Element>
+
+            <div className="fridgeFriend-body-description paddingTop">
+              Throughout this project, our team embraced the full spectrum of
+              human-centered design, from pinpointing the core problem to
+              iterating on solutions. With each feedback session, we leveraged
+              insights to enhance subsequent iterations.
+            </div>
+            <h3 className="fridgeFriend-body-topic-title paddingTop">
+              Takeaway 1
+            </h3>
+            <h4 className="fridgeFriend-body-topic-title">
+              Leveraging Diversity to Harness Collective Strength
+            </h4>
+            <p>
+              Our team is diverse, encompassing expertise in engineering,
+              humanity and supply chain management, initially posed a challenge
+              in aligning our perspectives. However, this diversity soon
+              transformed into our greatest asset. By valuing and integrating
+              each member's unique insights and skills, we were able to
+              effectively blend industrial design with UI/UX principles. This
+              collaborative synergy was instrumental in refining our solution to
+              address food waste sustainability.
+            </p>
+
+            <h3 className="fridgeFriend-body-topic-title paddingTop">
+              Takeaway 2
+            </h3>
+            <h4 className="fridgeFriend-body-topic-title">
+              The Value of Refining the Problem Statement
+            </h4>
+            <p>
+              Initially, our problem statement was broad and somewhat nebulous.
+              Through repeated brainstorming and iteration, we honed in on a
+              more precise and manageable scope. This process of reflection and
+              revision was invaluable. It taught us the importance of taking the
+              time to accurately define the problem, even if it means starting
+              over. This approach not only streamlined our design process but
+              also ensured that our efforts were targeted and effective.
+            </p>
           </div>
         </div>
       </div>
