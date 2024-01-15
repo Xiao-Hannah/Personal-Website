@@ -4,9 +4,6 @@ import "./tablecontent.less";
 import compost1 from "./../../assets/images/fridgeFriend/ideation/Ideation-2-1.png";
 import compost2 from "./../../assets/images/fridgeFriend/ideation/Ideation-2-2.png";
 import hiFi from "./../../assets/images/fridgeFriend/hi-fi.png";
-import manager from "./../../assets/images/fridgeFriend/manager.png";
-import swe from "./../../assets/images/fridgeFriend/softwareEngineer.png";
-import students from "./../../assets/images/fridgeFriend/students.png";
 import stickyNotes from "./../../assets/images/fridgeFriend/stickynote.png";
 import supermarket from "./../../assets/images/fridgeFriend/supermarket.png";
 import fridge from "./../../assets/images/fridgeFriend/fridge.png";
@@ -29,6 +26,9 @@ import ideation1_3 from "./../../assets/images/fridgeFriend/ideation/Ideation-1-
 import ideation3_1 from "./../../assets/images/fridgeFriend/ideation/Ideation-3-1.png";
 import ideation3_2 from "./../../assets/images/fridgeFriend/ideation/Ideation-3-2.png";
 import ideation3_3 from "./../../assets/images/fridgeFriend/ideation/Ideation-3-3.png";
+import evaluation1 from "./../../assets/images/fridgeFriend/testing/Evaluation-1.png";
+import evaluation2 from "./../../assets/images/fridgeFriend/testing/Evaluation-2.png";
+import evaluation3 from "./../../assets/images/fridgeFriend/testing/Evaluation-3.png";
 import arrow from "./../../assets/images/fridgeFriend/ideation/arrow.svg";
 import arrow2 from "./../../assets/images/fridgeFriend/ideation/arrow2.svg";
 import arrow3 from "./../../assets/images/fridgeFriend/ideation/arrow3.svg";
@@ -45,8 +45,8 @@ interface UserTestObject {
 
 const userTestObjects: UserTestObject[] = [
   {
-    image: swe,
-    title: "Software Engineer",
+    image: evaluation1,
+    title: "Mike",
     titleColor: "#f4d12b",
     description: [
       "24 years old",
@@ -56,8 +56,8 @@ const userTestObjects: UserTestObject[] = [
     ],
   },
   {
-    image: manager,
-    title: "Supply Chain Manager",
+    image: evaluation2,
+    title: "Lauren",
     titleColor: "#a7cdf4",
     description: [
       "35 years old",
@@ -67,8 +67,8 @@ const userTestObjects: UserTestObject[] = [
     ],
   },
   {
-    image: students,
-    title: "College Students",
+    image: evaluation3,
+    title: "Adam, John, and Jane",
     titleColor: "#ceafd8",
     description: [
       "Early 20s",
@@ -142,8 +142,16 @@ export const FridgeFriend = () => {
               Food wastage is a growing concern. With nearly 40% of food in the
               U.S. being wasted and families losing approximately $1,500 a year
               on thrown-out groceries, we are constantly seeking ways to save
-              both time and money. This is where <b>FridgeFriend</b> steps in,
-              revolutionizing the way we interact with our kitchen.
+              both time and money. This is where{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.youtube.com/watch?v=y9LqWhmTMeQ"
+                className="fridgeFriend-link"
+              >
+                FridgeFriend
+              </a>{" "}
+              steps in, revolutionizing the way we interact with our kitchen.
             </p>
 
             <p>
@@ -205,16 +213,6 @@ export const FridgeFriend = () => {
             offset={-100}
           >
             <h3 className="fridge-friend-table-content-text"> User Testing </h3>
-          </Link>
-          <Link
-            className="table-content-item"
-            to="evaulation"
-            spy={true}
-            smooth={true}
-            duration={500}
-            offset={-100}
-          >
-            <h3 className="fridge-friend-table-content-text"> Evaulation </h3>
           </Link>
           <Link
             className="table-content-item"
@@ -728,7 +726,7 @@ export const FridgeFriend = () => {
           </div>
           <div className="fridgeFriend-body">
             <Element name="userTesting">
-              <h3 className="fridgeFriend-body-title"> User Testing </h3>
+              <h3 className="fridgeFriend-body-title">Testing & Evaluation</h3>
             </Element>
             <div className="fridgeFriend-testing-container">
               {userTestObjects.map((userTestObject, index) => {
@@ -765,14 +763,6 @@ export const FridgeFriend = () => {
                 width={"100%"}
               />
             </div>
-          </div>
-          <div className="fridgeFriend-body">
-            <Element name="evaulation">
-              <h3 className="fridgeFriend-body-title"> Evaluation </h3>
-            </Element>
-            <h2 className="fridgeFriend-body-subtitle">
-              Idea 1 best addresses our customers' needs.
-            </h2>
             <div className="fridgeFriend-body-description paddingTop">
               <p>
                 Most of our users liked these three ideas, and had a hard time
@@ -797,13 +787,13 @@ export const FridgeFriend = () => {
                   </p>
                 </li>
               </ol>
-              <p>
-                Generally, idea 1 is a more appropriate idea to keep pursuing,
-                as it is both practical with a large potential customer base and
-                it helps with the daily food management with innovative
-                solutions.
+              <p className="paddingTop">
+                Generally, <b>idea 1</b> is a more appropriate idea to keep
+                pursuing, as it is both practical with a large potential
+                customer base and it helps with the daily food management with
+                innovative solutions.
               </p>
-              <p>
+              <p className="paddingTop">
                 After we reviewed all user interviews, we need to address the
                 following challenges:
               </p>
@@ -828,7 +818,7 @@ export const FridgeFriend = () => {
               <h3 className="fridgeFriend-body-title"> Iteration </h3>
             </Element>
             <h2 className="fridgeFriend-body-subtitle">
-              narrowing in on our solution and adding features
+              Narrowing in on our solution and adding features
             </h2>
             <div className="fridgeFriend-body-description paddingTop">
               <p>
@@ -853,16 +843,6 @@ export const FridgeFriend = () => {
                   })}
                 </div>
               </div>
-
-              <iframe
-                src={`https://www.youtube.com/embed/y9LqWhmTMeQ`}
-                width={(width * 2) / 3}
-                height={(height * 2) / 3}
-                style={{ display: "block", margin: "auto" }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-              />
             </div>
           </div>
           <div className="fridgeFriend-body">
