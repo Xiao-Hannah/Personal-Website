@@ -1,0 +1,32 @@
+.moving-image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.moving-image-main {
+  cursor: pointer;
+  z-index: 50;
+  position: relative;
+  transition: transform 0.6s ease;
+  max-width: 100%;
+  max-height: 100%;
+  &.isHovered {
+    transform: translateY(-30px);
+  }
+}
+
+.moving-image-bg {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 1s ease;
+  &.isHovered {
+    opacity: 1;
+  }
+}

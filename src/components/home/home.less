@@ -31,7 +31,7 @@
 }
 .home-projects-container {
   padding-top: 120px;
-  margin: 0 156px;
+  margin: 0px 60px;
   @media only screen and (max-width: 800px) {
     padding-top: 30px;
     margin: 0 76px;
@@ -41,23 +41,41 @@
   }
   .home-project-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    padding: 60px 0px;
+    flex-direction: row;
+    &.backwards {
+      flex-direction: row-reverse;
+    }
     @media only screen and (max-width: 600px) {
       flex-direction: column;
-    }
-    .home-project-image {
-      align-self: center;
-      width: 40%;
-      @media only screen and (max-width: 600px) {
-        width: 100%;
-      }
     }
     .home-project-text-container {
       width: 55%;
       @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
         width: 100%;
         text-align: center;
+        align-items: center;
+      }
+      .home-project-tag-container {
+        display: flex;
+        padding-bottom: 30px;
+        .home-project-tag {
+          margin: 5px;
+          padding: 4px;
+          border: 1px solid var(--fontColor);
+          border-radius: 30px;
+          min-width: 80px;
+          text-align: center;
+
+          p {
+            font-size: 12px;
+            line-height: 0;
+          }
+        }
       }
 
       .home-project-link {
@@ -70,7 +88,17 @@
         position: relative;
         color: var(--fontColor);
         display: block;
-        width: 262px;
+        &.fridgeFriend {
+          width: 262px;
+        }
+        &.bloome {
+          width: 195px;
+        }
+        @media only screen and (max-width: 600px) {
+          width: 100%;
+          text-align: center;
+        }
+
         .home-project-link-hover {
           height: 3px;
           background-color: var(--fontColor);

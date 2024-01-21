@@ -1,5 +1,4 @@
 import React from "react";
-import "./fun.less";
 import {
   archeologyImages,
   funImages,

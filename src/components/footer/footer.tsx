@@ -1,6 +1,5 @@
 import React from "react";
 import { LinkItem } from "../../models/LinkItem";
-import "./footer.less";
 import resume from "./../../assets/files/resume.pdf";
 import catImage from "./../../assets/images/footer/cat.png";
 

@@ -1,0 +1,288 @@
+.fridge-friend-topic-title {
+  color: #759675;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.fridge-friend-text-color {
+  color: #759675;
+}
+
+.fridgeFriend-body {
+  padding: 30px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 5px;
+  }
+  .fridgeFriend-body-title {
+    text-transform: uppercase;
+    color: #759675;
+  }
+  .fridgeFriend-body-topic-title {
+    text-transform: uppercase;
+    color: #759675;
+    font-weight: 400;
+  }
+
+  .fridgeFriend-body-subtitle {
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .fridgeFriend-body-subtitle-2 {
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+}
+
+.paddingTop-section {
+  padding-top: 36px;
+}
+
+.paddingTop {
+  padding-top: 22px;
+}
+
+.fridgeFriend-solution-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  @media only screen and (max-width: 1250px) {
+    display: flex;
+    flex-direction: column;
+  }
+  .fridgeFriend-solution-twin {
+    display: grid;
+    grid-template-columns: 0.7fr 1.4fr;
+    align-items: center;
+
+    @media only screen and (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
+    .fridgeFriend-solution-twin-1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: auto;
+  }
+}
+
+.fridgeFriend-solution-chat {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  @media only screen and (max-width: 1250px) {
+    display: flex;
+    flex-direction: column;
+  }
+  .fridgeFriend-solution-chat-row {
+    display: flex;
+    @media only screen and (max-width: 1250px) {
+      flex-direction: column;
+    }
+    .fridgeFriend-solution-chat-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23759675FF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      p {
+        margin: auto;
+        padding: 20px;
+      }
+    }
+    .box-design1 {
+      width: 350px;
+      height: 160px;
+      margin: 10px 2% 10px 15%;
+    }
+    .box-design2 {
+      width: 400px;
+      height: 60px;
+      margin: 30px 5%;
+    }
+    .box-design3 {
+      width: 300px;
+      height: 130px;
+      margin: 10px 4% 0px 10%;
+    }
+    .box-design4 {
+      width: 400px;
+      height: 100px;
+      margin: 10px 2% 0px 1%;
+    }
+    @media only screen and (max-width: 1250px) {
+      .box-design1,
+      .box-design2,
+      .box-design3,
+      .box-design4 {
+        width: 100%;
+        height: 120px;
+        margin: 10px;
+      }
+    }
+  }
+}
+.fridgeFriend-ideation1-container {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 2fr;
+  width: 95%;
+  margin: auto;
+  align-items: center;
+  @media only screen and (max-width: 1050px) {
+    grid-template-columns: auto;
+    .fridgeFriend-body-topic-title {
+      text-align: center;
+      padding-bottom: 30px;
+    }
+    img {
+      width: 60%;
+      margin: auto;
+    }
+  }
+}
+
+.fridgeFriend-ideation2-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 95%;
+  margin: auto;
+  align-items: center;
+  .fridgeFriend-body-description {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    .fridgeFriend-body-description {
+      width: 100%;
+    }
+  }
+}
+
+.fridgeFriend-ideation3-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: auto;
+    img {
+      width: 70%;
+      margin: auto;
+    }
+  }
+}
+
+.fridgeFriend-testing-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  @media only screen and (max-width: 1100px) {
+    grid-template-columns: auto;
+  }
+}
+.frigeFriend-testing-item-image-container {
+  height: 250px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  img {
+    max-height: 200px;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.frigeFriend-testing-item-title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.fridgeFriend-user-experience-item {
+  .fridgeFriend-user-experience-item-image-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    @media only screen and (max-width: 1100px) {
+      display: flex;
+      flex-direction: column;
+    }
+    .fridgeFriend-user-experience-item-phone-image-container {
+      display: flex;
+      justify-content: center;
+
+      .fridgeFriend-user-experience-item-phone-image {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+.avo-item-image-container-parent {
+  width: 100%;
+  margin-bottom: 30px;
+
+  .avo-item-image-container {
+    padding: 20px;
+    display: flex;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      background: #c1e1c1;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 3px var(--fontColorLight);
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #759675;
+      border-radius: 10px;
+      &:hover {
+        background: #5c865c;
+      }
+    }
+    img {
+      padding: 10px;
+    }
+  }
+}
+
+.arrow {
+  position: absolute;
+  width: 20%;
+  @media only screen and (max-width: 1100px) {
+    display: none;
+  }
+}
+.arrow1 {
+  padding-left: 10%;
+  padding-bottom: 13%;
+}
+.arrow2 {
+  padding-left: 10%;
+  padding-top: 12%;
+}
+.arrow3 {
+  padding-left: 13%;
+}
+
+.fridgeFriend-link {
+  color: #759675;
+  &:visited {
+    color: #1e551e;
+  }
+  &:active {
+    color: #428442;
+  }
+}
+
+.fridgeFriend-color {
+  color: #759675;
+}

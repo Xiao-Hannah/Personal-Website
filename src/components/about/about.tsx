@@ -1,5 +1,4 @@
 import React from "react";
-import "./about.less";
 import aboutImage from "./../../assets/images/about/about.jpg";
 import aboutContent1 from "./../../assets/images/about/about1.jpg";
 import aboutContent2 from "./../../assets/images/about/about2.jpg";

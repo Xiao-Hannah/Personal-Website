@@ -40,6 +40,43 @@
   src: url("./assets/fonts/abril-fatface-v23-latin-regular.woff2")
     format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+/* just-another-hand-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Just Another Hand";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/just-another-hand-v19-latin-regular.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./assets/fonts/open-sans-v40-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* roboto-300 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./assets/fonts/roboto-v30-latin-300.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./assets/fonts/roboto-v30-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 html,
 body {
   margin: 0;
@@ -51,10 +88,12 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Montserrat";
+  font-weight: 300;
+  font-family: "Roboto";
   color: var(--fontColor);
   position: relative;
   z-index: 30;
+  line-height: 1.5;
 }
 
 h1 {
@@ -87,17 +126,18 @@ h3 {
   @media only screen and (max-width: 800px) {
     font-size: 20px;
   }
+
   @media only screen and (max-width: 600px) {
     font-size: 18px;
   }
-  line-height: 2;
 }
 
 p {
-  font-family: "Montserrat";
+  font-family: "Open Sans";
+  font-weight: 200;
+  line-height: 1.5;
   font-size: 18px;
   color: var(--fontColor);
-  line-height: 1.8;
   @media only screen and (max-width: 800px) {
     font-size: 16px;
   }

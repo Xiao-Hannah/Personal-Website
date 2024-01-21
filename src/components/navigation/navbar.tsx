@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./navbar.less";
 import { NavLink, useLocation } from "react-router-dom";
 import { useIsMobile } from "../../hooks/hooks";
 import constants from "../../constants";
 
 const pages: Record<string, string> = {
   "/fridgeFriend": constants.fridgeFriendColor,
+  "/bloome": constants.bloomeColor,
 };
 interface NavbarItem {
   displayName: string;

@@ -8,6 +8,7 @@ interface PageDetails {
 }
 const pages: Record<string, PageDetails> = {
   "/fridgeFriend": { showName: true, color: constants.fridgeFriendColor },
+  "/bloome": { showName: true, color: constants.bloomeColor },
   "/about": {},
   "/": {},
 };

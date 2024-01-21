@@ -1,5 +1,4 @@
 import React from "react";
-import "./contact.less";
 
 export const Contact = () => {
   return (

@@ -7,8 +7,9 @@ import { AnimatePresence } from "framer-motion";
 import { StylingBlock } from "./StylingBlock";
 import { Contact } from "./contact/contact";
 import { Fun } from "./fun/fun";
-import { FridgeFriend } from "./projects/fridgeFriend";
+import { FridgeFriend } from "./projects/fridgeFriend/fridgeFriend";
 import { ScrollToTop } from "./ScrollToTop";
+import { Bloome } from "./projects/bloome/bloome";
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ export const AnimatedRoutes = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/for fun" element={<Fun />} />
           <Route path="/fridgeFriend" element={<FridgeFriend />} />
+          <Route path="/bloome" element={<Bloome />} />
           <Route path="*" element={<FourOhFour />} />
         </Routes>
         <ScrollToTop />

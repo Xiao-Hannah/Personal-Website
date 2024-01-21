@@ -1,0 +1,78 @@
+.bloome-text-color {
+  color: #872828;
+}
+.bloome-header-topic-title {
+  color: #872828;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.bloome-body {
+  padding: 30px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 5px;
+  }
+  .bloome-body-title {
+    text-transform: uppercase;
+    color: #872828;
+  }
+  .bloome-body-topic-title {
+    text-transform: uppercase;
+    color: #872828;
+    font-weight: 400;
+  }
+
+  .bloome-body-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .bloome-body-subtitle-2 {
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+}
+
+.bloome-logo-text {
+  font-size: 36px;
+  font-weight: 300;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #596652;
+}
+
+.bloome-solution-container {
+  .bloome-solution-image-container {
+    display: flex;
+  }
+}
+
+.bloome-solution-carousel-container {
+  width: 100%;
+  background-color: #d3908ca3;
+  display: flex;
+  img {
+    padding: 100px;
+  }
+  .bloome-solution-carousel-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+}
+.bloome-solution-carousel-button-row {
+  display: flex;
+  position: absolute;
+  padding-top: 70px;
+  top: 0;
+  .bloome-solution-carousel-button {
+    cursor: pointer;
+    background-color: white;
+    margin: 5px;
+    border-radius: 8px;
+    padding: 8px;
+    &.isSelected {
+      background-color: #872828;
+    }
+  }
+}
