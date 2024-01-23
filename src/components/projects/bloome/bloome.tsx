@@ -8,6 +8,10 @@ import { SolutionDesign1 } from "./solutionDesign1";
 import { SolutionDesign2 } from "./solutionDesign2";
 import persona1Journey from "./../../../assets/images/bloome/emphasize/persona1Journey.png";
 import persona2Journey from "./../../../assets/images/bloome/emphasize/persona2Journey.png";
+import competitor from "./../../../assets/images/bloome/ideate/competitor.png";
+import userFlow from "./../../../assets/images/bloome/prototype/userflow.png";
+import lowFidelity from "./../../../assets/images/bloome/prototype/lowFidelity.png";
+import { HighFidelity } from "./highFidelity";
 
 export const Bloome = () => {
   const { width } = useWindowDimensions();
@@ -139,13 +143,13 @@ export const Bloome = () => {
           </Link>
           <Link
             className="table-content-item"
-            to="test"
+            to="reflection"
             spy={true}
             smooth={true}
             duration={500}
             offset={-100}
           >
-            <h3 className="bloome-text-color"> Test </h3>
+            <h3 className="bloome-text-color"> Reflection </h3>
           </Link>
         </div>
         <div className="table-content-text">
@@ -166,33 +170,28 @@ export const Bloome = () => {
             />
             <SolutionCarousel />
           </div>
-          <div className="bloome-body">
-            <Element name="process">
-              <h3 className="bloome-body-title"> Process </h3>
-            </Element>
+          <Element name="process">
+            <h3 className="bloome-body-title"> Process </h3>
+          </Element>
 
-            <div className="bloome-process-container">
-              <ProcessElement
-                text="emphasize"
-                description={["persona", "user journey map"]}
-              />
-              <ProcessElement
-                text="define"
-                description={["problem statement"]}
-              />
-              <ProcessElement
-                text="ideate"
-                description={["competitor audit", "ideation"]}
-              />
-              <ProcessElement
-                text="prototype"
-                description={["user flow", "wireframes"]}
-              />
-              <ProcessElement
-                text="test"
-                description={["usability test", "insights"]}
-              />
-            </div>
+          <div className="bloome-process-container">
+            <ProcessElement
+              text="emphasize"
+              description={["persona", "user journey map"]}
+            />
+            <ProcessElement text="define" description={["problem statement"]} />
+            <ProcessElement
+              text="ideate"
+              description={["competitor audit", "ideation"]}
+            />
+            <ProcessElement
+              text="prototype"
+              description={["user flow", "wireframes"]}
+            />
+            <ProcessElement
+              text="test"
+              description={["usability test", "insights"]}
+            />
           </div>
           <div className="bloome-body">
             <Element name="emphasize">
@@ -296,6 +295,98 @@ export const Bloome = () => {
               </h3>
             </Element>
             <h3 className="bloome-body-title">COMPETITOR AUDIT</h3>
+            <img
+              src={competitor}
+              width={"100%"}
+              alt={"bloome ideate competitor"}
+              className="paddingTop"
+            />
+            <div style={{ paddingLeft: "30px" }}>
+              <h3 className="bloome-text-color" style={{ fontWeight: 500 }}>
+                Key Findings
+              </h3>
+              <p>
+                In our competitive audit of renowned florists, we uncovered key
+                opportunities to enhance the mobile bouquet shopping experience:
+              </p>
+              <h3 className="bloome-text-color">Limited Mobile Experience</h3>
+              <p>
+                Most florists have not yet embraced mobile apps, unveiling a
+                chance to simplify ordering for on-the-go flower enthusiasts.
+              </p>
+              <h3 className="bloome-text-color">Refined Interfaces</h3>
+              <p>
+                Each brand showcases a polished interface, yet stands out with
+                its own accessibility-boosting features.
+              </p>
+              <h3 className="bloome-text-color">Universal Pain Points</h3>
+              <p>
+                A common thread is the need for bouquet previews and detailed
+                size guides to assist customers in their selection process.
+              </p>
+            </div>
+          </div>
+          <div className="bloome-body">
+            <Element name="prototype">
+              <h3 className="bloome-body-title">
+                <b>PROTOTYPE: USER FLOW & WIREFRAMES </b>
+              </h3>
+            </Element>
+            <h3 className="bloome-body-title">USER FLOW</h3>
+            <img
+              src={userFlow}
+              width={"100%"}
+              alt={"bloome prototype userflow"}
+              className="paddingTop"
+            />
+            <h3 className="bloome-body-title">LOW-FIDELITY WIREFRAMES</h3>
+            <img
+              src={lowFidelity}
+              width={"100%"}
+              alt={"bloome prototype userflow"}
+              className="paddingTop"
+            />
+            <h3 className="bloome-body-title">HIGH-FIDELITY WIREFRAMES</h3>
+            <HighFidelity />
+          </div>
+          <div className="bloome-body">
+            <Element name="reflection">
+              <h3 className="bloome-body-title">
+                <b>Reflection </b>
+              </h3>
+            </Element>
+            <p>
+              As a case study for the Google UX Design Professional Certificate
+              course,{" "}
+              <b>
+                I independently navigated through all phases of the design
+                process, including Empathize, Define, Ideate, Prototype, and
+                Iterate
+              </b>
+              . My journey with Bloomé involved creating personas, defining the
+              problem statement, conducting competitor audits, and engaging in
+              iterative prototyping. One of the project's highlights is its
+              unique features like Augmented Reality (AR) Preview, Customized
+              Bouquets, and a Weekly Delivery Service, all aimed at streamlining
+              the bouquet selection process for users.
+            </p>
+            <p>
+              Embarking on this project as a first-timer, particularly with
+              Figma, I not only developed my technical skills but also gained a
+              deep understanding of the human-centered design process.{" "}
+              <b>
+                A key learning was the importance of balancing attention to
+                detail with the overall completion of the project
+              </b>
+              . Initially, I found myself immersed in refining low-fidelity
+              prototypes, which, although valuable, were subject to significant
+              changes during the iteration phase. This experience taught me the
+              crucial lesson of focusing on broader project goals while also
+              appreciating the intricacies of design details. Bloomé, through
+              its innovative approach and my contributions, stands as a
+              testament to the potential of thoughtful UX design in transforming
+              everyday experiences
+            </p>
           </div>
         </div>
       </div>

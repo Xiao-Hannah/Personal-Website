@@ -103,13 +103,12 @@
 .bloome-process-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  @media only screen and (max-width: 1300px) {
+  @media only screen and (max-width: 1000px) {
     align-items: center;
     display: flex;
     flex-direction: column;
   }
   .bloome-process-element-container {
-    padding: 30px;
     position: relative;
     .bloome-process-element-image-container {
       width: 142px;
@@ -241,5 +240,61 @@
   }
   &.blue {
     color: #0b76c2;
+  }
+}
+
+.bloome-high-fidelity-container {
+  margin-top: 80px;
+
+  .bloome-high-fidelity-item {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    @media only screen and (max-width: 550px) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    &.right {
+      flex-direction: row-reverse;
+      @media only screen and (max-width: 550px) {
+        flex-direction: column-reverse;
+        align-items: center;
+      }
+      .bloome-high-fidelity-image-container {
+        position: relative;
+        width: 40%;
+        left: -40px;
+        @media only screen and (max-width: 900px) {
+          width: 60%;
+        }
+        @media only screen and (max-width: 550px) {
+          left: 0;
+        }
+      }
+    }
+    .bloome-high-fidelity-text-container {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @media only screen and (max-width: 550px) {
+        width: 100%;
+      }
+      h3 {
+        color: #596652;
+        font-weight: 500;
+      }
+    }
+    .bloome-high-fidelity-image-container {
+      position: relative;
+      left: 60px;
+      width: 40%;
+      @media only screen and (max-width: 900px) {
+        width: 60%;
+      }
+      @media only screen and (max-width: 550px) {
+        left: 0;
+      }
+    }
   }
 }
