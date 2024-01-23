@@ -95,6 +95,13 @@ h5 {
   z-index: 30;
   line-height: 1.5;
 }
+ul,
+li {
+  color: var(--fontColor);
+  li::marker {
+    font-size: 0.8em;
+  }
+}
 
 h1 {
   font-weight: 700;

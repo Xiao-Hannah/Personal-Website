@@ -25,6 +25,20 @@ interface Projects {
 
 const projects: Projects[] = [
   {
+    title: "Bloomè",
+    description: [
+      "Discover Bloomè, where elegance blooms digitally. Immerse in an artful floral experience with Augmented Reality previews and tailored bouquet customization. Here, choosing flowers is not just shopping—it's a celebration of style and beauty.",
+    ],
+    image: flower,
+    bgImage: flowerBg,
+    tags: ["Mobile App", "Figma"],
+    imageWidth: "80%",
+    link: "/bloome",
+    value: "bloome",
+    titleFont: "Georgia",
+    titleColor: "#E3B8B5",
+  },
+  {
     title: "Fridge Friend",
     description: [
       "Welcome to FridgeFriend – revolutionizing your kitchen experience! With our in-fridge cameras, automated recipe generator, and intelligent shopping assistant, say goodbye to food waste and hello to efficient grocery planning.",
@@ -38,20 +52,6 @@ const projects: Projects[] = [
     titleColor: "#05441C",
     titleSize: "50px",
     letterSpacing: "3px",
-  },
-  {
-    title: "Bloomè",
-    description: [
-      "Discover Bloomè, where elegance blooms digitally. Immerse in an artful floral experience with Augmented Reality previews and tailored bouquet customization. Here, choosing flowers is not just shopping—it's a celebration of style and beauty.",
-    ],
-    image: flower,
-    bgImage: flowerBg,
-    tags: ["Mobile App", "Figma"],
-    imageWidth: "80%",
-    link: "/bloome",
-    value: "bloome",
-    titleFont: "Georgia",
-    titleColor: "#E3B8B5",
   },
 ];
 
@@ -90,7 +90,7 @@ export const Home = () => {
               style={
                 width <= 600
                   ? { flexDirection: "column" }
-                  : index % 2 == 0
+                  : index % 2 == 1
                   ? { flexDirection: "row-reverse" }
                   : { flexDirection: "row" }
               }

@@ -76,3 +76,113 @@
     }
   }
 }
+
+.bloome-process-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  @media only screen and (max-width: 1300px) {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .bloome-process-element-container {
+    padding: 30px;
+    position: relative;
+    .bloome-process-element-image-container {
+      position: relative;
+
+      h3 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 40%;
+        text-transform: uppercase;
+        color: white;
+        text-align: center;
+        @media only screen and (max-width: 1300px) {
+          left: -20px;
+        }
+      }
+    }
+
+    ul {
+      padding-inline-start: 36px;
+      line-height: 1;
+      color: #872828;
+      p {
+        color: #872828;
+        text-transform: uppercase;
+        line-height: 1;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// .bloome-body-description {
+// }
+
+.emphasize-design-1-container {
+  background-color: #fdf1e4;
+  padding: 20px;
+  margin-top: 60px;
+  .emphasize-design-1-text-container {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+    @media only screen and (max-width: 1800px) {
+      grid-template-columns: 1fr 0.6fr 1fr;
+    }
+    @media only screen and (max-width: 1700px) {
+      grid-template-columns: 1fr 0.8fr 1fr;
+    }
+    @media only screen and (max-width: 1600px) {
+      grid-template-columns: 1fr 0.9fr 1fr;
+    }
+    @media only screen and (max-width: 1500px) {
+      grid-template-columns: 1fr 1.1fr 1fr;
+    }
+    @media only screen and (max-width: 1400px) {
+      grid-template-columns: 1fr 1.4fr 1fr;
+    }
+    @media only screen and (max-width: 1350px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        max-width: 200px;
+      }
+    }
+    div {
+      padding: 5px;
+      p {
+        font-size: 14px;
+        line-height: 1.3;
+      }
+      ul {
+        padding-inline-start: 15px;
+      }
+    }
+  }
+}
+
+.emphasize-design-1-text-container-mobile {
+  .emphasize-design-1-text-image {
+    float: left;
+  }
+  .emphasize-design-1-more-text-mobile {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr 1fr;
+    gap: 10px;
+    width: 100%;
+    @media only screen and (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  p {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+}

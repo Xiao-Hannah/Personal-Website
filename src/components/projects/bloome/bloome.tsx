@@ -3,6 +3,8 @@ import { useWindowDimensions } from "../../../hooks/hooks";
 import { Element, Link } from "react-scroll";
 import { SolutionCarousel } from "./solutionCarousel";
 import solutionFull from "./../../../assets/images/bloome/solution/solution-full.png";
+import { ProcessElement } from "./processElement";
+import { SolutionDesign1 } from "./solutionDesign1";
 
 export const Bloome = () => {
   const { width } = useWindowDimensions();
@@ -160,6 +162,67 @@ export const Bloome = () => {
               alt={"blome solution image"}
             />
             <SolutionCarousel />
+          </div>
+          <div className="bloome-body">
+            <Element name="process">
+              <h3 className="bloome-body-title"> Process </h3>
+            </Element>
+
+            <div className="bloome-process-container">
+              <ProcessElement
+                text="emphasize"
+                description={["persona", "user journey map"]}
+              />
+              <ProcessElement
+                text="define"
+                description={["problem statement"]}
+              />
+              <ProcessElement
+                text="ideate"
+                description={["competitor audit", "ideation"]}
+              />
+              <ProcessElement
+                text="prototype"
+                description={["user flow", "wireframes"]}
+              />
+              <ProcessElement
+                text="test"
+                description={["usability test", "insights"]}
+              />
+            </div>
+          </div>
+          <div className="bloome-body">
+            <Element name="emphasize">
+              <h3 className="bloome-body-title">
+                <b>Emphasize : Understand the Users</b>
+              </h3>
+            </Element>
+            <h3 className="bloome-header-topic-title"> Persona</h3>
+            <div className="bloome-body-description">
+              <p>
+                In our exploration of the bouquet shopping experience, we
+                discovered a universal challenge among our customers:{" "}
+                <b>
+                  the significant time invested in selecting the right bouquet
+                </b>
+                . Whether it's for personal aesthetics or as a thoughtful gift,
+                customers seek a balance between beauty and efficiency. This is
+                especially true for those who frequently purchase flowers to
+                enhance their living spaces or for regular gifting but are
+                time-constrained.
+              </p>
+              <p className="paddingTop">
+                To capture these insights, we crafted two personas based on our
+                initial research. These personas represent our primary customer
+                segments: one who desires to seamlessly incorporate floral
+                elegance into their lifestyle and another who looks for
+                exceptional, yet straightforward choices for special occasions.
+                These personas are at the heart of our design process, ensuring
+                our app resonates with and caters to the diverse needs of our
+                customers.
+              </p>
+            </div>
+            <SolutionDesign1 />
           </div>
         </div>
       </div>
