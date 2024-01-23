@@ -5,6 +5,9 @@ import { SolutionCarousel } from "./solutionCarousel";
 import solutionFull from "./../../../assets/images/bloome/solution/solution-full.png";
 import { ProcessElement } from "./processElement";
 import { SolutionDesign1 } from "./solutionDesign1";
+import { SolutionDesign2 } from "./solutionDesign2";
+import persona1Journey from "./../../../assets/images/bloome/emphasize/persona1Journey.png";
+import persona2Journey from "./../../../assets/images/bloome/emphasize/persona2Journey.png";
 
 export const Bloome = () => {
   const { width } = useWindowDimensions();
@@ -194,10 +197,12 @@ export const Bloome = () => {
           <div className="bloome-body">
             <Element name="emphasize">
               <h3 className="bloome-body-title">
-                <b>Emphasize : Understand the Users</b>
+                Emphasize : Understand the Users
               </h3>
             </Element>
-            <h3 className="bloome-header-topic-title"> Persona</h3>
+            <h3 className="bloome-header-topic-title">
+              <b> Persona</b>
+            </h3>
             <div className="bloome-body-description">
               <p>
                 In our exploration of the bouquet shopping experience, we
@@ -223,6 +228,74 @@ export const Bloome = () => {
               </p>
             </div>
             <SolutionDesign1 />
+            <SolutionDesign2 />
+
+            <h3 className="bloome-body-title">USER JOURNEY MAP</h3>
+            <h3 className="bloome-emphasize-user-title yellow">
+              <b>Emily Chen </b>
+            </h3>
+            <h3>
+              Goal: To effortlessly integrate stylish floral arrangements into
+              her dynamic urban lifestyle.
+            </h3>
+            <img
+              src={persona1Journey}
+              width={"100%"}
+              alt={"bloome persona 1 journey image"}
+            />
+            <h3 className="bloome-emphasize-user-title blue">
+              <b>David Martinez </b>
+            </h3>
+            <h3>
+              Goal: To find and purchase unique, high-quality bouquets for
+              special occasions without the hassle of decision-making.
+            </h3>
+            <img
+              src={persona2Journey}
+              width={"100%"}
+              alt={"bloome persona 2 journey image"}
+            />
+          </div>
+          <div className="bloome-body">
+            <Element name="define">
+              <h3 className="bloome-body-title">
+                <b>define: problem statements</b>
+              </h3>
+            </Element>
+            <p>
+              In the bustling urban environment, time-pressed consumers struggle
+              to find convenient, swift, and personalized ways to purchase and
+              enjoy floral arrangements. Despite the availability of online
+              flower delivery services,{" "}
+              <b>
+                there exists a gap in the market for a digital solution that
+                combines the efficiency of technology with the personal touch of
+                a florist's expertise
+              </b>
+              . Customers, particularly those with an eye for design and
+              aesthetics, often face challenges in visualizing how these
+              bouquets will complement their living spaces before making a
+              purchase.
+            </p>
+            <h2 className="bloome-body-subtitle-2">
+              How might we enable busy consumers to easily choose and visualize
+              BOUQUETS through a mobile app?
+            </h2>
+            <p>
+              Therefore, the Bloomè app aims to address these needs by providing
+              an innovative platform that allows customers to quickly and
+              effortlessly select, customize, and preview floral arrangements
+              within the context of their own environment, ensuring satisfaction
+              with both the process and the final product.
+            </p>
+          </div>
+          <div className="bloome-body">
+            <Element name="ideate">
+              <h3 className="bloome-body-title">
+                <b>IDEATE: COMPETITOR ANALYSIS & BRAINSTORMING </b>
+              </h3>
+            </Element>
+            <h3 className="bloome-body-title">COMPETITOR AUDIT</h3>
           </div>
         </div>
       </div>

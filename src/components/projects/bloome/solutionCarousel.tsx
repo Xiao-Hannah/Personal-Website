@@ -65,7 +65,7 @@ export const SolutionCarousel = () => {
         <h3 style={{ fontSize: "30px", color: "white" }}>
           {items[currentIndex].title}
         </h3>
-        <div style={{ paddingRight: "50px" }}>
+        <div className="bloome-solution-carousel-description-container">
           {items[currentIndex].description.map(
             (description, descriptionIndex) => {
               return <p key={descriptionIndex}>{description} </p>;
