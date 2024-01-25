@@ -72,10 +72,11 @@ export const Home = () => {
         animate={{ transform: "translateX(0px)" }}
         transition={{ delay: 0.5 }}
       >
-        <h2>Hello! Welcome</h2>
+        <h2>Hi there!</h2>
         <h2>
-          I'm Hannah Xiao, an economics and anthropology student at Barnard
-          College, weaving together the realms of academia and UX design.
+          I'm navigating the exciting worlds of Anthropology and Economics at
+          Barnard College, with a heart set on reinventing how people connect
+          through UX design
         </h2>
       </motion.div>
       <div className="home-projects-container">

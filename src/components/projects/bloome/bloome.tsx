@@ -24,7 +24,10 @@ export const Bloome = () => {
         <div className="project-header-container">
           <div
             className="project-header-info-container"
-            style={{ display: width > 600 ? "inline" : "flex" }}
+            style={{
+              display: width < 1350 ? "grid" : width > 600 ? "inline" : "flex",
+              gridTemplateColumns: "1fr 1fr",
+            }}
           >
             <div
               style={{
@@ -37,7 +40,7 @@ export const Bloome = () => {
               <h3 className="bloome-header-topic-title paddingTop">My Role</h3>
               <p>Project Manager</p>
             </div>
-            <div style={{ width: "45%", padding: width > 600 ? 0 : "20px" }}>
+            <div style={{ width: "45%", padding: width > 1350 ? 0 : "20px" }}>
               <h3 className="bloome-header-topic-title"> Skills</h3>
               <p>Competitive Analysis</p>
               <p> Usability Test</p>
@@ -155,7 +158,10 @@ export const Bloome = () => {
         <div className="table-content-text">
           <div className="bloome-body">
             <Element name="solution">
-              <h3 className="bloome-body-title"> Solution </h3>
+              <h3 className="bloome-body-title">
+                {" "}
+                <b>Solution </b>
+              </h3>
             </Element>
 
             <h2 className="bloome-logo-text"> Bloomè </h2>
@@ -170,28 +176,36 @@ export const Bloome = () => {
             />
             <SolutionCarousel />
           </div>
-          <Element name="process">
-            <h3 className="bloome-body-title"> Process </h3>
-          </Element>
+          <div className="bloome-body">
+            <Element name="process">
+              <h3 className="bloome-body-title">
+                {" "}
+                <b>Process</b>{" "}
+              </h3>
+            </Element>
 
-          <div className="bloome-process-container">
-            <ProcessElement
-              text="emphasize"
-              description={["persona", "user journey map"]}
-            />
-            <ProcessElement text="define" description={["problem statement"]} />
-            <ProcessElement
-              text="ideate"
-              description={["competitor audit", "ideation"]}
-            />
-            <ProcessElement
-              text="prototype"
-              description={["user flow", "wireframes"]}
-            />
-            <ProcessElement
-              text="test"
-              description={["usability test", "insights"]}
-            />
+            <div className="bloome-process-container">
+              <ProcessElement
+                text="emphasize"
+                description={["persona", "user journey map"]}
+              />
+              <ProcessElement
+                text="define"
+                description={["problem statement"]}
+              />
+              <ProcessElement
+                text="ideate"
+                description={["competitor audit", "ideation"]}
+              />
+              <ProcessElement
+                text="prototype"
+                description={["user flow", "wireframes"]}
+              />
+              <ProcessElement
+                text="test"
+                description={["usability test", "insights"]}
+              />
+            </div>
           </div>
           <div className="bloome-body">
             <Element name="emphasize">
@@ -229,7 +243,7 @@ export const Bloome = () => {
             <SolutionDesign1 />
             <SolutionDesign2 />
 
-            <h3 className="bloome-body-title">USER JOURNEY MAP</h3>
+            <h3 className="bloome-body-title paddingTop-section"><b>USER JOURNEY MAP</b></h3>
             <h3 className="bloome-emphasize-user-title yellow">
               <b>Emily Chen </b>
             </h3>
@@ -363,7 +377,7 @@ export const Bloome = () => {
                 process, including Empathize, Define, Ideate, Prototype, and
                 Iterate
               </b>
-              . My journey with Bloomé involved creating personas, defining the
+              . My journey with Bloomè involved creating personas, defining the
               problem statement, conducting competitor audits, and engaging in
               iterative prototyping. One of the project's highlights is its
               unique features like Augmented Reality (AR) Preview, Customized
@@ -382,7 +396,7 @@ export const Bloome = () => {
               prototypes, which, although valuable, were subject to significant
               changes during the iteration phase. This experience taught me the
               crucial lesson of focusing on broader project goals while also
-              appreciating the intricacies of design details. Bloomé, through
+              appreciating the intricacies of design details. Bloomè, through
               its innovative approach and my contributions, stands as a
               testament to the potential of thoughtful UX design in transforming
               everyday experiences
