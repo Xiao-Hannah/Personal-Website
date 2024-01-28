@@ -8,7 +8,7 @@ export const HighFidelity = () => {
     <div className="bloome-high-fidelity-container">
       <div className="bloome-high-fidelity-item">
         <div className="bloome-high-fidelity-text-container">
-          <h3> KEY FEATURE 1 Curated Collections & Floral Insights</h3>
+          <h3> KEY FEATURE 1: Curated Collections & Floral Insights</h3>
           <p>
             Find the perfect expression of affection with Bloomè's themed and
             designer-curated bouquets, crafted for every occasion. Plus,
@@ -22,7 +22,7 @@ export const HighFidelity = () => {
       </div>
       <div className="bloome-high-fidelity-item right">
         <div className="bloome-high-fidelity-text-container">
-          <h3>KEY FEATURE 2 AR BOUQUET PREVIEW</h3>
+          <h3>KEY FEATURE 2:  AR BOUQUET PREVIEW</h3>
           <p>
             Say goodbye to guesswork with Bloomè's AR Preview! Experience the
             true look and size of your bouquet before purchase, ensuring what
@@ -35,7 +35,7 @@ export const HighFidelity = () => {
       </div>
       <div className="bloome-high-fidelity-item">
         <div className="bloome-high-fidelity-text-container">
-          <h3> KEY FEATURE 3 REAL-TIME BOUQUET TRACKING</h3>
+          <h3> KEY FEATURE 3:  REAL-TIME BOUQUET TRACKING</h3>
           <p>
             Track your blooms in bloom with Bloomè's live tracking—no more
             guessing, just real-time updates until your bouquet arrives at your

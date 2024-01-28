@@ -181,3 +181,11 @@ ol {
 .uppercase {
   text-transform: uppercase;
 }
+
+.project-overview {
+  text-transform: uppercase;
+}
+
+.removeMargin {
+  margin: 0;
+}

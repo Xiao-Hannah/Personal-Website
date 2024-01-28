@@ -2,14 +2,15 @@
   color: #872828;
 }
 .bloome-header-topic-title {
+  text-transform: uppercase;
   color: #872828;
-  font-weight: 400;
-  line-height: 1;
 }
 
 .bloome-body {
   padding: 30px;
-
+  &.removePadding {
+    padding: 0px 30px;
+  }
   @media only screen and (max-width: 600px) {
     padding: 5px;
   }
@@ -29,8 +30,9 @@
   }
   .bloome-body-subtitle-2 {
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 20px;
     color: #872828;
+    font-weight: 200;
   }
 }
 
@@ -51,6 +53,7 @@
   width: 100%;
   background-color: #d3908ca3;
   display: flex;
+  margin-top: 30px;
   @media only screen and (max-width: 1050px) {
     flex-direction: column;
     align-items: center;
@@ -133,11 +136,13 @@
       padding-inline-start: 20px;
       line-height: 1;
       color: #872828;
+      margin-bottom: 0px;
       p {
         color: #872828;
         text-transform: uppercase;
         line-height: 1;
         font-size: 14px;
+        margin-bottom: 0px;
       }
     }
   }
@@ -244,7 +249,6 @@
 }
 
 .bloome-high-fidelity-container {
-  margin: 30px 0px;
 
   .bloome-high-fidelity-item {
     display: flex;
@@ -284,6 +288,7 @@
       h3 {
         color: #596652;
         font-weight: 500;
+        text-transform: uppercase;
       }
     }
     .bloome-high-fidelity-image-container {

@@ -190,7 +190,9 @@ export const FridgeFriend = () => {
             </div>
           </div>
           <div className="project-header-about-container">
-            <h3 className="fridge-friend-text-color">Project Overview</h3>
+            <h3 className="project-overview fridge-friend-text-color">
+              Project Overview
+            </h3>
             <p>
               Food wastage is a growing concern. With nearly 40% of food in the
               U.S. being wasted and families losing approximately $1,500 a year

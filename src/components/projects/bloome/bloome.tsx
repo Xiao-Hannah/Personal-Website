@@ -32,7 +32,7 @@ export const Bloome = () => {
             <div
               style={{
                 width: "45%",
-                padding: "20px 20px 20px 0px",
+                padding: width > 1350 ? 0 : "20px 20px 20px 0px",
               }}
             >
               <h3 className="bloome-header-topic-title">Domain</h3>
@@ -51,10 +51,9 @@ export const Bloome = () => {
             className="project-header-about-container"
             style={{ width: width > 600 ? "70%" : "100%" }}
           >
-            <h3 className="bloome-text-color">
-              <b>Project Overview</b>
+            <h3 className="bloome-header-topic-title">
+              <b>Introduction</b>
             </h3>
-            <h3 className="bloome-header-topic-title"> Introduction</h3>
             <p>
               Bloomè is an innovative digital platform designed to transform the
               floral shopping experience. Recognizing that selecting the perfect
@@ -64,7 +63,7 @@ export const Bloome = () => {
               Bouquets, Weekly Delivery Service.
             </p>
             <h3 className="bloome-header-topic-title padding-top">
-              Journey from concept to creation
+              <b>Journey from concept to creation</b>
             </h3>
             <p>
               Over an intense month of design and development, Bloomè evolved
@@ -159,16 +158,14 @@ export const Bloome = () => {
           <div className="bloome-body">
             <Element name="solution">
               <h3 className="bloome-body-title">
-                {" "}
                 <b>Solution </b>
               </h3>
             </Element>
-
-            <h2 className="bloome-logo-text"> Bloomè </h2>
             <p className="bloome-body-subtitle">
               When Floristry Meets Innovation - Craft Your Perfect Bouquet with
               a Touch of Tech.
             </p>
+            <h2 className="bloome-logo-text"> Bloomè </h2>
             <img
               src={solutionFull}
               width={"100%"}
@@ -176,15 +173,14 @@ export const Bloome = () => {
             />
             <SolutionCarousel />
           </div>
-          <div className="bloome-body">
+          <div className="bloome-body removePadding">
             <Element name="process">
               <h3 className="bloome-body-title">
-                {" "}
-                <b>Process</b>{" "}
+                <b>Process</b>
               </h3>
             </Element>
 
-            <div className="bloome-process-container">
+            <div className="bloome-process-container paddingTop">
               <ProcessElement
                 text="emphasize"
                 description={["persona", "user journey map"]}
@@ -210,12 +206,10 @@ export const Bloome = () => {
           <div className="bloome-body">
             <Element name="emphasize">
               <h3 className="bloome-body-title">
-                Emphasize : Understand the Users
+                <b>Emphasize : Understand the Users</b>
               </h3>
             </Element>
-            <h3 className="bloome-header-topic-title">
-              <b> Persona</b>
-            </h3>
+            <h3 className="bloome-header-topic-title">Persona</h3>
             <div className="bloome-body-description">
               <p>
                 In our exploration of the bouquet shopping experience, we
@@ -243,7 +237,9 @@ export const Bloome = () => {
             <SolutionDesign1 />
             <SolutionDesign2 />
 
-            <h3 className="bloome-body-title paddingTop-section"><b>USER JOURNEY MAP</b></h3>
+            <h3 className="bloome-body-title paddingTop-section">
+              <b>USER JOURNEY MAP</b>
+            </h3>
             <h3 className="bloome-emphasize-user-title yellow">
               <b>Emily Chen </b>
             </h3>
@@ -269,7 +265,7 @@ export const Bloome = () => {
               alt={"bloome persona 2 journey image"}
             />
           </div>
-          <div className="bloome-body">
+          <div className="bloome-body removePadding">
             <Element name="define">
               <h3 className="bloome-body-title">
                 <b>define: problem statements</b>
@@ -315,26 +311,25 @@ export const Bloome = () => {
               alt={"bloome ideate competitor"}
               className="paddingTop"
             />
-            <div style={{ paddingLeft: "30px" }}>
-              <h3 className="bloome-text-color" style={{ fontWeight: 500 }}>
-                Key Findings
-              </h3>
+            <div>
+              <h3 className="bloome-body-title">Key Findings</h3>
               <p>
                 In our competitive audit of renowned florists, we uncovered key
                 opportunities to enhance the mobile bouquet shopping experience:
               </p>
-              <h3 className="bloome-text-color">Limited Mobile Experience</h3>
-              <p>
+
+              <h3>Limited Mobile Experience</h3>
+              <p className="removeMargin">
                 Most florists have not yet embraced mobile apps, unveiling a
                 chance to simplify ordering for on-the-go flower enthusiasts.
               </p>
-              <h3 className="bloome-text-color">Refined Interfaces</h3>
-              <p>
+              <h3>Refined Interfaces</h3>
+              <p className="removeMargin">
                 Each brand showcases a polished interface, yet stands out with
                 its own accessibility-boosting features.
               </p>
-              <h3 className="bloome-text-color">Universal Pain Points</h3>
-              <p>
+              <h3>Universal Pain Points</h3>
+              <p className="removeMargin">
                 A common thread is the need for bouquet previews and detailed
                 size guides to assist customers in their selection process.
               </p>
@@ -360,7 +355,7 @@ export const Bloome = () => {
               alt={"bloome prototype userflow"}
               className="paddingTop"
             />
-            <h3 className="bloome-body-title">HIGH-FIDELITY WIREFRAMES</h3>
+            <h3 className="bloome-body-title paddingTop">HIGH-FIDELITY WIREFRAMES</h3>
             <HighFidelity />
           </div>
           <div className="bloome-body">
