@@ -97,11 +97,14 @@ export const SolutionDesign2 = () => {
               </p>
               <p>
                 <b>
-                  "I want to mark special occasions with something unique and
-                  beautiful, like a perfect bouquet. But the choices are
-                  overwhelming, and I'm not sure what to pick. I need a way to
-                  find exceptional flowers that speak volumes, without spending
-                  hours deciding or worrying if I made the right choice."
+                  <i>
+                    "I want to mark special occasions with something unique and
+                    beautiful, like a perfect bouquet. But the choices are
+                    overwhelming, and I'm not sure what to pick. I need a way to
+                    find exceptional flowers that speak volumes, without
+                    spending hours deciding or worrying if I made the right
+                    choice."
+                  </i>
                 </b>
               </p>
             </div>
