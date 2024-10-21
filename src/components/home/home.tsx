@@ -4,7 +4,7 @@ import avocado from "./../../assets/images/home/avocado.png";
 import avocadoBg from "./../../assets/images/home/avocado-bg.png";
 import flowerBg from "./../../assets/images/home/flower-bg.png";
 import flower from "./../../assets/images/home/flower.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { MovingImage } from "../movingImage/MovingImage";
 import { useWindowDimensions } from "../../hooks/hooks";
 
@@ -76,7 +76,7 @@ export const Home = () => {
         <h2>
           I'm navigating the exciting worlds of Anthropology and Economics at
           Barnard College, with a heart set on reinventing how people connect
-          through UX design
+          through technology
         </h2>
       </motion.div>
       <div className="home-projects-container">
@@ -101,6 +101,7 @@ export const Home = () => {
                 backgroundImage={project.bgImage}
                 width={"25%"}
                 imageWidth={project.imageWidth}
+                link={project.link}
               />
               <div className="home-project-text-container">
                 <h2

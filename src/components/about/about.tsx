@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImage from "./../../assets/images/about/about.jpg";
+// import aboutImage from "./../../assets/images/about/about.jpg";
 import aboutContent1 from "./../../assets/images/about/about1.jpg";
 import aboutContent2 from "./../../assets/images/about/about2.jpg";
 import { LinkItem } from "../../models/LinkItem";
@@ -39,7 +39,7 @@ export const About = () => {
           })}
         </div>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         className="about-description"
         initial={{ transform: "translateX(2000px)" }}
         animate={{ transform: "translateX(0px)" }}
@@ -59,7 +59,7 @@ export const About = () => {
         transition={{ delay: 0.5 }}
       >
         <img src={aboutImage} alt="about main image" className="about-image" />
-      </motion.div>
+      </motion.div> */}
       <div className="about-content-container">
         <img
           src={aboutContent1}
@@ -69,7 +69,7 @@ export const About = () => {
 
         <div className="about-content-text-container">
           <h3 className="about-content-text-title">
-            AS AN INTERDISCIPLINARY DESIGNER
+            AS AN INTERDISCIPLINARY PROBLEM SOLVER
           </h3>
           <div className="about-content-text">
             <p>

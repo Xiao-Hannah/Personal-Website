@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface MovingImageProps {
   mainImage: string;
   backgroundImage?: string;
   width: string;
   imageWidth?: string;
+  link: string;
 }
 
 export const MovingImage = ({
@@ -12,7 +14,9 @@ export const MovingImage = ({
   backgroundImage,
   width,
   imageWidth,
+  link,
 }: MovingImageProps) => {
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="moving-image-container" style={{ width: width }}>
@@ -22,6 +26,7 @@ export const MovingImage = ({
         src={mainImage}
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => navigate(link)}
         style={{
           maxWidth: imageWidth,
         }}
