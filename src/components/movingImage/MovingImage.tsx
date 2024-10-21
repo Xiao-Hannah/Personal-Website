@@ -16,6 +16,7 @@ export const MovingImage = ({
   imageWidth,
   link,
 }: MovingImageProps) => {
+  console.log('hi');
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   return (
