@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 
 const subtitleLinks: LinkItem[] = [
   {
-    displayName: "hx2313@barnard.edu",
-    link: "mailto:hx2313@barnard.edu?Subject=Hello",
+    displayName: "hx2313@uw.edu",
+    link: "mailto:hx2313@uw.edu?Subject=Hello",
   },
   {
     displayName: "Instagram",

@@ -12,7 +12,7 @@ export const Contact = () => {
         </p>
         <a
           className={"contact-button"}
-          href={"mailto:hx2313@barnard.edu?Subject=Hello"}
+          href={"mailto:hx2313@uw.edu?Subject=Hello"}
           target="_blank"
           rel="noopener"
         >
