@@ -74,9 +74,11 @@ export const Home = () => {
       >
         <h2>Hi there!</h2>
         <h2>
-          I'm navigating the exciting worlds of Anthropology and Economics at
-          Barnard College, with a heart set on reinventing how people connect
-          through technology
+          Welcome to my little corner of the internet! I'm a master's student at
+          University of Washington, exploring all things tech and innovation. I
+          love getting my hands messy with new creations, cracking tough
+          problems, and exploring how technology brings people together. Feel
+          free to peruse my site and let's connect!
         </h2>
       </motion.div>
       <div className="home-projects-container">

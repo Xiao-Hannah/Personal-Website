@@ -1,5 +1,5 @@
 import React from "react";
-// import aboutImage from "./../../assets/images/about/about.jpg";
+import aboutImage from "./../../assets/images/about/about.jpg";
 import aboutContent1 from "./../../assets/images/about/about1.jpg";
 import aboutContent2 from "./../../assets/images/about/about2.jpg";
 import { LinkItem } from "../../models/LinkItem";
@@ -39,17 +39,22 @@ export const About = () => {
           })}
         </div>
       </motion.div>
-      {/* <motion.div
+      <motion.div
         className="about-description"
         initial={{ transform: "translateX(2000px)" }}
         animate={{ transform: "translateX(0px)" }}
         transition={{ delay: 0.5 }}
       >
         <h3>
-          Design, for me, is like a boat navigating the vast, boudless sea of
-          life. Life itself is a journey of discovery, experience, and creation,
-          where we forge connections witht he world around us. These
-          experiences, in turn shape our inner selves
+          Creation is at the heart of my everyday life. To me, creativity is the
+          spark behind everything I do. As a student, you'll often find me in
+          the prototyping lab, surrounded by tools, crafting electronic gadgets
+          and fabricating designs. In the winter, you can probably recognize me
+          by the faint scent of laser-cut plywood trailing behind me. At home,
+          my favorite way to unwind is watching films with my cat, Willow. I
+          also love experimenting with special-effects makeup and baking—though
+          my attempts don't always turn out as planned, the fun is in the
+          process!
         </h3>
       </motion.div>
       <motion.div
@@ -59,7 +64,7 @@ export const About = () => {
         transition={{ delay: 0.5 }}
       >
         <img src={aboutImage} alt="about main image" className="about-image" />
-      </motion.div> */}
+      </motion.div>
       <div className="about-content-container">
         <img
           src={aboutContent1}
@@ -68,19 +73,15 @@ export const About = () => {
         />
 
         <div className="about-content-text-container">
-          <h3 className="about-content-text-title">
-            AS AN INTERDISCIPLINARY PROBLEM SOLVER
-          </h3>
+          <h3 className="about-content-text-title">MY JOURNEY</h3>
           <div className="about-content-text">
             <p>
-              My journey has spanned marketing, consulting, and market research,
-              equipping me with a diverse skill set. In creating strategies for
-              various corporations, I've honed my ability to derive valuable
-              insights from user research. I embrace challenges and excel in
-              connecting research with practical design solutions. I'm a firm
-              believer in a problem-solving approach and collaborative efforts
-              to develop successful, human-centric products that resonate with
-              users.
+              My path has taken me through consulting, market research, and
+              product management, giving me a broad skillset and igniting my
+              passion for product and data. I thrive in fast-paced environments
+              where I'm constantly learning and problem-solving. What excites me
+              most is creating meaningful products and turning user research
+              into actionable insights that improve people's lives.
             </p>
           </div>
         </div>
@@ -91,20 +92,17 @@ export const About = () => {
         />
 
         <div className="about-content-text-container">
-          <h3 className="about-content-text-title">
-            EXPLORING LIVES THROUGH ETHNOGRAPHY
-          </h3>
+          <h3 className="about-content-text-title">A PASSION FOR PEOPLE</h3>
           <div className="about-content-text">
             <p>
-              My passion for ethnography is rooted in its ability to weave
-              through the intricate social networks and personal narratives of
-              people. More than just storytelling, it captures the essence of
-              life. Ethnography allows us to see the daily joys and struggles of
-              people, as well as the influences of power, culture, ideology, and
-              social structures. Ethnography's true strength lies in its focus
-              on the individual, providing a magnified view of larger social
-              processes and institutional transformations, grounded in the
-              detailed study of diverse experiences.
+              My background in anthropology fuels my deep curiosity about human
+              connections and narratives. I fell in love with ethnography during
+              my undergraduate years because it reveals the intricate social
+              networks and personal stories that shape people's lives. I'm
+              fascinated by the everyday joys and struggles we all face, as well
+              as the ways power, culture, and social structures shape our
+              experiences. Exploring these themes keeps me grounded and inspires
+              the work I do.
             </p>
           </div>
         </div>
