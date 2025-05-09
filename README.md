@@ -7,7 +7,7 @@ This is the personal portfolio website of Hannah Xiao, a master's student at the
 The homepage features:
 - A personal introduction
 - Two featured projects: Bloomè and FridgeFriend
-- Direct links to résumé and LinkedIn
+- Direct links to resume and LinkedIn
 - A minimalist, mobile-friendly layout
 
 ## Projects
@@ -36,8 +36,12 @@ FridgeFriend is a smart kitchen assistant designed to reduce food waste and impr
 To run this site locally:
 
 Clone the repository:
+
 (bash)
 git clone https://github.com/Xiao-Hannah/Personal-Website.git
+
 cd Personal-Website
+
 npm install
+
 npm run start
