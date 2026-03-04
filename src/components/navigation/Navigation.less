@@ -17,6 +17,10 @@
     border-bottom: 1px solid var(--border);
   }
 
+  &.menu-open {
+    background-color: var(--background);
+  }
+
   .container {
     display: flex;
     align-items: center;
@@ -93,6 +97,24 @@
   }
 }
 
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 45;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .mobile-sidebar {
   position: fixed;
   top: 0;
@@ -104,17 +126,33 @@
   border-left: 1px solid var(--border);
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  z-index: 40;
-  padding-top: 5rem;
+  z-index: 50;
+  padding-top: 1.5rem;
 
   &.open {
     transform: translateX(0);
   }
 
+  .mobile-sidebar-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--foreground);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
   .mobile-nav-links {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 4rem 2rem 2rem;
     gap: 1.5rem;
   }
 
@@ -129,5 +167,191 @@
     &:hover {
       color: var(--primary);
     }
+  }
+}
+
+// Theme Variables
+@atypica-bg: #0a0a0a;
+@atypica-card: #1a1a1a;
+@atypica-border: #2a2a2a;
+@atypica-text: #ffffff;
+@atypica-text-muted: #a0a0a0;
+@atypica-primary: #3b82f6;
+@atypica-accent: #00ff88;
+
+@bloome-primary: #872828;
+@bloome-light: #E3B8B5;
+@bloome-accent: #d3908c;
+
+@ff-primary: #05441C;
+@ff-light: #759675;
+@ff-accent: #C1E1C1;
+
+@tlink-magenta: #E20074;
+@tlink-magenta-dark: #C5007A;
+
+@zebra-blue: #0066CC;
+@zebra-gray: #53565A;
+
+// Atypica Theme (Dark)
+.navigation.theme-atypica {
+  .logo {
+    color: @atypica-text;
+    &:hover { color: @atypica-accent; }
+  }
+  .nav-link {
+    color: @atypica-text-muted;
+    &::after { background-color: @atypica-accent; }
+    &:hover { color: @atypica-text; }
+  }
+  .mobile-menu-button { color: @atypica-text; }
+
+  &.scrolled {
+    background-color: rgba(10, 10, 10, 0.9);
+    border-bottom-color: @atypica-border;
+  }
+  &.menu-open {
+    background-color: @atypica-bg;
+  }
+}
+
+.mobile-sidebar.theme-atypica {
+  background-color: @atypica-card;
+  border-left-color: @atypica-border;
+
+  .mobile-sidebar-close {
+    color: @atypica-text;
+    &:hover { color: @atypica-accent; }
+  }
+  .mobile-nav-link {
+    color: @atypica-text-muted;
+    &:hover { color: @atypica-accent; }
+  }
+}
+
+// Bloome Theme (Burgundy/Pink)
+.navigation.theme-bloome {
+  .logo {
+    &:hover { color: @bloome-primary; }
+  }
+  .nav-link {
+    &::after { background-color: @bloome-primary; }
+    &:hover { color: @bloome-primary; }
+  }
+
+  &.scrolled {
+    background-color: rgba(227, 184, 181, 0.9);
+  }
+  &.menu-open {
+    background-color: @bloome-light;
+  }
+}
+
+.mobile-sidebar.theme-bloome {
+  background-color: @bloome-light;
+  border-left-color: @bloome-primary;
+
+  .mobile-sidebar-close {
+    &:hover { color: @bloome-primary; }
+  }
+  .mobile-nav-link {
+    &:hover { color: @bloome-primary; }
+  }
+}
+
+// FridgeFriend Theme (Green)
+.navigation.theme-fridgefriend {
+  .logo {
+    &:hover { color: @ff-primary; }
+  }
+  .nav-link {
+    &::after { background-color: @ff-primary; }
+    &:hover { color: @ff-primary; }
+  }
+
+  &.scrolled {
+    background-color: rgba(193, 225, 193, 0.9);
+  }
+  &.menu-open {
+    background-color: @ff-accent;
+  }
+}
+
+.mobile-sidebar.theme-fridgefriend {
+  background-color: @ff-accent;
+  border-left-color: @ff-primary;
+
+  .mobile-sidebar-close {
+    &:hover { color: @ff-primary; }
+  }
+  .mobile-nav-link {
+    &:hover { color: @ff-primary; }
+  }
+}
+
+// TLink Theme (Magenta)
+.navigation.theme-tlink {
+  .logo {
+    &:hover { color: @tlink-magenta; }
+  }
+  .nav-link {
+    &::after { background-color: @tlink-magenta; }
+    &:hover { color: @tlink-magenta; }
+  }
+
+  &.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  &.menu-open {
+    background-color: #fff;
+  }
+}
+
+.mobile-sidebar.theme-tlink {
+  background-color: #fff;
+  border-left-color: @tlink-magenta;
+
+  .mobile-sidebar-close {
+    &:hover { color: @tlink-magenta; }
+  }
+  .mobile-nav-link {
+    &:hover { color: @tlink-magenta; }
+  }
+}
+
+// Zebra Theme (Blue)
+.navigation.theme-zebra {
+  .logo {
+    &:hover { color: @zebra-blue; }
+  }
+  .nav-link {
+    &::after { background-color: @zebra-blue; }
+    &:hover { color: @zebra-blue; }
+  }
+
+  &.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  &.menu-open {
+    background-color: #fff;
+  }
+}
+
+.mobile-sidebar.theme-zebra {
+  background-color: #fff;
+  border-left-color: @zebra-blue;
+
+  .mobile-sidebar-close {
+    &:hover { color: @zebra-blue; }
+  }
+  .mobile-nav-link {
+    &:hover { color: @zebra-blue; }
+  }
+}
+
+// ForFun Theme (uses default with slight variation)
+.navigation.theme-forfun {
+  .nav-link {
+    &::after { background-color: var(--primary); }
   }
 }
