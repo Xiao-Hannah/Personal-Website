@@ -193,6 +193,20 @@
 @zebra-blue: #0066CC;
 @zebra-gray: #53565A;
 
+@solarease-bg: #0a0a0a;
+@solarease-card: #1a1a1a;
+@solarease-border: #2a2a2a;
+@solarease-text: #ffffff;
+@solarease-text-muted: #a0a0a0;
+@solarease-primary: #00d4ff;
+@solarease-accent: #fbbf24;
+
+@fora-bg: #faf7f2;
+@fora-border: #e8e2d6;
+@fora-text: #1a1a1a;
+@fora-text-muted: #5a5a5a;
+@fora-accent: #c08a3c;
+
 // Atypica Theme (Dark)
 .navigation.theme-atypica {
   .logo {
@@ -353,5 +367,77 @@
 .navigation.theme-forfun {
   .nav-link {
     &::after { background-color: var(--primary); }
+  }
+}
+
+// SolarEase Theme (Dark)
+.navigation.theme-solarease {
+  .logo {
+    color: @solarease-text;
+    &:hover { color: @solarease-primary; }
+  }
+  .nav-link {
+    color: @solarease-text-muted;
+    &::after { background-color: @solarease-primary; }
+    &:hover { color: @solarease-text; }
+  }
+  .mobile-menu-button { color: @solarease-text; }
+
+  &.scrolled {
+    background-color: rgba(10, 10, 10, 0.9);
+    border-bottom-color: @solarease-border;
+  }
+  &.menu-open {
+    background-color: @solarease-bg;
+  }
+}
+
+.mobile-sidebar.theme-solarease {
+  background-color: @solarease-card;
+  border-left-color: @solarease-border;
+
+  .mobile-sidebar-close {
+    color: @solarease-text;
+    &:hover { color: @solarease-primary; }
+  }
+  .mobile-nav-link {
+    color: @solarease-text-muted;
+    &:hover { color: @solarease-primary; }
+  }
+}
+
+// Fora Theme (Light cream + warm amber accent)
+.navigation.theme-fora {
+  .logo {
+    color: @fora-text;
+    &:hover { color: @fora-accent; }
+  }
+  .nav-link {
+    color: @fora-text-muted;
+    &::after { background-color: @fora-accent; }
+    &:hover { color: @fora-text; }
+  }
+  .mobile-menu-button { color: @fora-text; }
+
+  &.scrolled {
+    background-color: rgba(250, 247, 242, 0.92);
+    border-bottom-color: @fora-border;
+  }
+  &.menu-open {
+    background-color: @fora-bg;
+  }
+}
+
+.mobile-sidebar.theme-fora {
+  background-color: #fff;
+  border-left-color: @fora-border;
+
+  .mobile-sidebar-close {
+    color: @fora-text;
+    &:hover { color: @fora-accent; }
+  }
+  .mobile-nav-link {
+    color: @fora-text-muted;
+    &:hover { color: @fora-accent; }
   }
 }

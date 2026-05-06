@@ -34,6 +34,20 @@ const professionalExperience = [
 
 const projects = [
   {
+    title: "Fora Tools",
+    description: "A speculative onboarding case study for Fora Travel — a personalized first-60-days hub plus two self-serve tools that turn 'I don't know where to start' into a first booking.",
+    category: "Product Design & Onboarding Strategy",
+    year: "2026",
+    link: "/fora",
+  },
+  {
+    title: "SolarEase",
+    description: "A community solar investment platform that uses ROI simulation, Nash Bargaining, and AI-powered contract analysis to help neighborhoods negotiate fair solar deals.",
+    category: "Product Management & Full-Stack Development",
+    year: "2026",
+    link: "/solarease",
+  },
+  {
     title: "Bloomè",
     description: "An all-in-one platform helping users overcome period poverty through education, product accessibility, and community support.",
     category: "UX Research & Design",

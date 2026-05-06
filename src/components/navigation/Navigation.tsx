@@ -18,6 +18,8 @@ const Navigation = () => {
     if (path === '/fridgefriend') return 'theme-fridgefriend';
     if (path === '/tlink') return 'theme-tlink';
     if (path === '/zebra') return 'theme-zebra';
+    if (path === '/solarease') return 'theme-solarease';
+    if (path === '/fora') return 'theme-fora';
     if (path === '/for-fun') return 'theme-forfun';
     return 'theme-default';
   };

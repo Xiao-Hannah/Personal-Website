@@ -7,6 +7,8 @@ import Bloome from "@/pages/Bloome";
 import FridgeFriend from "@/pages/FridgeFriend";
 import TLink from "@/pages/TLink";
 import Zebra from "@/pages/Zebra";
+import SolarEase from "@/pages/SolarEase";
+import Fora from "@/pages/Fora";
 import ForFun from "@/pages/ForFun";
 import NotFound from "@/pages/NotFound";
 
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/fridgefriend" element={<FridgeFriend />} />
         <Route path="/tlink" element={<TLink />} />
         <Route path="/zebra" element={<Zebra />} />
+        <Route path="/solarease" element={<SolarEase />} />
+        <Route path="/fora" element={<Fora />} />
         <Route path="/for-fun" element={<ForFun />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
