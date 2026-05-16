@@ -5,6 +5,7 @@ import ProjectCard from "@/components/cards/ProjectCard";
 import Footer from "@/components/layout/Footer";
 import { ArrowDown, Mail, ArrowRight, Github, Instagram, Linkedin, FileText } from "lucide-react";
 import resume from "@/assets/files/resume.pdf";
+import thesis from "@/assets/files/thesis.pdf";
 import profileImage from "@/assets/images/profile/profile.jpg";
 import './Index.less';
 
@@ -86,6 +87,37 @@ const Index = () => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Sticky stacking scale effect for Selected Work cards
+  useEffect(() => {
+    const CARD_GAP = 24;    // must match CSS top increments (px)
+    const BASE_TOP = 190;   // must match CSS top of first card (px)
+
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>('.work-section .projects-list .project-card')
+    );
+    if (cards.length === 0) return;
+
+    const updateStack = () => {
+      cards.forEach((card, i) => {
+        if (i === cards.length - 1) return;
+
+        let coveredBy = 0;
+        for (let j = i + 1; j < cards.length; j++) {
+          const stickyTopJ = BASE_TOP + j * CARD_GAP;
+          if (cards[j].getBoundingClientRect().top <= stickyTopJ + 1) coveredBy++;
+        }
+
+        const scale = coveredBy > 0 ? Math.max(0.92, 1 - coveredBy * 0.03) : 1;
+        card.style.transform = scale < 1 ? `scale(${scale})` : '';
+        card.dataset.depth = coveredBy > 0 ? String(coveredBy) : '';
+      });
+    };
+
+    window.addEventListener('scroll', updateStack, { passive: true });
+    updateStack();
+    return () => window.removeEventListener('scroll', updateStack);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -179,40 +211,49 @@ const Index = () => {
 
               <div className="about-text">
                 <p>
-                  I'm a product manager interested in how research, data, and human behavior turn into real product decisions.
+                  I'm a former archaeologist turned product manager, which means I've always thought about technology the way I think about artifacts: as evidence of what people actually need.
                 </p>
                 <p>
-                  With a background in anthropology and economics, I enjoy working on ambiguous problems, where understanding people matters as much as building systems.
+                  Across growth, B2B, and B2C products, I've turned early questions into clear directions through research, experimentation, and a lot of prototyping.
                 </p>
-                <p>
-                  Across growth, B2B, and B2C products, I've worked on turning early questions into clear directions through experimentation, research, and prototyping.
-                </p>
+              </div>
+
+              <div className="about-meta-section">
+                <p className="about-meta-label">What I Work On</p>
+                <div className="about-tag-list">
+                  <span className="about-tag">Growth</span>
+                  <span className="about-tag">AI Products</span>
+                  <span className="about-tag">Product Strategy</span>
+                  <span className="about-tag">Product Optimization</span>
+                </div>
+              </div>
+
+              <div className="about-meta-section">
+                <p className="about-meta-label">Where I've Worked</p>
+                <div className="about-tag-list">
+                  <span className="about-tag">Enterprise</span>
+                  <span className="about-tag">Startup</span>
+                </div>
               </div>
             </div>
 
             <div className="about-sidebar">
               <div className="about-block">
                 <h3>Currently</h3>
-                <p>
-                  Based in Seattle, pursuing an M.S. in Technology Innovation at the University of Washington, focused on turning research and data into product decisions.
-                </p>
+                <p className="about-place">Seattle, WA</p>
+                <p>Building products and testing new ideas.</p>
               </div>
 
               <div className="about-block">
                 <h3>Previously</h3>
-                <p>
-                  Studied Anthropology and Economics at Columbia University, where I became deeply interested in human behavior, narratives, and systems.
-                </p>
-              </div>
-
-              <div className="about-block">
-                <h3>What I Work On</h3>
-                <p>Growth · AI-powered Products · Platform Strategy · Product Optimization</p>
-              </div>
-
-              <div className="about-block">
-                <h3>Where I've Worked</h3>
-                <p>Large-scale Platforms · Early-stage Startups</p>
+                <div className="about-school">
+                  <p className="about-place">University of Washington</p>
+                  <p>M.S. in Technology Innovation<br />Built 0→1 products across software and hardware.</p>
+                </div>
+                <div className="about-school">
+                  <p className="about-place">Columbia University (Barnard College)</p>
+                  <p>B.A. in Anthropology and Economics<br />Became fascinated by human behavior, systems, and the stories hidden in data and artifacts.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -270,8 +311,10 @@ const Index = () => {
 
           <div className="for-fun-topics">
             <div className="for-fun-topic">
-              <h3>Archaeological Project</h3>
-              <p>From Sherds to Society: An analysis of Kwahe'e Black-on-white and Social Interaction in the Taos District</p>
+              <a href={thesis} target="_blank" rel="noopener noreferrer">
+                <h3>Archaeological Project</h3>
+                <p>From Sherds to Society: An analysis of Kwahe'e Black-on-white and Social Interaction in the Taos District</p>
+              </a>
             </div>
             <div className="for-fun-topic">
               <h3>Photography</h3>
