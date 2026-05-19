@@ -1,0 +1,164 @@
+@import "./bento.less";
+
+.bento-expand {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(20, 15, 10, 0.55);
+  backdrop-filter: blur(6px);
+  animation: expandFade 0.25s ease forwards;
+
+  &__panel {
+    width: min(640px, 100%);
+    max-height: 86vh;
+    background: var(--b-paper);
+    color: var(--b-ink);
+    border-radius: 24px;
+    border: 1px solid var(--b-line);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: expandPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 24px 14px;
+    border-bottom: 1px solid var(--b-line);
+  }
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--b-ink-soft);
+  }
+  &__avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: @bento-coral;
+    color: @bento-coral-ink;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  &__title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+  }
+  &__close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--b-line);
+    color: var(--b-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.2s;
+    &:hover {
+      background: var(--b-bg);
+      transform: rotate(90deg);
+    }
+  }
+
+  &__body {
+    padding: 18px 24px 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: default;
+    scrollbar-width: thin;
+  }
+
+  // Each paragraph is a chat bubble
+  &__bubble {
+    background: var(--b-bg-deep);
+    padding: 14px 18px;
+    border-radius: 18px;
+    border-bottom-left-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--b-ink);
+    max-width: 100%;
+    margin: 0;
+    animation: bubbleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  &__caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--b-ink);
+    animation: caretBlink 1s steps(2) infinite;
+  }
+
+  &__hint {
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    color: var(--b-ink-soft);
+    font-style: italic;
+    align-self: flex-end;
+    margin: 4px 4px 0;
+  }
+
+  &__footer {
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--b-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+}
+
+@keyframes expandFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes expandPop {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}

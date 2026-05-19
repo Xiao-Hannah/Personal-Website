@@ -1,0 +1,246 @@
+@import "../../styles/variables.less";
+
+// ============================================================================
+// Shared bento design tokens (light + dark).
+// Static accent colours stay as Less vars; surfaces use CSS custom properties
+// so we can flip the whole site by toggling .is-dark on <html>.
+// ============================================================================
+
+// --- Static accent palette ---
+@bento-coral:     #ff6f61;
+@bento-coral-ink: #2b1410;
+@bento-yellow:    #ffd23f;
+@bento-yellow-ink:#2a210a;
+@bento-dark:      #1a1a1f;
+@bento-cream:     #f6efe2;
+@bento-lavender:  #c9b8ff;
+@bento-purple:    #6c4dff;
+@bento-cyan:      #5fd4d6;
+@bento-lime:      #c8f25d;
+@bento-orange:    #ff9a3c;
+@bento-magenta:   #ff4d8d;
+@bento-mint:      #b6f0c8;
+@bento-pink:      #ffc1d6;
+@bento-black:     #0e0e10;
+@bento-blue:      #4dabff;
+
+// --- Light theme defaults (CSS vars, themable) ---
+:root {
+  --b-bg:        #f1ece2;
+  --b-bg-deep:   #e9e3d4;
+  --b-paper:     #fbf7ee;
+  --b-ink:       #1a1612;
+  --b-ink-soft:  rgba(26, 22, 18, 0.62);
+  --b-line:      rgba(26, 22, 18, 0.08);
+  --b-shadow-1:  0 18px 30px -22px rgba(20, 15, 10, 0.18),
+                 0 2px 6px -2px rgba(20, 15, 10, 0.06);
+  --b-shadow-2:  0 28px 40px -22px rgba(20, 15, 10, 0.28),
+                 0 4px 10px -2px rgba(20, 15, 10, 0.08);
+}
+
+// --- Dark theme overrides ---
+.is-dark {
+  --b-bg:        #14110d;
+  --b-bg-deep:   #1d1914;
+  --b-paper:     #211c16;
+  --b-ink:       #f4ede0;
+  --b-ink-soft:  rgba(244, 237, 224, 0.6);
+  --b-line:      rgba(244, 237, 224, 0.08);
+  --b-shadow-1:  0 18px 30px -22px rgba(0, 0, 0, 0.6),
+                 0 2px 6px -2px rgba(0, 0, 0, 0.3);
+  --b-shadow-2:  0 28px 40px -22px rgba(0, 0, 0, 0.7),
+                 0 4px 10px -2px rgba(0, 0, 0, 0.4);
+}
+
+// --- Page background ---
+.index-page {
+  background: var(--b-bg);
+  color: var(--b-ink);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+// --- Section wrapper ---
+.bento-section {
+  position: relative;
+  padding: 28px 28px;
+
+  @media @tablet { padding: 20px 16px; }
+  @media @mobile { padding: 16px 12px; }
+
+  &--hero {
+    padding-top: 96px;
+    @media @tablet { padding-top: 80px; }
+  }
+
+  &__label {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 4px;
+
+    .label-text {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--b-ink-soft);
+    }
+    .label-aside {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--b-ink-soft);
+    }
+  }
+
+  &__grid {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 120px;
+    gap: 18px;
+
+    @media @desktop { grid-auto-rows: 110px; }
+    @media @tablet {
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 100px;
+      gap: 14px;
+    }
+    @media @mobile {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 120px;
+    }
+  }
+}
+
+// ============================================================================
+// Base tile
+// ============================================================================
+.bento-tile {
+  position: relative;
+  border-radius: 24px;
+  padding: 22px;
+  overflow: hidden;
+  background: var(--b-paper);
+  color: var(--b-ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--b-line);
+  box-shadow: var(--b-shadow-1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease,
+    background 0.5s ease,
+    color 0.5s ease,
+    border-color 0.5s ease;
+  will-change: transform;
+
+  &[role="button"],
+  &.is-clickable {
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--b-shadow-2);
+    }
+    &:focus-visible {
+      outline: 2px solid @bento-coral;
+      outline-offset: 3px;
+    }
+  }
+
+  h1, h2, h3, h4 {
+    margin: 0;
+    line-height: 1.1;
+    font-family: var(--font-display);
+  }
+  p { margin: 0; line-height: 1.5; }
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--b-ink-soft);
+  margin: 0;
+  &--light { color: rgba(255, 255, 255, 0.7); }
+}
+
+@keyframes bentoIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// ============================================================================
+// Corner badge
+// ============================================================================
+.tile-corner {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1612;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--b-line);
+  box-shadow: 0 4px 10px -4px rgba(20, 15, 10, 0.15);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s;
+  z-index: 3;
+  pointer-events: none;
+
+  .bento-tile:hover & {
+    transform: scale(1.08) rotate(4deg);
+  }
+}
+
+// ============================================================================
+// Color variants — stay constant across light/dark for branded splashes
+// ============================================================================
+.tile-paper    { background: var(--b-paper); color: var(--b-ink); }
+.tile-coral    { background: @bento-coral;    color: @bento-coral-ink; }
+.tile-yellow   { background: @bento-yellow;   color: @bento-yellow-ink; }
+.tile-dark     { background: @bento-dark;     color: #f4f0e8; }
+.tile-cream    { background: @bento-cream;    color: #2a2017; }
+.tile-lavender { background: @bento-lavender; color: #1b1238; }
+.tile-purple   { background: @bento-purple;   color: #fff; }
+.tile-cyan     { background: @bento-cyan;     color: #0b2f30; }
+.tile-lime     { background: @bento-lime;     color: #1f2a06; }
+.tile-orange   { background: @bento-orange;   color: #2a1404; }
+.tile-magenta  { background: @bento-magenta;  color: #2a0410; }
+.tile-mint     { background: @bento-mint;     color: #0b2a16; }
+.tile-pink     { background: @bento-pink;     color: #3a0a1d; }
+.tile-black    { background: @bento-black;    color: #f4f0e8; }
+.tile-blue     { background: @bento-blue;     color: #021b32; }
+
+.tile-link-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: auto;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  &:hover { opacity: 1; }
+}

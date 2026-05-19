@@ -1,0 +1,109 @@
+import { useNavigate } from "react-router-dom";
+import { ArrowUpRight, Play } from "lucide-react";
+import "./MediaTile.less";
+
+export interface MediaTileProps {
+  /** Path / URL to a short looping video. When omitted, a styled placeholder is rendered. */
+  videoSrc?: string;
+  /** Optional poster image shown while video loads (or as a static fallback). */
+  posterSrc?: string;
+  /** Hue used by the placeholder gradient (degrees, 0–360). */
+  placeholderHue?: number;
+  /** Internal route to navigate to on click. */
+  link?: string;
+  /** External href (opens in new tab) — used instead of link when provided. */
+  href?: string;
+  /** Title shown over the media. */
+  title: string;
+  /** Small label above the title (e.g. "2025 · Growth Strategy"). */
+  meta?: string;
+  /** Optional one-line tagline shown below the title. */
+  tagline?: string;
+  /** Extra class — used to set grid placement from the parent section. */
+  className?: string;
+  /** CSS animation delay so siblings can stagger. */
+  delay?: number;
+  /** Variant: `cover` (media fills tile, text overlays bottom) or `split` (media on top, text below). */
+  variant?: "cover" | "split";
+}
+
+const MediaTile = ({
+  videoSrc,
+  posterSrc,
+  placeholderHue = 18,
+  link,
+  href,
+  title,
+  meta,
+  tagline,
+  className,
+  delay = 0,
+  variant = "cover",
+}: MediaTileProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (href) {
+      window.open(href, "_blank", "noopener,noreferrer");
+    } else if (link) {
+      navigate(link);
+    }
+  };
+
+  const interactive = Boolean(link || href);
+  const tileStyle = {
+    "--delay": `${delay}ms`,
+    "--placeholder-hue": `${placeholderHue}`,
+  } as React.CSSProperties;
+
+  return (
+    <article
+      className={`bento-tile media-tile media-tile--${variant} ${
+        className ?? ""
+      }`}
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      onClick={interactive ? handleClick : undefined}
+      onKeyDown={(e) => interactive && e.key === "Enter" && handleClick()}
+      style={tileStyle}
+    >
+      <div className="media-tile__media">
+        {videoSrc ? (
+          <video
+            className="media-tile__video"
+            src={videoSrc}
+            poster={posterSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        ) : posterSrc ? (
+          <img className="media-tile__img" src={posterSrc} alt={title} />
+        ) : (
+          <div className="media-tile__placeholder">
+            <span className="media-tile__placeholder-glow" />
+            <span className="media-tile__placeholder-grid" />
+            <Play className="media-tile__placeholder-icon" size={28} />
+          </div>
+        )}
+        <div className="media-tile__veil" />
+      </div>
+
+      <div className="media-tile__content">
+        {meta && <p className="media-tile__meta">{meta}</p>}
+        <h3 className="media-tile__title">{title}</h3>
+        {tagline && <p className="media-tile__tagline">{tagline}</p>}
+      </div>
+
+      {interactive && (
+        <span className="tile-corner" aria-hidden>
+          <ArrowUpRight size={16} />
+        </span>
+      )}
+    </article>
+  );
+};
+
+export default MediaTile;

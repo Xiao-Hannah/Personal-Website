@@ -1,0 +1,14 @@
+@import "./bento.less";
+
+.bento-experience {
+  .exp-card--lg { grid-column: span 6; grid-row: span 4; }
+  .exp-card--md { grid-column: span 3; grid-row: span 4; }
+
+  @media @tablet {
+    .exp-card--lg { grid-column: span 6; grid-row: span 4; }
+    .exp-card--md { grid-column: span 3; grid-row: span 4; }
+  }
+  @media @mobile {
+    .bento-experience .bento-tile { grid-column: span 2 !important; grid-row: span 3 !important; }
+  }
+}

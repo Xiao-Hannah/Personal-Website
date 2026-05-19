@@ -1,0 +1,232 @@
+@import "./bento.less";
+
+.bento-about {
+  // 12-col grid placement
+  .about-story     { grid-column: span 5; grid-row: span 3; }
+  .about-principle { grid-column: span 4; grid-row: span 3; }
+  .about-tags      { grid-column: span 3; grid-row: span 3; }
+  .about-work      { grid-column: span 6; grid-row: span 4; }
+  .about-edu       { grid-column: span 3; grid-row: span 4; position: relative; font-family: inherit; text-align: left; }
+
+  @media @tablet {
+    .about-story     { grid-column: span 6; grid-row: span 3; }
+    .about-principle { grid-column: span 6; grid-row: span 2; }
+    .about-tags      { grid-column: span 3; grid-row: span 2; }
+    .about-work      { grid-column: span 6; grid-row: span 4; }
+    .about-edu       { grid-column: span 3; grid-row: span 4; }
+  }
+  @media @mobile {
+    .bento-about .bento-tile { grid-column: span 2 !important; }
+    .about-story, .about-edu { grid-row: span 3 !important; }
+    .about-work { grid-row: span 4 !important; }
+  }
+
+  // ============ Story ============
+  .about-story {
+    &__mark { color: var(--b-ink-soft); opacity: 0.4; }
+    &__lede {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.7vw, 22px);
+      line-height: 1.4;
+      strong { font-weight: 700; }
+    }
+    &__second {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--b-ink-soft);
+    }
+  }
+
+  // ============ Principle ============
+  .about-principle {
+    justify-content: space-between;
+    &__quote {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2vw, 26px);
+      line-height: 1.3;
+      strong { font-weight: 700; }
+    }
+    .eyebrow { color: rgba(43, 20, 16, 0.6); }
+  }
+
+  // ============ Focus tags ============
+  .about-tags {
+    justify-content: flex-start;
+    gap: 18px;
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+    &__chip {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--b-ink);
+      border: 1px solid var(--b-line);
+    }
+  }
+
+  // ============ Where I've worked — timeline ============
+  .about-work {
+    justify-content: flex-start;
+    gap: 14px;
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 4px; }
+
+    &__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    &__row {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      transition: background 0.25s ease;
+      &:hover { background: var(--b-bg-deep); }
+    }
+    &__badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      border: 1px solid var(--b-line);
+    }
+    &__text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    &__company {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--b-ink);
+    }
+    &__role {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--b-ink-soft);
+    }
+    &__span {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--b-ink-soft);
+      white-space: nowrap;
+    }
+  }
+
+  // ============ Education tiles ============
+  .about-edu {
+    overflow: hidden;
+    cursor: pointer;
+    justify-content: flex-start;
+    gap: 14px;
+
+    &__crest {
+      position: absolute;
+      top: -28px;
+      right: -28px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.16;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+      span {
+        font-family: var(--font-display);
+        font-size: 90px;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--b-ink);
+      }
+      &--uw       { background: linear-gradient(135deg, #4b2e83 0%, #b7a57a 100%); }
+      &--columbia { background: linear-gradient(135deg, #1a3d7c 0%, #75b3ff 100%); }
+    }
+    &:hover &__crest {
+      transform: scale(1.08) rotate(8deg);
+      opacity: 0.22;
+    }
+
+    &__body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    &__top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.7vw, 22px);
+      font-weight: 700;
+      line-height: 1.05;
+    }
+    &__degree {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--b-ink);
+      svg { color: @bento-coral; }
+    }
+    &__detail {
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--b-ink-soft);
+    }
+    &__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: auto;
+      span {
+        font-family: var(--font-body);
+        font-size: 10.5px;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: var(--b-bg-deep);
+        color: var(--b-ink);
+        white-space: nowrap;
+      }
+    }
+  }
+}
