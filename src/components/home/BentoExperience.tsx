@@ -1,4 +1,5 @@
 import MediaTile from "./MediaTile";
+import tmobileVideo from "../../assets/videos/Tmobile.mp4";
 import "./BentoExperience.less";
 
 interface ExperienceItem {
@@ -9,7 +10,7 @@ interface ExperienceItem {
   hue: number;
   videoSrc?: string;
   posterSrc?: string;
-  size: "lg" | "md";
+  size: "lg" | "md" | "wide";
 }
 
 // videoSrc / posterSrc are intentionally undefined for now — MediaTile renders
@@ -24,20 +25,21 @@ const experiences: ExperienceItem[] = [
     size: "lg",
   },
   {
-    title: "T-Mobile CareLink",
-    meta: "2024 · PM × Hardware × 5G",
-    tagline: "Hypertension medication tracking on T-Mobile's 5G network.",
-    link: "/tlink",
-    hue: 330,
-    size: "md",
-  },
-  {
     title: "Zebra Workcloud",
     meta: "2025 · Auth × NFC × Biometrics",
     tagline: "Securing frontline workforce management at scale.",
     link: "/zebra",
     hue: 30,
     size: "md",
+  },
+  {
+    title: "T-Mobile CareLink",
+    meta: "2024 · PM × Hardware × 5G",
+    tagline: "Hypertension medication tracking on T-Mobile's 5G network.",
+    link: "/tlink",
+    hue: 330,
+    size: "wide",
+    videoSrc: tmobileVideo,
   },
 ];
 

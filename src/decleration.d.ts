@@ -5,3 +5,4 @@ declare module "*.gif";
 declare module "*.pdf";
 declare module "*.svg";
 declare module "*.mov";
+declare module "*.mp4";

@@ -7,7 +7,6 @@ import {
   Linkedin,
   Instagram,
   FileText,
-  Sparkles,
   Coffee,
   Music,
   BookOpen,
@@ -38,6 +37,7 @@ import instagram2 from "@/assets/images/instagram/instagram2.jpg";
 import instagram3 from "@/assets/images/instagram/instagram3.jpg";
 import instagram4 from "@/assets/images/instagram/instagram4.jpg";
 import BentoExpand from "./BentoExpand";
+import IntroModalBody from "./IntroModalBody";
 import SpotifyPreview from "./SpotifyPreview";
 import { useTheme } from "@/hooks/useTheme";
 import "./BentoHero.less";
@@ -82,14 +82,6 @@ const CONTRIB = Array.from({ length: 7 * 14 }, (_, i) => {
   if (r < 0.95) return 3;
   return 4;
 });
-
-const INTRO_PARAGRAPHS = [
-  "Hello! I'm Hannah Xiao, currently working as a Growth Product Manager @atypica.AI.",
-  "My name is Hannah, a product builder who loves turning vague ideas into things people can actually use.",
-  "I studied archaeology and economics, which shaped how I think. Archaeology taught me to piece together stories from fragments of evidence and to stay curious about why people behave the way they do. I learned in economics classes to test those instincts with data. When I was excavating in the New Mexico desert, I got comfortable getting my hands dirty and figuring things out in the field. In many ways, I'm still doing the same thing today, just with prototypes instead of pottery shards.",
-  "I've worked on both consumer and enterprise products, from workforce software to AI-powered consumer insights. What I enjoy most is taking a messy problem, talking to users, digging into the data, and helping a team figure out what to build next. I love that moment when something that felt fuzzy suddenly clicks and everyone is moving in the same direction.",
-  "I believe the best products come from really understanding people. I'm happiest when the problem is still unclear and there's no obvious answer yet. Lately, I've become especially interested in the intersection of product and growth. Building something useful is only half the job — the other half is figuring out how to explain it in a way that makes people want to try it and keep coming back.",
-];
 
 const BentoHero = ({
   onScrollToWork,
@@ -532,24 +524,7 @@ const BentoHero = ({
       <BentoExpand
         open={introOpen}
         onClose={() => setIntroOpen(false)}
-        label="Self introduction"
-        title="A bit more about me."
-        paragraphs={INTRO_PARAGRAPHS}
-        footer={
-          <>
-            <a
-              href={resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bento-expand__cta"
-            >
-              <FileText size={14} /> Read résumé
-            </a>
-            <span className="bento-expand__cta-soft">
-              <Sparkles size={12} /> Always building products
-            </span>
-          </>
-        }
+        body={<IntroModalBody />}
       />
     </section>
   );

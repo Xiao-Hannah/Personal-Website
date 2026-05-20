@@ -147,6 +147,96 @@
     gap: 10px;
     align-items: center;
   }
+
+  // ============================================================
+  // Prose variant — light, airy, flowing body (used by principles)
+  // ============================================================
+  &--prose {
+    background: rgba(20, 15, 10, 0.42);
+
+    .bento-expand__panel {
+      background: #fdfaf2;
+      border-color: rgba(26, 22, 18, 0.06);
+      box-shadow: 0 30px 80px -24px rgba(40, 25, 15, 0.35);
+    }
+
+    .bento-expand__header {
+      border-bottom: 0;
+      padding: 32px 36px 8px;
+    }
+
+    .bento-expand__label {
+      letter-spacing: 0.24em;
+      opacity: 0.55;
+    }
+
+    .bento-expand__title {
+      font-size: clamp(22px, 2.4vw, 28px);
+      line-height: 1.25;
+      max-width: 32ch;
+    }
+
+    .bento-expand__body {
+      padding: 8px 36px 32px;
+      gap: 16px;
+      cursor: default;
+    }
+
+    .bento-expand__prose {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--b-ink);
+      margin: 0;
+
+      // Inline highlight phrases (matches portfolio palette)
+      .accent {
+        font-weight: 600;
+      }
+      .accent--amber  { color: #c0871f; }
+      .accent--teal   { color: #2c8aa1; }
+      .accent--indigo { color: #4338ca; }
+      .accent--coral  { color: @bento-coral; }
+    }
+
+    @media (max-width: 640px) {
+      .bento-expand__header { padding: 24px 22px 6px; }
+      .bento-expand__body   { padding: 6px 22px 24px; }
+    }
+  }
+
+  // ============================================================
+  // Custom-body variant — caller supplies its own layout
+  // (used by the combined About modal with avatar + toggle)
+  // ============================================================
+  &--custom {
+    .bento-expand__panel {
+      background: #fdfaf2;
+      border-color: rgba(26, 22, 18, 0.06);
+      box-shadow: 0 30px 80px -24px rgba(40, 25, 15, 0.35);
+      position: relative;
+    }
+
+    .bento-expand__close--floating {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .bento-expand__body--custom {
+      padding: 40px 36px 36px;
+      gap: 18px;
+      cursor: default;
+    }
+
+    @media (max-width: 640px) {
+      .bento-expand__close--floating { top: 14px; right: 14px; }
+      .bento-expand__body--custom    { padding: 32px 22px 26px; }
+    }
+  }
 }
 
 @keyframes expandFade { from { opacity: 0; } to { opacity: 1; } }
