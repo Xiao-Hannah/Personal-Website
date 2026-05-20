@@ -20,7 +20,8 @@ import {
   Quote,
   X,
 } from "lucide-react";
-import profileImage from "@/assets/images/profile/profile.jpg";
+import profileImage from "@/assets/images/profile/profile.png";
+import profileImage2 from "@/assets/images/profile/profile_2.jpg";
 import albumImage from "@/assets/images/albumimage.jpg";
 import bookCover from "@/assets/images/home/book.jpg";
 import resume from "@/assets/files/resume.pdf";
@@ -356,9 +357,11 @@ const BentoHero = ({}: BentoHeroProps) => {
           className="bento-tile tile-paper hero-linkedin"
           style={{ "--delay": "120ms" } as React.CSSProperties}
         >
-          <div className="hero-linkedin__cover" aria-hidden />
+          <div className="hero-linkedin__cover" aria-hidden>
+            <Linkedin className="hero-linkedin__logo" size={28} strokeWidth={2} />
+          </div>
           <img
-            src={profileImage}
+            src={profileImage2}
             alt=""
             className="hero-linkedin__avatar"
           />
@@ -381,7 +384,7 @@ const BentoHero = ({}: BentoHeroProps) => {
         {/* ───────────── Atypica AI — featured experience ───────────── */}
         <MediaTile
           title="Atypica AI"
-          meta="2026 · Growth Strategy"
+          meta="2025 · Growth Strategy"
           link="/atypica"
           placeholderHue={200}
           videoSrc={atypicaVideo}
@@ -560,12 +563,96 @@ const BentoHero = ({}: BentoHeroProps) => {
               ROW 5 — Now playing · Clock · Coffee · Principle 2
             ═════════════════════════════════════════════════════════════════ */}
 
+        {/* ───────────── Principle · AI ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-principle is-clickable"
+          role="button"
+          tabIndex={0}
+          onClick={() => setPrincipleOpen("ai")}
+          onKeyDown={(e) =>
+            e.key === "Enter" && setPrincipleOpen("ai")
+          }
+          style={{ "--delay": "660ms" } as React.CSSProperties}
+        >
+          <Quote className="hero-principle__mark" size={20} aria-hidden />
+          <p className="hero-principle__quote">
+            AI should make people{" "}
+            <span className="hero-principle__grad hero-principle__grad--indigo">
+              feel more capable
+            </span>
+            .
+          </p>
+          <p className="eyebrow hero-principle__eyebrow">
+            my product principle
+          </p>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </article>
+
+        {/* ───────────── Seattle clock (compact) ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-clock"
+          style={{ "--delay": "720ms" } as React.CSSProperties}
+        >
+          <p className="eyebrow">
+            <MapPin size={11} /> Seattle
+          </p>
+          <h2 className="hero-clock__time">{seattleTime}</h2>
+          <p className="hero-clock__sub">
+            <span
+              className={`hero-clock__pulse ${isAwake ? "" : "is-asleep"}`}
+            />
+            {isAwake ? "Open to chat" : "Sleeping zzz"}
+          </p>
+          <div className="hero-clock__coffee">
+            <span className="hero-clock__coffee-icon" aria-hidden>
+              <Coffee size={14} />
+              <span className="hero-clock__steam">
+                <span /><span /><span />
+              </span>
+            </span>
+            <p className="hero-clock__coffee-copy">
+              <span className="hero-clock__coffee-count">{STATS.coffees}</span>
+              <span className="hero-clock__coffee-label">cups today</span>
+            </p>
+          </div>
+        </article>
+
+        {/* ───────────── Reading (compact) ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-reading"
+          style={{ "--delay": "780ms" } as React.CSSProperties}
+        >
+          <div className="hero-reading__meta">
+            <p className="eyebrow"><BookOpen size={11} /> Reading</p>
+            <p className="hero-reading__title">{STATS.nowReading.title}</p>
+            <p className="hero-reading__author">{STATS.nowReading.author}</p>
+            <div className="hero-reading__progress" aria-hidden>
+              <div className="hero-reading__progress-bar">
+                <span style={{ width: `${STATS.nowReading.progress}%` }} />
+              </div>
+              <span className="hero-reading__progress-label">
+                {STATS.nowReading.progress}% complete
+              </span>
+            </div>
+          </div>
+          <div className="hero-reading__book" aria-hidden>
+            <img
+              src={bookCover}
+              alt=""
+              className="hero-reading__cover-img"
+            />
+            <div className="hero-reading__spine" />
+          </div>
+        </article>
+
         {/* ───────────── Now playing — w/ album art ───────────── */}
         <article
           className={`bento-tile tile-dark hero-now-playing ${
             spotifyOpen ? "is-playing" : ""
           }`}
-          style={{ "--delay": "660ms" } as React.CSSProperties}
+          style={{ "--delay": "840ms" } as React.CSSProperties}
         >
           <img
             src={albumImage}
@@ -615,100 +702,6 @@ const BentoHero = ({}: BentoHeroProps) => {
           )}
         </article>
 
-        {/* ───────────── Seattle clock (compact) ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-clock"
-          style={{ "--delay": "720ms" } as React.CSSProperties}
-        >
-          <p className="eyebrow">
-            <MapPin size={11} /> Seattle
-          </p>
-          <h2 className="hero-clock__time">{seattleTime}</h2>
-          <p className="hero-clock__sub">
-            <span
-              className={`hero-clock__pulse ${isAwake ? "" : "is-asleep"}`}
-            />
-            {isAwake ? "Open to chat" : "Sleeping zzz"}
-          </p>
-        </article>
-
-        {/* ───────────── Coffee counter (compact) ───────────── */}
-        <article
-          className="bento-tile tile-yellow hero-coffee"
-          style={{ "--delay": "780ms" } as React.CSSProperties}
-        >
-          <Coffee size={18} />
-          <span className="hero-coffee__steam" aria-hidden>
-            <span /><span /><span />
-          </span>
-          <p className="hero-coffee__count">{STATS.coffees}</p>
-          <p className="hero-coffee__label">cups today</p>
-        </article>
-
-        {/* ───────────── Principle · AI ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-principle is-clickable"
-          role="button"
-          tabIndex={0}
-          onClick={() => setPrincipleOpen("ai")}
-          onKeyDown={(e) =>
-            e.key === "Enter" && setPrincipleOpen("ai")
-          }
-          style={{ "--delay": "840ms" } as React.CSSProperties}
-        >
-          <Quote className="hero-principle__mark" size={20} aria-hidden />
-          <p className="hero-principle__quote">
-            AI should make people{" "}
-            <span className="hero-principle__grad hero-principle__grad--indigo">
-              feel more capable
-            </span>
-            .
-          </p>
-          <p className="eyebrow hero-principle__eyebrow">
-            my product principle
-          </p>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </article>
-
-        {/* ═════════════════════════════════════════════════════════════════
-              ROW 6 — Currently reading (full width)
-            ═════════════════════════════════════════════════════════════════ */}
-
-        {/* ───────────── Reading ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-reading"
-          style={{ "--delay": "840ms" } as React.CSSProperties}
-        >
-          <div className="hero-reading__book" aria-hidden>
-            <img
-              src={bookCover}
-              alt=""
-              className="hero-reading__cover-img"
-            />
-            <div className="hero-reading__spine" />
-          </div>
-          <div className="hero-reading__meta">
-            <p className="eyebrow"><BookOpen size={11} /> Currently reading</p>
-            <p className="hero-reading__title">{STATS.nowReading.title}</p>
-            <p className="hero-reading__author">
-              {STATS.nowReading.author} · {STATS.nowReading.year}
-            </p>
-            <p className="hero-reading__chapter">{STATS.nowReading.chapter}</p>
-
-            <div className="hero-reading__progress" aria-hidden>
-              <div className="hero-reading__progress-bar">
-                <span style={{ width: `${STATS.nowReading.progress}%` }} />
-              </div>
-              <span className="hero-reading__progress-label">
-                {STATS.nowReading.progress}% ·{" "}
-                {Math.round((STATS.nowReading.pages * STATS.nowReading.progress) / 100)}
-                /{STATS.nowReading.pages} pages
-              </span>
-            </div>
-          </div>
-        </article>
       </div>
 
       <BentoExpand

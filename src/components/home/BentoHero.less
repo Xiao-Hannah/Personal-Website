@@ -27,10 +27,10 @@
   .hero-experience--zebra   { grid-column: span 4; grid-row: span 3; }
   .hero-photos       { grid-column: span 4; grid-row: span 3; position: relative; padding: 16px 0 0 0; overflow: hidden; }
 
-  // ── Row 4 (2r) — Spotify · Clock · Coffee · Principle 2 ─────────────────
+  // ── Row 4 (2r) — Spotify · Status · Reading · Principle 2 ───────────────
   .hero-now-playing  { grid-column: span 4; grid-row: span 2; position: relative; overflow: hidden; padding: 0; }
   .hero-clock        { grid-column: span 2; grid-row: span 2; position: relative; }
-  .hero-coffee       { grid-column: span 2; grid-row: span 2; position: relative; overflow: hidden; }
+  .hero-reading      { grid-column: span 2; grid-row: span 2; position: relative; overflow: hidden; }
   .hero-principle    { grid-column: span 4; grid-row: span 2; position: relative; }
   // Featured-principle override MUST come after `.hero-principle` base to win (equal specificity, source order).
   .hero-principle--featured { grid-column: span 3; grid-row: span 3; }
@@ -38,9 +38,6 @@
   // ── Row 5 (3r) — T-Mobile · Instagram ───────────────────────────────────
   .hero-experience--tmobile { grid-column: span 8; grid-row: span 3; }
   .hero-instagram    { grid-column: span 4; grid-row: span 3; position: relative; text-decoration: none; padding: 0; overflow: hidden; }
-
-  // ── Row 6 (2r) — Currently reading (full-width) ─────────────────────────
-  .hero-reading      { grid-column: span 12; grid-row: span 2; position: relative; overflow: hidden; }
 
   @media @tablet {
     .hero-intro                { grid-column: span 6; grid-row: span 3; }
@@ -53,12 +50,11 @@
     .hero-photos               { grid-column: span 6; grid-row: span 2; }
     .hero-now-playing          { grid-column: span 3; grid-row: span 2; }
     .hero-clock                { grid-column: span 2; grid-row: span 2; }
-    .hero-coffee               { grid-column: span 1; grid-row: span 2; }
+    .hero-reading              { grid-column: span 1; grid-row: span 2; }
     .hero-principle            { grid-column: span 6; grid-row: span 2; }
     .hero-principle--featured  { grid-column: span 4; grid-row: span 3; }
     .hero-experience--tmobile  { grid-column: span 6; grid-row: span 3; }
     .hero-instagram            { grid-column: span 6; grid-row: span 3; }
-    .hero-reading              { grid-column: span 6; grid-row: span 2; }
   }
   @media @mobile {
     .bento-tile { grid-column: span 2 !important; grid-row: span 2 !important; }
@@ -69,8 +65,8 @@
     .hero-experience--tmobile  { grid-row: span 3 !important; }
     .hero-principle--featured  { grid-row: span 3 !important; }
     .hero-theme  { grid-column: span 1 !important; grid-row: span 2 !important; }
-    .hero-clock  { grid-column: span 1 !important; grid-row: span 2 !important; }
-    .hero-coffee { grid-column: span 1 !important; grid-row: span 2 !important; }
+    .hero-clock,
+    .hero-reading { grid-column: span 1 !important; grid-row: span 2 !important; }
   }
 
   // ============ Self introduction tile ============
@@ -328,6 +324,15 @@
         inset: -50%;
         background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 60%);
       }
+    }
+    &__logo {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      color: #ffffff;
+      opacity: 0.95;
+      z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.18));
     }
     &__avatar {
       position: absolute;
@@ -726,8 +731,9 @@
 
   // ============ Clock (compact 2×2) ============
   .hero-clock {
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 16px 16px 14px;
+    gap: 8px;
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -749,6 +755,65 @@
       font-size: 11px;
       color: var(--b-ink-soft);
     }
+    &__coffee {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 15px 10px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f4cf66 0%, #ebb23a 100%);
+      color: #4b3211;
+    }
+    &__coffee-icon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    &__coffee-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin: 0;
+      min-width: 0;
+    }
+    &__coffee-count {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    &__coffee-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    &__steam {
+      position: absolute;
+      top: -6px;
+      left: 12px;
+      display: inline-flex;
+      gap: 2px;
+      height: 14px;
+      span {
+        width: 3px;
+        height: 100%;
+        border-radius: 999px;
+        background: rgba(75, 50, 17, 0.35);
+        animation: steam 2.6s ease-in-out infinite;
+        transform-origin: bottom;
+      }
+      span:nth-child(2) { animation-delay: 200ms; }
+      span:nth-child(3) { animation-delay: 400ms; }
+    }
     &__pulse {
       width: 7px; height: 7px;
       border-radius: 50%;
@@ -759,51 +824,6 @@
     }
   }
 
-  // ============ Coffee (compact 2×2 yellow tile) ============
-  .hero-coffee {
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 16px 16px 14px;
-
-    > svg:first-child {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-    }
-    &__count {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 2.8vw, 38px);
-      font-weight: 700;
-      line-height: 1;
-      margin: 0;
-    }
-    &__label {
-      font-family: var(--font-body);
-      font-size: 9.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin: 0;
-    }
-    &__steam {
-      position: absolute;
-      top: 8px;
-      left: 36px;
-      display: inline-flex;
-      gap: 3px;
-      height: 20px;
-      span {
-        width: 4px;
-        height: 100%;
-        border-radius: 999px;
-        background: rgba(42, 33, 10, 0.4);
-        animation: steam 2.6s ease-in-out infinite;
-        transform-origin: bottom;
-      }
-      span:nth-child(2) { animation-delay: 200ms; }
-      span:nth-child(3) { animation-delay: 400ms; }
-    }
-  }
   @keyframes steam {
     0%, 100% { transform: translateY(0) scaleY(0.7); opacity: 0.6; }
     50%      { transform: translateY(-10px) scaleY(1); opacity: 0.85; }
@@ -989,20 +1009,20 @@
 
   // ============ Reading ============
   .hero-reading {
-    flex-direction: row;
-    align-items: stretch;
-    gap: 16px;
+    padding: 14px;
+    justify-content: space-between;
+    gap: 10px;
 
     &__book {
       position: relative;
       flex-shrink: 0;
-      width: 88px;
-      height: 132px;
-      transform: rotate(-4deg);
+      width: 54px;
+      height: 82px;
+      transform: rotate(6deg);
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      align-self: center;
+      align-self: flex-end;
     }
-    &:hover &__book { transform: rotate(0) translateY(-4px); }
+    &:hover &__book { transform: rotate(0) translateY(-3px); }
 
     &__cover-img {
       position: absolute;
@@ -1027,38 +1047,26 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
       min-width: 0;
-      justify-content: center;
+      justify-content: flex-start;
     }
     &__title {
       font-family: var(--font-display);
-      font-size: clamp(16px, 1.5vw, 19px);
+      font-size: clamp(14px, 1.2vw, 17px);
       font-weight: 700;
-      line-height: 1.05;
+      line-height: 1.1;
     }
     &__author {
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: 10.5px;
       color: var(--b-ink-soft);
-    }
-    &__chapter {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--b-ink-soft);
-      margin-top: 2px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: var(--b-bg-deep);
-      align-self: flex-start;
     }
     &__progress {
       display: flex;
       flex-direction: column;
       gap: 4px;
-      margin-top: 8px;
+      margin-top: auto;
     }
     &__progress-bar {
       height: 4px;
@@ -1076,7 +1084,7 @@
     }
     &__progress-label {
       font-family: var(--font-body);
-      font-size: 10.5px;
+      font-size: 9.5px;
       font-weight: 600;
       letter-spacing: 0.03em;
       color: var(--b-ink-soft);
@@ -1085,6 +1093,7 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      font-size: 9.5px;
     }
   }
 
@@ -1245,20 +1254,19 @@
 }
 
 // ─────────── ABOUT spotlight ───────────
-// Spotlit set: both principle tiles + Seattle clock + coffee counter.
+// Spotlit set: both principle tiles + combined status tile.
 // Pack as a snug 12-col × 2-row band right after the intro row.
 .bento-hero[data-spotlight="about"] {
   .hero-principle,
-  .hero-clock,
-  .hero-coffee {
+  .hero-clock {
     opacity: 1 !important;
     filter: none !important;
     pointer-events: auto !important;
     order: 1;
     z-index: 2;
   }
-  // Spotlight size overrides — both principles share a 4-wide / 2-row footprint
-  // so the band reads as 4 + 4 + 2 + 2 = 12 cols, all 2 rows tall.
+  // Spotlight size overrides — each tile takes a 4-wide / 2-row footprint
+  // so the band reads as 4 + 4 + 4 = 12 cols, all 2 rows tall.
   .hero-principle--featured {
     grid-column: span 4 !important;
     grid-row: span 2 !important;
@@ -1267,13 +1275,12 @@
     grid-column: span 4;
     grid-row: span 2;
   }
-  .hero-clock,
-  .hero-coffee {
-    grid-column: span 2;
+  .hero-clock {
+    grid-column: span 4;
     grid-row: span 2;
   }
   // Push everyone else below the spotlit band.
-  .bento-tile:not(.hero-intro):not(.hero-resume):not(.hero-linkedin):not(.hero-principle):not(.hero-clock):not(.hero-coffee) {
+  .bento-tile:not(.hero-intro):not(.hero-resume):not(.hero-linkedin):not(.hero-principle):not(.hero-clock) {
     order: 2;
   }
   // ─── Dimmed-tile sizing (About) ───
@@ -1282,7 +1289,7 @@
   //   Band 1 (2r): atypica 6  + github 3  + theme 3  = 12
   //   Band 2 (2r): tmobile 6  + photos 3  + zebra 3  = 12
   //   Band 3 (2r): instagram 6 + now-playing 6       = 12
-  //   Band 4 (2r): reading 12                        = 12
+  //   Band 4 (2r): instagram 6 + reading 3 + now-playing 3 = 12
   .hero-experience--atypica  { grid-column: span 6 !important; grid-row: span 2 !important; }
   .hero-experience--tmobile  { grid-column: span 6 !important; grid-row: span 2 !important; }
   .hero-experience--zebra    { grid-column: span 3 !important; grid-row: span 2 !important; }
@@ -1290,8 +1297,8 @@
   .hero-theme                { grid-column: span 3 !important; grid-row: span 2 !important; }
   .hero-photos               { grid-column: span 3 !important; grid-row: span 2 !important; }
   .hero-instagram            { grid-column: span 6 !important; grid-row: span 2 !important; }
-  .hero-now-playing          { grid-column: span 6 !important; grid-row: span 2 !important; }
-  .hero-reading              { grid-column: span 12 !important; grid-row: span 2 !important; }
+  .hero-now-playing          { grid-column: span 3 !important; grid-row: span 2 !important; }
+  .hero-reading              { grid-column: span 3 !important; grid-row: span 2 !important; }
 }
 
 // ─────────── EXPERIENCE spotlight ───────────
@@ -1326,8 +1333,8 @@
   //   Band 1 (3r): intro 6     + resume 3   + linkedin 3 = 12
   //   Band 2 (2r): principle 4 + principle 4 + theme 4   = 12
   //   Band 3 (2r): github 4    + photos 4    + now-playing 4 = 12
-  //   Band 4 (2r): instagram 8 + clock 2     + coffee 2  = 12
-  //   Band 5 (2r): reading 12                             = 12
+  //   Band 4 (2r): instagram 8 + clock 4                  = 12
+  //   Band 5 (2r): reading 4 + now-playing 4 + theme 4    = 12
   .hero-principle--featured  { grid-column: span 4 !important; grid-row: span 2 !important; }
   .hero-principle            { grid-column: span 4 !important; grid-row: span 2 !important; }
   .hero-theme                { grid-column: span 4 !important; grid-row: span 2 !important; }
@@ -1335,9 +1342,8 @@
   .hero-photos               { grid-column: span 4 !important; grid-row: span 2 !important; }
   .hero-now-playing          { grid-column: span 4 !important; grid-row: span 2 !important; }
   .hero-instagram            { grid-column: span 8 !important; grid-row: span 2 !important; }
-  .hero-clock                { grid-column: span 2 !important; grid-row: span 2 !important; }
-  .hero-coffee               { grid-column: span 2 !important; grid-row: span 2 !important; }
-  .hero-reading              { grid-column: span 12 !important; grid-row: span 2 !important; }
+  .hero-clock                { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-reading              { grid-column: span 4 !important; grid-row: span 2 !important; }
 }
 
 // ============================================================================

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin, GraduationCap } from "lucide-react";
-import profileImage from "@/assets/images/profile/profile.jpg";
+import profileImage from "@/assets/images/profile/profile.png";
+import "./BentoAbout.less";
 
 /**
  * Shared "About Hannah" modal body — rendered inside <BentoExpand body={...} />.
