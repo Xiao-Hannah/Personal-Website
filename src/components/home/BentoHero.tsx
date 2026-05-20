@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   MapPin,
@@ -17,6 +17,7 @@ import {
   Moon,
   MessageCircle,
   Play,
+  Quote,
   X,
 } from "lucide-react";
 import profileImage from "@/assets/images/profile/profile.jpg";
@@ -36,9 +37,14 @@ import instagram1 from "@/assets/images/instagram/instagram1.jpg";
 import instagram2 from "@/assets/images/instagram/instagram2.jpg";
 import instagram3 from "@/assets/images/instagram/instagram3.jpg";
 import instagram4 from "@/assets/images/instagram/instagram4.jpg";
+import atypicaVideo from "@/assets/videos/atypica_new.mp4";
+import zebraVideo from "@/assets/videos/zebra_new.mp4";
+import tmobileVideo from "@/assets/videos/Tmobile.mp4";
 import BentoExpand from "./BentoExpand";
 import IntroModalBody from "./IntroModalBody";
 import SpotifyPreview from "./SpotifyPreview";
+import MediaTile from "./MediaTile";
+import { useSpotlight } from "./SpotlightContext";
 import { useTheme } from "@/hooks/useTheme";
 import "./BentoHero.less";
 
@@ -51,7 +57,7 @@ interface BentoHeroProps {
 const STATS = {
   linkedin: { headline: "Product Manager · Seattle, WA", connections: "1k+" },
   github:   { repos: 18, stars: 42, lastPush: "2 days ago" },
-  instagram:{ handle: "@hanx0628", posts: 184 },
+  instagram:{ handle: "@hanx0628", posts: 15 },
   nowReading: {
     title: "Pachinko",
     author: "Min Jin Lee",
@@ -83,16 +89,59 @@ const CONTRIB = Array.from({ length: 7 * 14 }, (_, i) => {
   return 4;
 });
 
-const BentoHero = ({
-  onScrollToWork,
-  onScrollToContact,
-}: BentoHeroProps) => {
+// ─── Product principles (merged in from BentoAbout) ─────────────────────────
+const PRINCIPLE_CONTROL_PARAGRAPHS: ReactNode[] = [
+  <>
+    Most of the products I'm drawn to solve{" "}
+    <span className="accent accent--amber">moments of uncertainty</span> — when
+    users are overwhelmed by information and unsure what to do next.
+  </>,
+  <>
+    Great products don't remove complexity entirely, but they make complexity{" "}
+    <span className="accent accent--amber">understandable</span>. They break a
+    difficult problem into something people can navigate with confidence.
+  </>,
+  <>
+    I'm interested in products that help people move from{" "}
+    <span className="accent accent--amber">confusion to clarity</span>. To me,
+    product management is about seeking what truly matters to users and building
+    tools that make the next step feel obvious and achievable.
+  </>,
+];
+
+const PRINCIPLE_AI_PARAGRAPHS: ReactNode[] = [
+  <>
+    I'm most interested in AI products that help people work through complicated
+    problems and arrive at{" "}
+    <span className="accent accent--indigo">better decisions</span>.
+  </>,
+  <>
+    The goal isn't for AI to replace human thinking, but to make it easier for
+    people to understand a situation and{" "}
+    <span className="accent accent--indigo">decide what to do next</span>.
+  </>,
+  <>
+    When AI is designed well, it feels less like an answer machine and more like
+    a <span className="accent accent--indigo">useful partner</span> — helping
+    people move faster and with more confidence, while keeping them in control
+    of the final decision.
+  </>,
+];
+
+type PrincipleKey = "control" | "ai";
+
+const BentoHero = ({}: BentoHeroProps) => {
   const [time, setTime] = useState(() => new Date());
   const [copied, setCopied] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
   const [bulbPulse, setBulbPulse] = useState(false);
   const [spotifyOpen, setSpotifyOpen] = useState(false);
+  const [principleOpen, setPrincipleOpen] = useState<PrincipleKey | null>(null);
   const { isDark, toggle } = useTheme();
+  const { spotlight, clearSpotlight } = useSpotlight();
+  const gridRef = useRef<HTMLDivElement>(null);
+  const lastPositions = useRef<Map<Element, { top: number; left: number }>>(new Map());
+  const firstSpotlightRun = useRef(true);
 
   const handleThemeToggle = () => {
     setBulbPulse(true);
@@ -104,6 +153,61 @@ const BentoHero = ({
     const id = window.setInterval(() => setTime(new Date()), 60_000);
     return () => window.clearInterval(id);
   }, []);
+
+  // Press Escape to dismiss an active spotlight.
+  useEffect(() => {
+    if (!spotlight) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") clearSpotlight();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [spotlight, clearSpotlight]);
+
+  // ─── FLIP animation: smoothly translate tiles between layouts whenever
+  // the spotlight changes (or is cleared). We capture each tile's previous
+  // position relative to the grid container (so scroll & smooth-scroll
+  // animations don't leak into the delta), then on the next layout play
+  // an inverse-translate → 0 anim via the Web Animations API so tiles
+  // glide to their new grid cell.
+  useLayoutEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const tiles = Array.from(
+      grid.querySelectorAll<HTMLElement>(":scope > .bento-tile")
+    );
+    const gridRect = grid.getBoundingClientRect();
+    const next = new Map<Element, { top: number; left: number }>();
+    tiles.forEach((t) => {
+      const r = t.getBoundingClientRect();
+      next.set(t, { top: r.top - gridRect.top, left: r.left - gridRect.left });
+    });
+
+    if (!firstSpotlightRun.current) {
+      tiles.forEach((tile) => {
+        const oldPos = lastPositions.current.get(tile);
+        const newPos = next.get(tile);
+        if (!oldPos || !newPos) return;
+        const dx = oldPos.left - newPos.left;
+        const dy = oldPos.top - newPos.top;
+        if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+        tile.animate(
+          [
+            { transform: `translate(${dx}px, ${dy}px)` },
+            { transform: "translate(0, 0)" },
+          ],
+          {
+            duration: 550,
+            easing: "cubic-bezier(0.32, 0.72, 0, 1)",
+          }
+        );
+      });
+    } else {
+      firstSpotlightRun.current = false;
+    }
+
+    lastPositions.current = next;
+  }, [spotlight]);
 
   const seattleTime = time.toLocaleTimeString("en-US", {
     timeZone: "America/Los_Angeles",
@@ -131,10 +235,17 @@ const BentoHero = ({
 
   return (
     <section
-      className="bento-section bento-section--hero bento-hero"
+      className={`bento-section bento-section--hero bento-hero ${
+        spotlight ? "is-spotlit" : ""
+      }`}
+      data-spotlight={spotlight ?? undefined}
       aria-label="Hannah Xiao — intro"
     >
-      <div className="bento-section__grid">
+      <div className="bento-section__grid" ref={gridRef}>
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 1 — Self Introduction · Résumé · LinkedIn
+            ═════════════════════════════════════════════════════════════════ */}
+
         {/* ───────────── Self Introduction (large, clickable) ───────────── */}
         <article
           className="bento-tile tile-paper hero-intro is-clickable"
@@ -168,9 +279,31 @@ const BentoHero = ({
               I'm <strong>Hannah Xiao</strong>, currently working as a Growth
               Product Manager <span className="hero-intro__at">@atypica.AI</span>.
             </p>
-            <span className="hero-intro__cta">
-              Click to read more <ArrowUpRight size={14} />
-            </span>
+            <div className="hero-intro__actions">
+              <span
+                role="button"
+                tabIndex={0}
+                className={`hero-intro__email ${copied ? "is-copied" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  copyEmail();
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    copyEmail();
+                  }
+                }}
+                aria-label="Copy email address"
+              >
+                {copied ? <Check size={12} /> : <Mail size={12} />}
+                <span>{copied ? "Copied!" : "hx2313@uw.edu"}</span>
+              </span>
+              <span className="hero-intro__cta">
+                Read more <ArrowUpRight size={14} />
+              </span>
+            </div>
           </div>
         </article>
 
@@ -241,64 +374,47 @@ const BentoHero = ({
           </span>
         </a>
 
-        {/* ───────────── GitHub — contribution grid ───────────── */}
-        <a
-          href="https://github.com/Xiao-Hannah"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bento-tile tile-dark hero-github"
-          style={{ "--delay": "180ms" } as React.CSSProperties}
-        >
-          <div className="hero-github__top">
-            <Github size={20} />
-            <span className="hero-github__handle">Xiao-Hannah</span>
-          </div>
-          <div className="hero-github__grid" aria-hidden>
-            {CONTRIB.map((level, i) => (
-              <span
-                key={i}
-                className={`hero-github__cell level-${level}`}
-                style={{ "--i": i } as React.CSSProperties}
-              />
-            ))}
-          </div>
-          <div className="hero-github__stats">
-            <span>{STATS.github.repos} repos</span>
-            <span>★ {STATS.github.stars}</span>
-            <span className="dot" />
-            <span className="last-push">pushed {STATS.github.lastPush}</span>
-          </div>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </a>
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 2 — Atypica (experience) · Principle 1 · Theme
+            ═════════════════════════════════════════════════════════════════ */}
 
-        {/* ───────────── Instagram — 4-photo mosaic ───────────── */}
-        <a
-          href="https://instagram.com/hanx0628"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bento-tile tile-paper hero-instagram"
+        {/* ───────────── Atypica AI — featured experience ───────────── */}
+        <MediaTile
+          title="Atypica AI"
+          meta="2026 · Growth Strategy"
+          link="/atypica"
+          placeholderHue={200}
+          videoSrc={atypicaVideo}
+          className="hero-experience hero-experience--atypica"
+          delay={180}
+        />
+
+        {/* ───────────── Principle · Control ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-principle hero-principle--featured is-clickable"
+          role="button"
+          tabIndex={0}
+          onClick={() => setPrincipleOpen("control")}
+          onKeyDown={(e) =>
+            e.key === "Enter" && setPrincipleOpen("control")
+          }
           style={{ "--delay": "240ms" } as React.CSSProperties}
         >
-          <div className="hero-instagram__mosaic" aria-hidden>
-            <span className="hero-instagram__cell"><img src={instagram1} alt="" /></span>
-            <span className="hero-instagram__cell"><img src={instagram2} alt="" /></span>
-            <span className="hero-instagram__cell"><img src={instagram3} alt="" /></span>
-            <span className="hero-instagram__cell"><img src={instagram4} alt="" /></span>
-          </div>
-          <div className="hero-instagram__overlay">
-            <div className="hero-instagram__handle">
-              <Instagram size={16} /> {STATS.instagram.handle}
-            </div>
-            <p className="hero-instagram__count">
-              {STATS.instagram.posts} posts
-            </p>
-          </div>
+          <Quote className="hero-principle__mark" size={20} aria-hidden />
+          <p className="hero-principle__quote">
+            Great products give people a{" "}
+            <span className="hero-principle__grad hero-principle__grad--amber">
+              sense of control
+            </span>
+            .
+          </p>
+          <p className="eyebrow hero-principle__eyebrow">
+            my product principle
+          </p>
           <span className="tile-corner" aria-hidden>
             <ArrowUpRight size={16} />
           </span>
-        </a>
+        </article>
 
         {/* ───────────── Theme toggle — light switch ───────────── */}
         <button
@@ -336,29 +452,120 @@ const BentoHero = ({
           </div>
         </button>
 
-        {/* ───────────── Seattle clock ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-clock"
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 3 — GitHub · Lately · Zebra (experience, square)
+            ═════════════════════════════════════════════════════════════════ */}
+
+        {/* ───────────── GitHub — contribution grid ───────────── */}
+        <a
+          href="https://github.com/Xiao-Hannah"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bento-tile tile-dark hero-github"
           style={{ "--delay": "360ms" } as React.CSSProperties}
         >
-          <p className="eyebrow">
-            <MapPin size={11} /> Seattle
+          <div className="hero-github__top">
+            <Github size={20} />
+            <span className="hero-github__handle">Xiao-Hannah</span>
+          </div>
+          <div className="hero-github__grid" aria-hidden>
+            {CONTRIB.map((level, i) => (
+              <span
+                key={i}
+                className={`hero-github__cell level-${level}`}
+                style={{ "--i": i } as React.CSSProperties}
+              />
+            ))}
+          </div>
+          <div className="hero-github__stats">
+            <span>{STATS.github.repos} repos</span>
+            <span>★ {STATS.github.stars}</span>
+            <span className="dot" />
+            <span className="last-push">pushed {STATS.github.lastPush}</span>
+          </div>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </a>
+
+        {/* ───────────── Photo strip ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-photos"
+          style={{ "--delay": "420ms" } as React.CSSProperties}
+        >
+          <p className="eyebrow hero-photos__label">
+            <Heart size={11} /> Lately
           </p>
-          <h2 className="hero-clock__time">{seattleTime}</h2>
-          <p className="hero-clock__sub">
-            <span
-              className={`hero-clock__pulse ${isAwake ? "" : "is-asleep"}`}
-            />
-            {isAwake ? "Open to chat" : "Sleeping zzz"}
-          </p>
+          <div className="hero-photos__track" aria-hidden>
+            {[...photoStrip, ...photoStrip].map((src, i) => (
+              <img key={i} src={src} alt="" />
+            ))}
+          </div>
         </article>
+
+        {/* ───────────── Zebra Workcloud — experience (square) ───────────── */}
+        <MediaTile
+          title="Zebra Workcloud"
+          meta="2025 · Auth × NFC × Biometrics"
+          link="/zebra"
+          placeholderHue={30}
+          videoSrc={zebraVideo}
+          className="hero-experience hero-experience--zebra"
+          delay={480}
+        />
+
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 4 — T-Mobile CareLink (experience) · Instagram
+            ═════════════════════════════════════════════════════════════════ */}
+
+        {/* ───────────── T-Mobile CareLink — experience ───────────── */}
+        <MediaTile
+          title="T-Mobile CareLink"
+          meta="2024 · PM × Hardware × 5G"
+          link="/tlink"
+          placeholderHue={330}
+          videoSrc={tmobileVideo}
+          className="hero-experience hero-experience--tmobile"
+          delay={540}
+        />
+
+        {/* ───────────── Instagram — 4-photo mosaic ───────────── */}
+        <a
+          href="https://instagram.com/hanx0628"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bento-tile tile-paper hero-instagram"
+          style={{ "--delay": "600ms" } as React.CSSProperties}
+        >
+          <div className="hero-instagram__mosaic" aria-hidden>
+            <span className="hero-instagram__cell"><img src={instagram1} alt="" /></span>
+            <span className="hero-instagram__cell"><img src={instagram2} alt="" /></span>
+            <span className="hero-instagram__cell"><img src={instagram3} alt="" /></span>
+            <span className="hero-instagram__cell"><img src={instagram4} alt="" /></span>
+          </div>
+          <div className="hero-instagram__overlay">
+            <div className="hero-instagram__handle">
+              <Instagram size={16} /> {STATS.instagram.handle}
+            </div>
+            <p className="hero-instagram__count">
+              {STATS.instagram.posts} posts
+            </p>
+          </div>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </a>
+
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 5 — Now playing · Clock · Coffee · Principle 2
+            ═════════════════════════════════════════════════════════════════ */}
 
         {/* ───────────── Now playing — w/ album art ───────────── */}
         <article
           className={`bento-tile tile-dark hero-now-playing ${
             spotifyOpen ? "is-playing" : ""
           }`}
-          style={{ "--delay": "420ms" } as React.CSSProperties}
+          style={{ "--delay": "660ms" } as React.CSSProperties}
         >
           <img
             src={albumImage}
@@ -408,10 +615,71 @@ const BentoHero = ({
           )}
         </article>
 
+        {/* ───────────── Seattle clock (compact) ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-clock"
+          style={{ "--delay": "720ms" } as React.CSSProperties}
+        >
+          <p className="eyebrow">
+            <MapPin size={11} /> Seattle
+          </p>
+          <h2 className="hero-clock__time">{seattleTime}</h2>
+          <p className="hero-clock__sub">
+            <span
+              className={`hero-clock__pulse ${isAwake ? "" : "is-asleep"}`}
+            />
+            {isAwake ? "Open to chat" : "Sleeping zzz"}
+          </p>
+        </article>
+
+        {/* ───────────── Coffee counter (compact) ───────────── */}
+        <article
+          className="bento-tile tile-yellow hero-coffee"
+          style={{ "--delay": "780ms" } as React.CSSProperties}
+        >
+          <Coffee size={18} />
+          <span className="hero-coffee__steam" aria-hidden>
+            <span /><span /><span />
+          </span>
+          <p className="hero-coffee__count">{STATS.coffees}</p>
+          <p className="hero-coffee__label">cups today</p>
+        </article>
+
+        {/* ───────────── Principle · AI ───────────── */}
+        <article
+          className="bento-tile tile-paper hero-principle is-clickable"
+          role="button"
+          tabIndex={0}
+          onClick={() => setPrincipleOpen("ai")}
+          onKeyDown={(e) =>
+            e.key === "Enter" && setPrincipleOpen("ai")
+          }
+          style={{ "--delay": "840ms" } as React.CSSProperties}
+        >
+          <Quote className="hero-principle__mark" size={20} aria-hidden />
+          <p className="hero-principle__quote">
+            AI should make people{" "}
+            <span className="hero-principle__grad hero-principle__grad--indigo">
+              feel more capable
+            </span>
+            .
+          </p>
+          <p className="eyebrow hero-principle__eyebrow">
+            my product principle
+          </p>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </article>
+
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 6 — Currently reading (full width)
+            ═════════════════════════════════════════════════════════════════ */}
+
         {/* ───────────── Reading ───────────── */}
         <article
           className="bento-tile tile-paper hero-reading"
-          style={{ "--delay": "480ms" } as React.CSSProperties}
+          style={{ "--delay": "840ms" } as React.CSSProperties}
         >
           <div className="hero-reading__book" aria-hidden>
             <img
@@ -441,90 +709,28 @@ const BentoHero = ({
             </div>
           </div>
         </article>
-
-        {/* ───────────── Photo strip ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-photos"
-          style={{ "--delay": "540ms" } as React.CSSProperties}
-        >
-          <p className="eyebrow hero-photos__label">
-            <Heart size={11} /> Lately
-          </p>
-          <div className="hero-photos__track" aria-hidden>
-            {[...photoStrip, ...photoStrip].map((src, i) => (
-              <img key={i} src={src} alt="" />
-            ))}
-          </div>
-        </article>
-
-        {/* ───────────── Coffee counter ───────────── */}
-        <article
-          className="bento-tile tile-yellow hero-coffee"
-          style={{ "--delay": "600ms" } as React.CSSProperties}
-        >
-          <Coffee size={22} />
-          <p className="hero-coffee__count">{STATS.coffees}</p>
-          <p className="hero-coffee__label">cups today</p>
-          <span className="hero-coffee__steam" aria-hidden>
-            <span /><span /><span />
-          </span>
-        </article>
-
-        {/* ───────────── Email copy ───────────── */}
-        <button
-          type="button"
-          className="bento-tile tile-paper hero-email is-clickable"
-          onClick={copyEmail}
-          style={{ "--delay": "660ms" } as React.CSSProperties}
-        >
-          <Mail size={22} className="hero-email__icon" />
-          <p className="hero-email__addr">hx2313@uw.edu</p>
-          <span className={`hero-email__copy ${copied ? "is-copied" : ""}`}>
-            {copied ? (
-              <><Check size={12} /> Copied!</>
-            ) : (
-              "Click to copy"
-            )}
-          </span>
-        </button>
-
-        {/* ───────────── Work CTA ───────────── */}
-        <button
-          type="button"
-          className="bento-tile tile-paper hero-cta-work is-clickable"
-          onClick={onScrollToWork}
-          style={{ "--delay": "720ms" } as React.CSSProperties}
-        >
-          <p className="eyebrow">My work</p>
-          <h3>
-            See what
-            <br />
-            I've shipped <span className="hero-cta-work__arrow">↓</span>
-          </h3>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </button>
-
-        {/* ───────────── Contact CTA ───────────── */}
-        <button
-          type="button"
-          className="bento-tile tile-dark hero-cta-contact is-clickable"
-          onClick={onScrollToContact}
-          style={{ "--delay": "780ms" } as React.CSSProperties}
-        >
-          <p className="eyebrow eyebrow--light">Say hi</p>
-          <h3>Let's build something together.</h3>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </button>
       </div>
 
       <BentoExpand
         open={introOpen}
         onClose={() => setIntroOpen(false)}
         body={<IntroModalBody />}
+      />
+      <BentoExpand
+        open={principleOpen === "control"}
+        onClose={() => setPrincipleOpen(null)}
+        variant="prose"
+        label="My product principle"
+        title="Great products give people a sense of control."
+        paragraphs={PRINCIPLE_CONTROL_PARAGRAPHS}
+      />
+      <BentoExpand
+        open={principleOpen === "ai"}
+        onClose={() => setPrincipleOpen(null)}
+        variant="prose"
+        label="My product principle"
+        title="AI should make people feel more capable."
+        paragraphs={PRINCIPLE_AI_PARAGRAPHS}
       />
     </section>
   );

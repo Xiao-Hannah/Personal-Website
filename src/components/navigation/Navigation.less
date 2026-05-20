@@ -83,6 +83,15 @@
         transform: scaleX(1);
       }
     }
+
+    // Active spotlight category — persistent underline + filled colour.
+    &.is-active {
+      color: var(--foreground);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
   }
 
   .mobile-menu-button {

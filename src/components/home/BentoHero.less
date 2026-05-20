@@ -1,46 +1,76 @@
 @import "./bento.less";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Accent palette for principle tiles (mirrors BentoAbout)
+//   amber  : grounded warmth (Control principle)
+//   teal   : intelligent depth (AI principle)
+//   indigo : depth, gravitas
+// ─────────────────────────────────────────────────────────────────────────────
+@accent-amber:  #c0871f;
+@accent-amber2: #d4a23a;
+@accent-teal:   #2c8aa1;
+@accent-indigo: #4338ca;
+
 .bento-hero {
   // ============ Grid placement (12 cols) ============
+  // ── Row 1 (3r) — intro · résumé · linkedin ──────────────────────────────
   .hero-intro        { grid-column: span 6; grid-row: span 3; position: relative; text-align: left; font-family: inherit; }
   .hero-resume       { grid-column: span 3; grid-row: span 3; position: relative; text-decoration: none; color: inherit; }
   .hero-linkedin     { grid-column: span 3; grid-row: span 3; position: relative; text-decoration: none; color: inherit; padding: 0; overflow: hidden; }
 
-  .hero-github       { grid-column: span 4; grid-row: span 3; position: relative; text-decoration: none; color: inherit; }
-  .hero-instagram    { grid-column: span 4; grid-row: span 3; position: relative; text-decoration: none; padding: 0; overflow: hidden; }
+  // ── Row 2 (3r) — Atypica · Principle 1 · Theme ──────────────────────────
+  .hero-experience--atypica { grid-column: span 7; grid-row: span 3; }
   .hero-theme        { grid-column: span 2; grid-row: span 3; position: relative; font-family: inherit; text-align: left; overflow: hidden; }
-  .hero-clock        { grid-column: span 2; grid-row: span 3; position: relative; }
 
-  .hero-now-playing  { grid-column: span 3; grid-row: span 2; position: relative; overflow: hidden; padding: 0; }
-  .hero-reading      { grid-column: span 4; grid-row: span 2; position: relative; overflow: hidden; }
-  .hero-photos       { grid-column: span 5; grid-row: span 2; position: relative; padding: 16px 0 0 0; overflow: hidden; }
+  // ── Row 3 (3r) — GitHub · Zebra (square) · Lately ───────────────────────
+  .hero-github       { grid-column: span 4; grid-row: span 3; position: relative; text-decoration: none; color: inherit; }
+  .hero-experience--zebra   { grid-column: span 4; grid-row: span 3; }
+  .hero-photos       { grid-column: span 4; grid-row: span 3; position: relative; padding: 16px 0 0 0; overflow: hidden; }
 
+  // ── Row 4 (2r) — Spotify · Clock · Coffee · Principle 2 ─────────────────
+  .hero-now-playing  { grid-column: span 4; grid-row: span 2; position: relative; overflow: hidden; padding: 0; }
+  .hero-clock        { grid-column: span 2; grid-row: span 2; position: relative; }
   .hero-coffee       { grid-column: span 2; grid-row: span 2; position: relative; overflow: hidden; }
-  .hero-email        { grid-column: span 3; grid-row: span 2; font-family: inherit; text-align: left; }
-  .hero-cta-work     { grid-column: span 3; grid-row: span 2; position: relative; text-align: left; font-family: inherit; background: var(--b-paper); color: var(--b-ink); }
-  .hero-cta-contact  { grid-column: span 4; grid-row: span 2; position: relative; text-align: left; font-family: inherit; }
+  .hero-principle    { grid-column: span 4; grid-row: span 2; position: relative; }
+  // Featured-principle override MUST come after `.hero-principle` base to win (equal specificity, source order).
+  .hero-principle--featured { grid-column: span 3; grid-row: span 3; }
+
+  // ── Row 5 (3r) — T-Mobile · Instagram ───────────────────────────────────
+  .hero-experience--tmobile { grid-column: span 8; grid-row: span 3; }
+  .hero-instagram    { grid-column: span 4; grid-row: span 3; position: relative; text-decoration: none; padding: 0; overflow: hidden; }
+
+  // ── Row 6 (2r) — Currently reading (full-width) ─────────────────────────
+  .hero-reading      { grid-column: span 12; grid-row: span 2; position: relative; overflow: hidden; }
 
   @media @tablet {
-    .hero-intro       { grid-column: span 6; grid-row: span 3; }
-    .hero-resume      { grid-column: span 3; grid-row: span 3; }
-    .hero-linkedin    { grid-column: span 3; grid-row: span 3; }
-    .hero-github      { grid-column: span 3; grid-row: span 3; }
-    .hero-instagram   { grid-column: span 3; grid-row: span 3; }
-    .hero-theme       { grid-column: span 3; grid-row: span 2; }
-    .hero-clock       { grid-column: span 3; grid-row: span 2; }
-    .hero-now-playing { grid-column: span 3; grid-row: span 2; }
-    .hero-reading     { grid-column: span 3; grid-row: span 2; }
-    .hero-photos      { grid-column: span 6; grid-row: span 2; }
-    .hero-coffee      { grid-column: span 2; grid-row: span 2; }
-    .hero-email       { grid-column: span 4; grid-row: span 2; }
-    .hero-cta-work    { grid-column: span 3; grid-row: span 2; }
-    .hero-cta-contact { grid-column: span 6; grid-row: span 2; }
+    .hero-intro                { grid-column: span 6; grid-row: span 3; }
+    .hero-resume               { grid-column: span 3; grid-row: span 3; }
+    .hero-linkedin             { grid-column: span 3; grid-row: span 3; }
+    .hero-experience--atypica  { grid-column: span 6; grid-row: span 3; }
+    .hero-theme                { grid-column: span 2; grid-row: span 3; }
+    .hero-github               { grid-column: span 3; grid-row: span 3; }
+    .hero-experience--zebra    { grid-column: span 3; grid-row: span 3; }
+    .hero-photos               { grid-column: span 6; grid-row: span 2; }
+    .hero-now-playing          { grid-column: span 3; grid-row: span 2; }
+    .hero-clock                { grid-column: span 2; grid-row: span 2; }
+    .hero-coffee               { grid-column: span 1; grid-row: span 2; }
+    .hero-principle            { grid-column: span 6; grid-row: span 2; }
+    .hero-principle--featured  { grid-column: span 4; grid-row: span 3; }
+    .hero-experience--tmobile  { grid-column: span 6; grid-row: span 3; }
+    .hero-instagram            { grid-column: span 6; grid-row: span 3; }
+    .hero-reading              { grid-column: span 6; grid-row: span 2; }
   }
   @media @mobile {
     .bento-tile { grid-column: span 2 !important; grid-row: span 2 !important; }
     .hero-intro, .hero-resume, .hero-linkedin,
-    .hero-github, .hero-instagram { grid-row: span 3 !important; }
-    .hero-theme, .hero-clock { grid-column: span 1 !important; grid-row: span 2 !important; }
+    .hero-github, .hero-instagram,
+    .hero-experience--atypica,
+    .hero-experience--zebra,
+    .hero-experience--tmobile  { grid-row: span 3 !important; }
+    .hero-principle--featured  { grid-row: span 3 !important; }
+    .hero-theme  { grid-column: span 1 !important; grid-row: span 2 !important; }
+    .hero-clock  { grid-column: span 1 !important; grid-row: span 2 !important; }
+    .hero-coffee { grid-column: span 1 !important; grid-row: span 2 !important; }
   }
 
   // ============ Self introduction tile ============
@@ -119,11 +149,49 @@
       padding: 0 2px;
       font-weight: 600;
     }
+    &__actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+    &__email {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px 5px 8px;
+      border-radius: 999px;
+      background: var(--b-bg-deep);
+      border: 1px solid var(--b-line);
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--b-ink);
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+      &:hover {
+        background: @bento-coral;
+        color: @bento-coral-ink;
+        transform: translateY(-1px);
+      }
+      &:focus-visible {
+        outline: 2px solid @bento-coral;
+        outline-offset: 2px;
+      }
+      &.is-copied {
+        background: #d9f0e2;
+        color: #1c8a4b;
+        border-color: #b8e0c5;
+      }
+      svg { flex-shrink: 0; }
+    }
     &__cta {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      margin-top: auto;
       font-family: var(--font-body);
       font-size: 11.5px;
       font-weight: 700;
@@ -656,36 +724,89 @@
     100% { transform: scale(1); opacity: 1; }
   }
 
-  // ============ Clock ============
+  // ============ Clock (compact 2×2) ============
   .hero-clock {
     justify-content: space-between;
+    padding: 16px 16px 14px;
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      font-size: 10px;
     }
     &__time {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(22px, 2.2vw, 30px);
       font-weight: 600;
       line-height: 1;
+      margin: 0;
     }
     &__sub {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--b-ink-soft);
     }
     &__pulse {
-      width: 8px; height: 8px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: #29c66f;
       box-shadow: 0 0 0 0 fade(#29c66f, 60%);
       animation: statusPulse 2.4s infinite;
       &.is-asleep { background: #a89c84; animation: none; }
     }
+  }
+
+  // ============ Coffee (compact 2×2 yellow tile) ============
+  .hero-coffee {
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 16px 16px 14px;
+
+    > svg:first-child {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+    }
+    &__count {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.8vw, 38px);
+      font-weight: 700;
+      line-height: 1;
+      margin: 0;
+    }
+    &__label {
+      font-family: var(--font-body);
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 0;
+    }
+    &__steam {
+      position: absolute;
+      top: 8px;
+      left: 36px;
+      display: inline-flex;
+      gap: 3px;
+      height: 20px;
+      span {
+        width: 4px;
+        height: 100%;
+        border-radius: 999px;
+        background: rgba(42, 33, 10, 0.4);
+        animation: steam 2.6s ease-in-out infinite;
+        transform-origin: bottom;
+      }
+      span:nth-child(2) { animation-delay: 200ms; }
+      span:nth-child(3) { animation-delay: 400ms; }
+    }
+  }
+  @keyframes steam {
+    0%, 100% { transform: translateY(0) scaleY(0.7); opacity: 0.6; }
+    50%      { transform: translateY(-10px) scaleY(1); opacity: 0.85; }
   }
 
   // ============ Now playing — w/ album art ============
@@ -978,17 +1099,16 @@
     }
     &__track {
       display: flex;
-      gap: 8px;
-      padding: 12px 0 16px;
-      animation: photoMarquee 28s linear infinite;
+      gap: 12px;
+      padding: 16px 0 18px;
+      animation: photoMarquee 32s linear infinite;
       width: max-content;
 
       img {
-        width: 140px;
-        height: 100%;
-        max-height: 130px;
+        width: 220px;
+        height: 280px;
         object-fit: cover;
-        border-radius: 10px;
+        border-radius: 14px;
         flex-shrink: 0;
       }
     }
@@ -999,111 +1119,225 @@
     to   { transform: translateX(-50%); }
   }
 
-  // ============ Coffee ============
-  .hero-coffee {
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding-top: 28px;
-    &__count {
-      font-family: var(--font-display);
-      font-size: clamp(38px, 4vw, 56px);
-      font-weight: 700;
-      line-height: 1;
-    }
-    &__label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-    > svg:first-child {
-      position: absolute;
-      top: 22px;
-      left: 22px;
-    }
-    &__steam {
-      position: absolute;
-      top: 14px;
-      left: 56px;
-      display: inline-flex;
-      gap: 4px;
-      height: 28px;
-      span {
-        width: 5px;
-        height: 100%;
-        border-radius: 999px;
-        background: rgba(42, 33, 10, 0.4);
-        animation: steam 2.6s ease-in-out infinite;
-        transform-origin: bottom;
-      }
-      span:nth-child(2) { animation-delay: 200ms; }
-      span:nth-child(3) { animation-delay: 400ms; }
-    }
-  }
-  @keyframes steam {
-    0%, 100% { transform: translateY(0) scaleY(0.7); opacity: 0.6; }
-    50%      { transform: translateY(-10px) scaleY(1); opacity: 0.85; }
-  }
+  // ============ Principle tiles (merged from BentoAbout) ============
+  .hero-principle {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    padding: 22px 22px 18px;
 
-  // ============ Email ============
-  .hero-email {
-    border: 1px solid var(--b-line);
-    background: var(--b-paper);
-    color: var(--b-ink);
-    align-items: flex-start;
-    justify-content: space-between;
-
-    &__icon { opacity: 0.85; }
-    &__addr {
-      font-family: var(--font-display);
-      font-size: clamp(15px, 1.4vw, 19px);
-      font-weight: 700;
-      word-break: break-all;
+    &__mark {
+      color: rgba(26, 22, 18, 0.22);
+      opacity: 0.9;
+      flex-shrink: 0;
+      transition: color 0.3s ease, opacity 0.3s ease;
     }
-    &__copy {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+
+    &__quote {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.4vw, 20px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--b-ink);
+      max-width: 28ch;
+      margin: 0 auto;
+    }
+
+    // Gradient highlight phrase
+    &__grad {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+    &__grad--amber {
+      background-image: linear-gradient(105deg, @accent-amber 0%, @accent-amber2 100%);
+    }
+    &__grad--indigo {
+      background-image: linear-gradient(105deg, @accent-teal 0%, @accent-indigo 100%);
+    }
+
+    &__eyebrow {
+      letter-spacing: 0.24em;
       color: var(--b-ink-soft);
-      transition: color 0.25s ease;
-      &.is-copied { color: #1c8a4b; }
+      opacity: 0.55;
+      font-size: 10px;
+    }
+
+    &.is-clickable .tile-corner { opacity: 0; transition: opacity 0.3s ease; }
+    &.is-clickable:hover .tile-corner { opacity: 1; }
+    &.is-clickable:hover &__mark {
+      opacity: 1;
+      color: @bento-coral;
+    }
+
+    // ── Featured variant (taller, narrower — used in row 2) ────────────
+    &--featured {
+      padding: 28px 22px 22px;
+      gap: 16px;
+      .hero-principle__mark { width: 24px; height: 24px; }
+      .hero-principle__quote {
+        font-size: clamp(18px, 1.6vw, 22px);
+        line-height: 1.25;
+        max-width: 18ch;
+      }
+      .hero-principle__eyebrow { font-size: 10.5px; }
     }
   }
 
-  // ============ Work CTA ============
-  .hero-cta-work {
-    border: 1px solid var(--b-line);
-
-    h3 {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2vw, 26px);
-      font-weight: 700;
-    }
-    &__arrow {
-      display: inline-block;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    &:hover &__arrow { transform: translateY(4px); }
+  // ============ Experience tiles (interleaved MediaTile) ============
+  // The MediaTile component supplies its own internal layout & styling
+  // (via .media-tile classes). These rules only control grid placement
+  // and any hero-specific polish.
+  .hero-experience {
+    // Slight extra emphasis vs. other tiles — these are the headliners.
+    box-shadow: var(--b-shadow-2);
   }
+}
 
-  // ============ Contact CTA ============
-  .hero-cta-contact {
-    border: 1px solid transparent;
-
-    h3 {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 2.4vw, 32px);
-      font-weight: 700;
-      line-height: 1.05;
-      max-width: 22ch;
-    }
+// ============================================================================
+// ✦ Spotlight modes (navbar-triggered) ✦
+//   When the user clicks "About" or "Experience" in the navbar, the bento
+//   grid stays in place but a category of tiles is promoted to the top
+//   (via `order: 1`) and everything else fades + blurs + becomes inert.
+//   Row 1 (intro/résumé/linkedin) is always kept vivid.
+//
+//   Motion notes:
+//   • Tiles glide between layouts via a JS FLIP hook (Web Animations API).
+//     Because that hook drives `transform: translate(...)` for the
+//     duration of the move, we must NOT also set `transform: scale(...)`
+//     here — it would clobber the in-flight animation. Dimming is conveyed
+//     via opacity + filter alone.
+//   • `grid-auto-flow: dense` is enabled while spotlit so the remaining
+//     (dimmed) tiles backfill any holes their evicted neighbours leave.
+// ============================================================================
+.bento-hero {
+  // Smooth fades for every tile so spotlight transitions feel natural.
+  .bento-tile {
+    transition:
+      opacity 0.45s ease,
+      filter 0.45s ease,
+      box-shadow 0.45s ease;
   }
+}
+
+.bento-hero[data-spotlight] {
+  // Let smaller dimmed tiles backfill gaps that promoted tiles leave behind.
+  .bento-section__grid { grid-auto-flow: dense; }
+
+  // Default: every tile gets dimmed; spotlit tiles undo this below.
+  // `!important` on opacity is required to override the `bentoIn` entrance
+  // animation (which uses fill-mode: forwards and otherwise wins).
+  .bento-tile {
+    opacity: 0.16 !important;
+    filter: blur(3px) saturate(0.4);
+    pointer-events: none;
+  }
+  // Row 1 is always preserved (per design — keep first row the same).
+  .hero-intro,
+  .hero-resume,
+  .hero-linkedin {
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+  }
+}
+
+// ─────────── ABOUT spotlight ───────────
+// Spotlit set: both principle tiles + Seattle clock + coffee counter.
+// Pack as a snug 12-col × 2-row band right after the intro row.
+.bento-hero[data-spotlight="about"] {
+  .hero-principle,
+  .hero-clock,
+  .hero-coffee {
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    order: 1;
+    z-index: 2;
+  }
+  // Spotlight size overrides — both principles share a 4-wide / 2-row footprint
+  // so the band reads as 4 + 4 + 2 + 2 = 12 cols, all 2 rows tall.
+  .hero-principle--featured {
+    grid-column: span 4 !important;
+    grid-row: span 2 !important;
+  }
+  .hero-principle {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+  .hero-clock,
+  .hero-coffee {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  // Push everyone else below the spotlit band.
+  .bento-tile:not(.hero-intro):not(.hero-resume):not(.hero-linkedin):not(.hero-principle):not(.hero-clock):not(.hero-coffee) {
+    order: 2;
+  }
+  // ─── Dimmed-tile sizing (About) ───
+  // Hand-tuned so every band sums to exactly 12 cols. With `grid-auto-flow: dense`
+  // the browser will re-pack these into the order shown below:
+  //   Band 1 (2r): atypica 6  + github 3  + theme 3  = 12
+  //   Band 2 (2r): tmobile 6  + photos 3  + zebra 3  = 12
+  //   Band 3 (2r): instagram 6 + now-playing 6       = 12
+  //   Band 4 (2r): reading 12                        = 12
+  .hero-experience--atypica  { grid-column: span 6 !important; grid-row: span 2 !important; }
+  .hero-experience--tmobile  { grid-column: span 6 !important; grid-row: span 2 !important; }
+  .hero-experience--zebra    { grid-column: span 3 !important; grid-row: span 2 !important; }
+  .hero-github               { grid-column: span 3 !important; grid-row: span 2 !important; }
+  .hero-theme                { grid-column: span 3 !important; grid-row: span 2 !important; }
+  .hero-photos               { grid-column: span 3 !important; grid-row: span 2 !important; }
+  .hero-instagram            { grid-column: span 6 !important; grid-row: span 2 !important; }
+  .hero-now-playing          { grid-column: span 6 !important; grid-row: span 2 !important; }
+  .hero-reading              { grid-column: span 12 !important; grid-row: span 2 !important; }
+}
+
+// ─────────── EXPERIENCE spotlight ───────────
+// Spotlit set: the three experience MediaTiles (Atypica, Zebra, T-Mobile).
+// Pack as 4 + 4 + 4 = 12 cols, all 3 rows tall. Unlike About, the intro row
+// is ALSO dimmed and pushed below so the three project tiles sit at the top.
+.bento-hero[data-spotlight="experience"] {
+  // Override the universal row-1 preservation so intro/resume/linkedin
+  // fade out with the rest of the dimmed set.
+  .hero-intro,
+  .hero-resume,
+  .hero-linkedin {
+    opacity: 0.16 !important;
+    filter: blur(3px) saturate(0.4) !important;
+    pointer-events: none !important;
+    order: 2;
+  }
+  .hero-experience {
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    order: 1;
+    z-index: 2;
+    grid-column: span 4 !important;
+    grid-row: span 3 !important;
+  }
+  .bento-tile:not(.hero-experience) {
+    order: 2;
+  }
+  // ─── Dimmed-tile sizing (Experience) ───
+  // Hand-tuned so every band sums to exactly 12 cols:
+  //   Band 1 (3r): intro 6     + resume 3   + linkedin 3 = 12
+  //   Band 2 (2r): principle 4 + principle 4 + theme 4   = 12
+  //   Band 3 (2r): github 4    + photos 4    + now-playing 4 = 12
+  //   Band 4 (2r): instagram 8 + clock 2     + coffee 2  = 12
+  //   Band 5 (2r): reading 12                             = 12
+  .hero-principle--featured  { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-principle            { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-theme                { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-github               { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-photos               { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-now-playing          { grid-column: span 4 !important; grid-row: span 2 !important; }
+  .hero-instagram            { grid-column: span 8 !important; grid-row: span 2 !important; }
+  .hero-clock                { grid-column: span 2 !important; grid-row: span 2 !important; }
+  .hero-coffee               { grid-column: span 2 !important; grid-row: span 2 !important; }
+  .hero-reading              { grid-column: span 12 !important; grid-row: span 2 !important; }
 }
 
 // ============================================================================

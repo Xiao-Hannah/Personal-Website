@@ -1,4 +1,6 @@
 import MediaTile from "./MediaTile";
+import atypicaVideo from "../../assets/videos/atypica_new.mp4";
+import zebraVideo from "../../assets/videos/zebra.mp4";
 import tmobileVideo from "../../assets/videos/Tmobile.mp4";
 import "./BentoExperience.less";
 
@@ -23,6 +25,7 @@ const experiences: ExperienceItem[] = [
     link: "/atypica",
     hue: 200,
     size: "lg",
+    videoSrc: atypicaVideo,
   },
   {
     title: "Zebra Workcloud",
@@ -31,6 +34,7 @@ const experiences: ExperienceItem[] = [
     link: "/zebra",
     hue: 30,
     size: "md",
+    videoSrc: zebraVideo,
   },
   {
     title: "T-Mobile CareLink",

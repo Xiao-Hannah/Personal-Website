@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useSpotlight, SpotlightKey } from "@/components/home/SpotlightContext";
 import './Navigation.less';
 
 const Navigation = () => {
@@ -9,6 +10,7 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const { spotlight, toggleSpotlight, clearSpotlight } = useSpotlight();
 
   // Determine theme based on current page
   const getPageTheme = () => {
@@ -49,6 +51,45 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Spotlight categories live INSIDE the hero bento (rather than scrolling to
+  // a separate section). Clicking the same nav item again clears the spotlight.
+  const handleSpotlight = (key: Exclude<SpotlightKey, null>) => {
+    if (!isHomePage) {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        toggleSpotlight(key);
+      }, 120);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      toggleSpotlight(key);
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  // Plain sections (Work/For Fun/Contact) still scroll, but also clear any
+  // active hero spotlight so the page returns to normal.
+  const handleScrollSection = (id: string) => {
+    clearSpotlight();
+    scrollToSection(id);
+  };
+
+  // "All" filter — dismiss any active spotlight so every bento tile is visible
+  // again. From other pages this also navigates back to home.
+  const handleClearAll = () => {
+    if (!isHomePage) {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        clearSpotlight();
+      }, 120);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      clearSpotlight();
+    }
+    setIsMobileMenuOpen(false);
+  };
+
   const navigateToPage = (path: string) => {
     navigate(path);
     setIsMobileMenuOpen(false);
@@ -67,19 +108,31 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="nav-links">
-            <button onClick={() => scrollToSection('about')} className="nav-link">
+            <button
+              onClick={handleClearAll}
+              className={`nav-link ${isHomePage && spotlight === null ? 'is-active' : ''}`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => handleSpotlight('about')}
+              className={`nav-link ${spotlight === 'about' ? 'is-active' : ''}`}
+            >
               About
             </button>
-            <button onClick={() => scrollToSection('experience')} className="nav-link">
+            <button
+              onClick={() => handleSpotlight('experience')}
+              className={`nav-link ${spotlight === 'experience' ? 'is-active' : ''}`}
+            >
               Experience
             </button>
-            <button onClick={() => scrollToSection('work')} className="nav-link">
+            <button onClick={() => handleScrollSection('work')} className="nav-link">
               Projects
             </button>
-            <button onClick={() => scrollToSection('for-fun')} className="nav-link">
+            <button onClick={() => handleScrollSection('for-fun')} className="nav-link">
               For Fun
             </button>
-            <button onClick={() => scrollToSection('contact')} className="nav-link">
+            <button onClick={() => handleScrollSection('contact')} className="nav-link">
               Contact
             </button>
           </div>
@@ -111,19 +164,31 @@ const Navigation = () => {
           <X size={24} />
         </button>
         <div className="mobile-nav-links">
-          <button onClick={() => scrollToSection('about')} className="mobile-nav-link">
+          <button
+            onClick={handleClearAll}
+            className={`mobile-nav-link ${isHomePage && spotlight === null ? 'is-active' : ''}`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => handleSpotlight('about')}
+            className={`mobile-nav-link ${spotlight === 'about' ? 'is-active' : ''}`}
+          >
             About
           </button>
-          <button onClick={() => scrollToSection('experience')} className="mobile-nav-link">
+          <button
+            onClick={() => handleSpotlight('experience')}
+            className={`mobile-nav-link ${spotlight === 'experience' ? 'is-active' : ''}`}
+          >
             Experience
           </button>
-          <button onClick={() => scrollToSection('work')} className="mobile-nav-link">
+          <button onClick={() => handleScrollSection('work')} className="mobile-nav-link">
             Work
           </button>
-          <button onClick={() => scrollToSection('for-fun')} className="mobile-nav-link">
+          <button onClick={() => handleScrollSection('for-fun')} className="mobile-nav-link">
             For Fun
           </button>
-          <button onClick={() => scrollToSection('contact')} className="mobile-nav-link">
+          <button onClick={() => handleScrollSection('contact')} className="mobile-nav-link">
             Contact
           </button>
         </div>
