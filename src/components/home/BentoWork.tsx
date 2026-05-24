@@ -1,4 +1,6 @@
 import MediaTile from "./MediaTile";
+import foraCover from "../../assets/images/fora/fora.webp";
+import solareasecover from "../../assets/images/solarease/solarease cover.png";
 import "./BentoWork.less";
 
 interface WorkItem {
@@ -22,6 +24,7 @@ const projects: WorkItem[] = [
     link: "/fora",
     hue: 95,
     size: "lg",
+    posterSrc: foraCover,
   },
   {
     title: "SolarEase",
@@ -30,6 +33,7 @@ const projects: WorkItem[] = [
     link: "/solarease",
     hue: 270,
     size: "md",
+    posterSrc: solareasecover,
   },
   {
     title: "Bloomè",

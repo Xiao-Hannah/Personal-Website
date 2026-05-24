@@ -37,7 +37,7 @@ import instagram2 from "@/assets/images/instagram/instagram2.jpg";
 import instagram3 from "@/assets/images/instagram/instagram3.jpg";
 import instagram4 from "@/assets/images/instagram/instagram4.jpg";
 import { useNavigate } from "react-router-dom";
-import tmobileVideo from "@/assets/videos/Tmobile.mp4";
+import tmobileVideo from "@/assets/videos/tmed.mp4";
 import Aurora from "@/components/Aurora";
 import TrueFocus from "@/components/TrueFocus";
 import BentoExpand from "./BentoExpand";
