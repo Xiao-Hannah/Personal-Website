@@ -1,0 +1,65 @@
+.true-focus-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.true-focus-container--column {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 14px;
+}
+
+.focus-word {
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: default;
+  transition: filter 0.3s ease;
+  color: #1a1a18;
+  white-space: nowrap;
+}
+
+.focus-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.corner {
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-color: var(--border-color);
+  border-style: solid;
+  filter: drop-shadow(0 0 4px var(--glow-color));
+}
+
+.top-left {
+  top: -6px;
+  left: -6px;
+  border-width: 2px 0 0 2px;
+}
+
+.top-right {
+  top: -6px;
+  right: -6px;
+  border-width: 2px 2px 0 0;
+}
+
+.bottom-left {
+  bottom: -6px;
+  left: -6px;
+  border-width: 0 0 2px 2px;
+}
+
+.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  border-width: 0 2px 2px 0;
+}

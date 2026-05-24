@@ -4,7 +4,6 @@ import {
   MapPin,
   Mail,
   Github,
-  Linkedin,
   Instagram,
   FileText,
   Coffee,
@@ -20,8 +19,7 @@ import {
   Quote,
   X,
 } from "lucide-react";
-import profileImage from "@/assets/images/profile/profile.png";
-import profileImage2 from "@/assets/images/profile/profile_2.jpg";
+import profileImage from "@/assets/images/profile/photowizwillow.png";
 import albumImage from "@/assets/images/albumimage.jpg";
 import bookCover from "@/assets/images/home/book.jpg";
 import resume from "@/assets/files/resume.pdf";
@@ -38,13 +36,13 @@ import instagram1 from "@/assets/images/instagram/instagram1.jpg";
 import instagram2 from "@/assets/images/instagram/instagram2.jpg";
 import instagram3 from "@/assets/images/instagram/instagram3.jpg";
 import instagram4 from "@/assets/images/instagram/instagram4.jpg";
-import atypicaVideo from "@/assets/videos/atypica_new.mp4";
-import zebraVideo from "@/assets/videos/zebra_new.mp4";
+import { useNavigate } from "react-router-dom";
 import tmobileVideo from "@/assets/videos/Tmobile.mp4";
+import Aurora from "@/components/Aurora";
+import TrueFocus from "@/components/TrueFocus";
 import BentoExpand from "./BentoExpand";
 import IntroModalBody from "./IntroModalBody";
 import SpotifyPreview from "./SpotifyPreview";
-import MediaTile from "./MediaTile";
 import { useSpotlight } from "./SpotlightContext";
 import { useTheme } from "@/hooks/useTheme";
 import "./BentoHero.less";
@@ -132,6 +130,7 @@ const PRINCIPLE_AI_PARAGRAPHS: ReactNode[] = [
 type PrincipleKey = "control" | "ai";
 
 const BentoHero = ({}: BentoHeroProps) => {
+  const navigate = useNavigate();
   const [time, setTime] = useState(() => new Date());
   const [copied, setCopied] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
@@ -244,7 +243,7 @@ const BentoHero = ({}: BentoHeroProps) => {
     >
       <div className="bento-section__grid" ref={gridRef}>
         {/* ═════════════════════════════════════════════════════════════════
-              ROW 1 — Self Introduction · Résumé · LinkedIn
+              ROW 1 — Self Introduction · Atypica AI
             ═════════════════════════════════════════════════════════════════ */}
 
         {/* ───────────── Self Introduction (large, clickable) ───────────── */}
@@ -308,89 +307,122 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
         </article>
 
-        {/* ───────────── Résumé — mini PDF preview ───────────── */}
-        <a
-          href={resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bento-tile tile-paper hero-resume"
-          style={{ "--delay": "60ms" } as React.CSSProperties}
+        {/* ───────────── Atypica AI — featured experience ───────────── */}
+        <div
+          className="card c-atypica hero-experience hero-experience--atypica"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/atypica')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/atypica')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 180ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
         >
-          <div className="hero-resume__doc" aria-hidden>
-            <div className="hero-resume__doc-head">
-              <span className="hero-resume__doc-name" />
-              <span className="hero-resume__doc-title" />
-            </div>
-            <div className="hero-resume__doc-section">
-              <span className="line w-90" /> <span className="line w-70" />
-              <span className="line w-80" />
-            </div>
-            <div className="hero-resume__doc-section">
-              <span className="line w-60" /> <span className="line w-85" />
-            </div>
-            <div className="hero-resume__doc-section">
-              <span className="line w-75" /> <span className="line w-65" />
-              <span className="line w-50" />
+          <div style={{ flex: 1, position: 'relative', minHeight: 0, background: '#0a0a08' }}>
+            <Aurora
+              colorStops={["#2a4a1e", "#787897", "#2d6b30"]}
+              blend={0.5}
+              amplitude={1.0}
+              speed={2.5}
+            />
+            <div style={{
+              position: 'absolute', bottom: 14, left: 14,
+              zIndex: 2, pointerEvents: 'none',
+            }}>
+              <div style={{
+                fontSize: 9, color: '#39FF14',
+                textTransform: 'uppercase', letterSpacing: '0.1em',
+                marginBottom: 5,
+              }}>• ATYPICA</div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: '#ffffff', lineHeight: 1.3 }}>
+                The AI That
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 500, lineHeight: 1.3 }}>
+                <span style={{ color: '#39FF14', fontStyle: 'italic' }}>Understands</span>
+                <span style={{ color: '#ffffff' }}> Humans</span>
+              </div>
             </div>
           </div>
-          <div className="hero-resume__meta">
-            <div className="hero-resume__meta-text">
-              <p className="hero-resume__label">
-                <FileText size={14} /> Résumé
-              </p>
-              <p className="hero-resume__sub">Updated May 2026</p>
-            </div>
-            <span className="hero-resume__download" aria-hidden>
-              <Download size={14} />
-            </span>
+          <div style={{
+            background: '#ffffff',
+            borderTop: '0.5px solid rgba(0,0,0,0.08)',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2025 · Growth Strategy</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Atypica AI</div>
           </div>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </a>
+        </div>
 
-        {/* ───────────── LinkedIn — mini profile card ───────────── */}
+        {/* ═════════════════════════════════════════════════════════════════
+              ROW 2 — LinkedIn · Email · Quote · Theme
+            ═════════════════════════════════════════════════════════════════ */}
+
+        {/* ───────────── LinkedIn — icon tile ───────────── */}
         <a
           href="https://www.linkedin.com/in/hannah-x/"
           target="_blank"
           rel="noopener noreferrer"
           className="bento-tile tile-paper hero-linkedin"
-          style={{ "--delay": "120ms" } as React.CSSProperties}
+          style={{ "--delay": "60ms" } as React.CSSProperties}
+          aria-label="LinkedIn profile"
         >
-          <div className="hero-linkedin__cover" aria-hidden>
-            <Linkedin className="hero-linkedin__logo" size={28} strokeWidth={2} />
-          </div>
-          <img
-            src={profileImage2}
-            alt=""
-            className="hero-linkedin__avatar"
-          />
-          <div className="hero-linkedin__body">
-            <p className="hero-linkedin__name">Hannah Xiao</p>
-            <p className="hero-linkedin__title">{STATS.linkedin.headline}</p>
-            <p className="hero-linkedin__connections">
-              <Linkedin size={12} /> {STATS.linkedin.connections} connections
-            </p>
-          </div>
+          {/* LinkedIn "in" logotype */}
+          <svg width="96" height="74" viewBox="0 0 96 74" aria-hidden>
+            <text
+              x="2" y="68"
+              fontFamily="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+              fontSize="76" fontWeight="800"
+              letterSpacing="-2"
+              fill="#0A66C2"
+            >in</text>
+          </svg>
           <span className="tile-corner" aria-hidden>
             <ArrowUpRight size={16} />
           </span>
         </a>
 
-        {/* ═════════════════════════════════════════════════════════════════
-              ROW 2 — Atypica (experience) · Principle 1 · Theme
-            ═════════════════════════════════════════════════════════════════ */}
-
-        {/* ───────────── Atypica AI — featured experience ───────────── */}
-        <MediaTile
-          title="Atypica AI"
-          meta="2025 · Growth Strategy"
-          link="/atypica"
-          placeholderHue={200}
-          videoSrc={atypicaVideo}
-          className="hero-experience hero-experience--atypica"
-          delay={180}
-        />
+        {/* ───────────── Email — Gmail icon, copy on click ───────────── */}
+        <div
+          role="button"
+          tabIndex={0}
+          className={`bento-tile tile-paper hero-email is-clickable${copied ? " is-copied" : ""}`}
+          style={{ "--delay": "120ms" } as React.CSSProperties}
+          onClick={copyEmail}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && copyEmail()}
+          aria-label="Copy email address"
+        >
+          {copied ? (
+            <svg width="52" height="40" viewBox="0 0 52 40" aria-hidden>
+              <text x="26" y="30" textAnchor="middle"
+                fontFamily="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+                fontSize="13" fontWeight="600"
+                fill="#1c8a4b">Copied!</text>
+            </svg>
+          ) : (
+            /* Gmail M logo */
+            <svg width="80" height="60" viewBox="52 42 88 66" aria-hidden>
+              <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+              <path fill="#34a853" d="M116 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+              <path fill="#fbbc04" d="M116 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+              <path fill="#ea4335" d="M72 74V48l22 16.5L116 48v26L94 90.5" />
+              <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+            </svg>
+          )}
+        </div>
 
         {/* ───────────── Principle · Control ───────────── */}
         <article
@@ -456,16 +488,164 @@ const BentoHero = ({}: BentoHeroProps) => {
         </button>
 
         {/* ═════════════════════════════════════════════════════════════════
-              ROW 3 — GitHub · Lately · Zebra (experience, square)
+              ROW 3 — Zebra · T-Mobile
             ═════════════════════════════════════════════════════════════════ */}
+
+        {/* ───────────── Zebra Workcloud ───────────── */}
+        <div
+          className="card c-zebra hero-experience hero-experience--zebra"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/zebra')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/zebra')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 360ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
+        >
+          <div style={{
+            flex: 1,
+            background: '#f8f8f6',
+            backgroundImage: [
+              'repeating-linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px)',
+              'repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)',
+            ].join(', '),
+            backgroundSize: '24px 24px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: 0,
+          }}>
+            <TrueFocus
+              sentence="Touchless Auth"
+              manualMode={false}
+              blurAmount={4}
+              borderColor="#1a1a18"
+              glowColor="rgba(0, 0, 0, 0.15)"
+              animationDuration={0.8}
+              pauseBetweenAnimations={1.5}
+            />
+          </div>
+          <div style={{
+            background: '#ffffff',
+            borderTop: '0.5px solid rgba(0,0,0,0.08)',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2025 · Auth × NFC × Biometrics</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Zebra Workcloud</div>
+          </div>
+        </div>
+
+        {/* ───────────── T-Mobile CareLink ───────────── */}
+        <div
+          className="card c-tmobile hero-experience hero-experience--tmobile"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/tlink')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/tlink')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 420ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
+        >
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <video
+              src={tmobileVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          <div style={{
+            background: '#ffffff',
+            borderTop: '0.5px solid rgba(0,0,0,0.08)',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2024 · PM × Hardware × 5G</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>T-Mobile CareLink</div>
+          </div>
+        </div>
+
+        {/* ═════════════════════════════════════════════════════════════════
+              BELOW FOLD — Résumé · GitHub · Photos · Instagram · …
+            ═════════════════════════════════════════════════════════════════ */}
+
+        {/* ───────────── Résumé — mini PDF preview ───────────── */}
+        <a
+          href={resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bento-tile tile-paper hero-resume"
+          style={{ "--delay": "480ms" } as React.CSSProperties}
+        >
+          <div className="hero-resume__doc" aria-hidden>
+            <div className="hero-resume__doc-head">
+              <span className="hero-resume__doc-name" />
+              <span className="hero-resume__doc-title" />
+            </div>
+            <div className="hero-resume__doc-section">
+              <span className="line w-90" /> <span className="line w-70" />
+              <span className="line w-80" />
+            </div>
+            <div className="hero-resume__doc-section">
+              <span className="line w-60" /> <span className="line w-85" />
+            </div>
+            <div className="hero-resume__doc-section">
+              <span className="line w-75" /> <span className="line w-65" />
+              <span className="line w-50" />
+            </div>
+          </div>
+          <div className="hero-resume__meta">
+            <div className="hero-resume__meta-text">
+              <p className="hero-resume__label">
+                <FileText size={14} /> Résumé
+              </p>
+              <p className="hero-resume__sub">Updated May 2026</p>
+            </div>
+            <span className="hero-resume__download" aria-hidden>
+              <Download size={14} />
+            </span>
+          </div>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </a>
 
         {/* ───────────── GitHub — contribution grid ───────────── */}
         <a
           href="https://github.com/Xiao-Hannah"
           target="_blank"
           rel="noopener noreferrer"
-          className="bento-tile tile-dark hero-github"
-          style={{ "--delay": "360ms" } as React.CSSProperties}
+          className="bento-tile tile-paper hero-github"
+          style={{ "--delay": "540ms" } as React.CSSProperties}
         >
           <div className="hero-github__top">
             <Github size={20} />
@@ -494,7 +674,7 @@ const BentoHero = ({}: BentoHeroProps) => {
         {/* ───────────── Photo strip ───────────── */}
         <article
           className="bento-tile tile-paper hero-photos"
-          style={{ "--delay": "420ms" } as React.CSSProperties}
+          style={{ "--delay": "600ms" } as React.CSSProperties}
         >
           <p className="eyebrow hero-photos__label">
             <Heart size={11} /> Lately
@@ -506,39 +686,13 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
         </article>
 
-        {/* ───────────── Zebra Workcloud — experience (square) ───────────── */}
-        <MediaTile
-          title="Zebra Workcloud"
-          meta="2025 · Auth × NFC × Biometrics"
-          link="/zebra"
-          placeholderHue={30}
-          videoSrc={zebraVideo}
-          className="hero-experience hero-experience--zebra"
-          delay={480}
-        />
-
-        {/* ═════════════════════════════════════════════════════════════════
-              ROW 4 — T-Mobile CareLink (experience) · Instagram
-            ═════════════════════════════════════════════════════════════════ */}
-
-        {/* ───────────── T-Mobile CareLink — experience ───────────── */}
-        <MediaTile
-          title="T-Mobile CareLink"
-          meta="2024 · PM × Hardware × 5G"
-          link="/tlink"
-          placeholderHue={330}
-          videoSrc={tmobileVideo}
-          className="hero-experience hero-experience--tmobile"
-          delay={540}
-        />
-
         {/* ───────────── Instagram — 4-photo mosaic ───────────── */}
         <a
           href="https://instagram.com/hanx0628"
           target="_blank"
           rel="noopener noreferrer"
           className="bento-tile tile-paper hero-instagram"
-          style={{ "--delay": "600ms" } as React.CSSProperties}
+          style={{ "--delay": "660ms" } as React.CSSProperties}
         >
           <div className="hero-instagram__mosaic" aria-hidden>
             <span className="hero-instagram__cell"><img src={instagram1} alt="" /></span>
@@ -559,41 +713,63 @@ const BentoHero = ({}: BentoHeroProps) => {
           </span>
         </a>
 
-        {/* ═════════════════════════════════════════════════════════════════
-              ROW 5 — Now playing · Clock · Coffee · Principle 2
-            ═════════════════════════════════════════════════════════════════ */}
-
-        {/* ───────────── Principle · AI ───────────── */}
+        {/* ───────────── Now playing — w/ album art ───────────── */}
         <article
-          className="bento-tile tile-paper hero-principle is-clickable"
-          role="button"
-          tabIndex={0}
-          onClick={() => setPrincipleOpen("ai")}
-          onKeyDown={(e) =>
-            e.key === "Enter" && setPrincipleOpen("ai")
-          }
-          style={{ "--delay": "660ms" } as React.CSSProperties}
+          className={`bento-tile tile-paper hero-now-playing ${
+            spotifyOpen ? "is-playing" : ""
+          }`}
+          style={{ "--delay": "720ms" } as React.CSSProperties}
         >
-          <Quote className="hero-principle__mark" size={20} aria-hidden />
-          <p className="hero-principle__quote">
-            AI should make people{" "}
-            <span className="hero-principle__grad hero-principle__grad--indigo">
-              feel more capable
-            </span>
-            .
-          </p>
-          <p className="eyebrow hero-principle__eyebrow">
-            my product principle
-          </p>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
+          <img
+            src={albumImage}
+            alt=""
+            className="hero-now-playing__art"
+            aria-hidden
+          />
+          <div className="hero-now-playing__art-overlay" aria-hidden />
+          <div className="hero-now-playing__text">
+            <p className="hero-now-playing__label">
+              <Music size={11} /> Currently listening
+              <span className="hero-now-playing__bars" aria-hidden>
+                <span /><span /><span /><span />
+              </span>
+            </p>
+            <p className="hero-now-playing__title">{STATS.nowPlaying.title}</p>
+            <p className="hero-now-playing__album">
+              <span>{STATS.nowPlaying.album}</span> · {STATS.nowPlaying.artist}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="hero-now-playing__play"
+            onClick={() => setSpotifyOpen(true)}
+            aria-label="Play preview on Spotify"
+          >
+            <Play size={14} fill="currentColor" />
+            <span>Preview</span>
+          </button>
+          {spotifyOpen && (
+            <div className="hero-now-playing__embed" role="region" aria-label="Spotify player">
+              <button
+                type="button"
+                className="hero-now-playing__close"
+                onClick={() => setSpotifyOpen(false)}
+                aria-label="Close player"
+              >
+                <X size={14} />
+              </button>
+              <SpotifyPreview
+                trackId={STATS.nowPlaying.spotifyId}
+                active={spotifyOpen}
+              />
+            </div>
+          )}
         </article>
 
         {/* ───────────── Seattle clock (compact) ───────────── */}
         <article
           className="bento-tile tile-paper hero-clock"
-          style={{ "--delay": "720ms" } as React.CSSProperties}
+          style={{ "--delay": "780ms" } as React.CSSProperties}
         >
           <p className="eyebrow">
             <MapPin size={11} /> Seattle
@@ -622,7 +798,7 @@ const BentoHero = ({}: BentoHeroProps) => {
         {/* ───────────── Reading (compact) ───────────── */}
         <article
           className="bento-tile tile-paper hero-reading"
-          style={{ "--delay": "780ms" } as React.CSSProperties}
+          style={{ "--delay": "840ms" } as React.CSSProperties}
         >
           <div className="hero-reading__meta">
             <p className="eyebrow"><BookOpen size={11} /> Reading</p>
@@ -647,59 +823,31 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
         </article>
 
-        {/* ───────────── Now playing — w/ album art ───────────── */}
+        {/* ───────────── Principle · AI ───────────── */}
         <article
-          className={`bento-tile tile-dark hero-now-playing ${
-            spotifyOpen ? "is-playing" : ""
-          }`}
-          style={{ "--delay": "840ms" } as React.CSSProperties}
+          className="bento-tile tile-paper hero-principle is-clickable"
+          role="button"
+          tabIndex={0}
+          onClick={() => setPrincipleOpen("ai")}
+          onKeyDown={(e) =>
+            e.key === "Enter" && setPrincipleOpen("ai")
+          }
+          style={{ "--delay": "900ms" } as React.CSSProperties}
         >
-          <img
-            src={albumImage}
-            alt=""
-            className="hero-now-playing__art"
-            aria-hidden
-          />
-          <div className="hero-now-playing__art-overlay" aria-hidden />
-          <div className="hero-now-playing__text">
-            <p className="hero-now-playing__label">
-              <Music size={11} /> Currently listening
-              <span className="hero-now-playing__bars" aria-hidden>
-                <span /><span /><span /><span />
-              </span>
-            </p>
-            <p className="hero-now-playing__title">{STATS.nowPlaying.title}</p>
-            <p className="hero-now-playing__album">
-              <span>{STATS.nowPlaying.album}</span> · {STATS.nowPlaying.artist}
-            </p>
-          </div>
-
-          <button
-            type="button"
-            className="hero-now-playing__play"
-            onClick={() => setSpotifyOpen(true)}
-            aria-label="Play preview on Spotify"
-          >
-            <Play size={14} fill="currentColor" />
-            <span>Preview</span>
-          </button>
-
-          {spotifyOpen && (
-            <div className="hero-now-playing__embed" role="region" aria-label="Spotify player">
-              <button
-                type="button"
-                className="hero-now-playing__close"
-                onClick={() => setSpotifyOpen(false)}
-                aria-label="Close player"
-              >
-                <X size={14} />
-              </button>
-              <SpotifyPreview
-                trackId={STATS.nowPlaying.spotifyId}
-                active={spotifyOpen}
-              />
-            </div>
-          )}
+          <Quote className="hero-principle__mark" size={20} aria-hidden />
+          <p className="hero-principle__quote">
+            AI should make people{" "}
+            <span className="hero-principle__grad hero-principle__grad--indigo">
+              feel more capable
+            </span>
+            .
+          </p>
+          <p className="eyebrow hero-principle__eyebrow">
+            my product principle
+          </p>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
         </article>
 
       </div>

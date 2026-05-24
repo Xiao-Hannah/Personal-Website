@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MapPin, GraduationCap } from "lucide-react";
-import profileImage from "@/assets/images/profile/profile.png";
+import profileImage from "@/assets/images/profile/photowizwillow.png";
 import "./BentoAbout.less";
 
 /**

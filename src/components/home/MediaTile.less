@@ -120,10 +120,62 @@
       color: var(--b-ink);
       text-shadow: none;
       background: var(--b-paper);
-      border-top: 1px solid var(--b-line);
+      border-top: 0.5px solid var(--b-line);
       padding: 16px 22px 22px;
     }
     .media-tile__meta { color: var(--b-ink-soft); }
+  }
+
+  // ---- Band variant: optional band → video/custom media → white footer ----
+  // The card uses flex-column (from .bento-tile); band + media + footer
+  // are flex children rather than absolutely positioned.
+  &--band {
+    padding: 0; // explicit, in case .bento-tile padding bleeds through
+    gap: 0;
+    overflow: hidden; // clip aurora corners to card border-radius
+
+    .media-tile__band {
+      height: 10px;
+      flex-shrink: 0;
+    }
+
+    .media-tile__media {
+      position: relative;
+      inset: auto;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .media-tile__footer {
+      flex-shrink: 0;
+      background: #ffffff;
+      border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+      padding: 11px 18px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .media-tile__title {
+      font-family: var(--font-display);
+      font-size: clamp(14px, 1.2vw, 17px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--b-ink);
+      text-shadow: none;
+    }
+
+    .media-tile__meta {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--b-ink-soft);
+      text-shadow: none;
+      opacity: 1;
+    }
   }
 
   // Subtle zoom on hover for the underlying media
@@ -139,20 +191,7 @@
   }
 }
 
-// ---- Zebra-specific override: white background poster, so use ink-dark text ----
-.hero-experience--zebra {
-  .media-tile__veil {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.55) 0%,
-      transparent 60%
-    );
-  }
-  .media-tile__content {
-    color: #1a1a1f;
-    text-shadow: 0 1px 14px rgba(255, 255, 255, 0.5);
-  }
-}
+// (Zebra's text contrast is now handled by the band variant footer — no override needed.)
 
 @keyframes mediaGlow {
   0%, 100% { transform: translate(0, 0); }
