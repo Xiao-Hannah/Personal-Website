@@ -19,7 +19,7 @@
   font-weight: 600;
   cursor: default;
   transition: filter 0.3s ease;
-  color: #1a1a18;
+  color: var(--text-color, #1a1a18);
   white-space: nowrap;
 }
 

@@ -24,8 +24,8 @@ export interface MediaTileProps {
   className?: string;
   /** CSS animation delay so siblings can stagger. */
   delay?: number;
-  /** Variant: `cover` (media fills tile, text overlays top) or `split` (media on top, text below). */
-  variant?: "cover" | "split";
+  /** Variant: `cover` (media fills tile, text overlays top), `split`, or `band` (media + white footer). */
+  variant?: "cover" | "split" | "band";
   /**
    * Brand color for the 10px band at the top of the card.
    * When set, switches to the `band` layout: color band → media → white footer.
@@ -61,7 +61,7 @@ const MediaTile = ({
   };
 
   const interactive = Boolean(link || href);
-  const effectiveVariant = (bandColor || children) ? "band" : variant;
+  const effectiveVariant = (bandColor || children || variant === "band") ? "band" : variant;
   const tileStyle = {
     "--delay": `${delay}ms`,
     "--placeholder-hue": `${placeholderHue}`,
@@ -109,10 +109,10 @@ const MediaTile = ({
             </div>
           )
         )}
-        {!bandColor && !children && <div className="media-tile__veil" />}
+        {effectiveVariant === "cover" && !children && <div className="media-tile__veil" />}
       </div>
 
-      {bandColor ? (
+      {effectiveVariant === "band" ? (
         <div className="media-tile__footer">
           {meta && <p className="media-tile__meta">{meta}</p>}
           <h3 className="media-tile__title">{title}</h3>

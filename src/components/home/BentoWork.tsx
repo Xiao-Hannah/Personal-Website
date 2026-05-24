@@ -1,6 +1,6 @@
 import MediaTile from "./MediaTile";
 import foraCover from "../../assets/images/fora/fora.webp";
-import solareasecover from "../../assets/images/solarease/solarease cover.png";
+import solareaseCoverVideo from "../../assets/videos/solarease_cover.mp4";
 import "./BentoWork.less";
 
 interface WorkItem {
@@ -11,7 +11,8 @@ interface WorkItem {
   hue: number;
   videoSrc?: string;
   posterSrc?: string;
-  size: "lg" | "md";
+  size: "lg" | "md" | "sq";
+  variant?: "cover" | "split" | "band";
 }
 
 // videoSrc / posterSrc are intentionally undefined for now — MediaTile renders
@@ -25,6 +26,7 @@ const projects: WorkItem[] = [
     hue: 95,
     size: "lg",
     posterSrc: foraCover,
+    variant: "band",
   },
   {
     title: "SolarEase",
@@ -32,8 +34,9 @@ const projects: WorkItem[] = [
     tagline: "ROI simulation + Nash bargaining for community solar.",
     link: "/solarease",
     hue: 270,
-    size: "md",
-    posterSrc: solareasecover,
+    size: "sq",
+    videoSrc: solareaseCoverVideo,
+    variant: "band",
   },
   {
     title: "Bloomè",
@@ -73,6 +76,7 @@ const BentoWork = () => {
             placeholderHue={p.hue}
             videoSrc={p.videoSrc}
             posterSrc={p.posterSrc}
+            variant={p.variant}
             delay={i * 100}
           />
         ))}

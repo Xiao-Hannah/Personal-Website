@@ -19,7 +19,7 @@ import {
   Quote,
   X,
 } from "lucide-react";
-import profileImage from "@/assets/images/profile/photowizwillow.png";
+import profileImage from "@/assets/images/profile/profile3.png";
 import albumImage from "@/assets/images/albumimage.jpg";
 import bookCover from "@/assets/images/home/book.jpg";
 import resume from "@/assets/files/resume.pdf";
@@ -225,7 +225,7 @@ const BentoHero = ({}: BentoHeroProps) => {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("hx2313@uw.edu");
+      await navigator.clipboard.writeText("hannax2313@gmail.com");
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
     } catch {
@@ -269,11 +269,8 @@ const BentoHero = ({}: BentoHeroProps) => {
             />
           </div>
           <div className="hero-intro__text">
-            <p className="eyebrow">
-              <MessageCircle size={11} /> Self introduction
-            </p>
             <p className="hero-intro__greeting">
-              Heyyy <span className="hero-intro__wave" aria-hidden>👋</span>
+              Hi! <span className="hero-intro__wave" aria-hidden>👋</span>
             </p>
             <p className="hero-intro__lede">
               I'm <strong>Hannah Xiao</strong>, currently working as a Growth
@@ -298,7 +295,7 @@ const BentoHero = ({}: BentoHeroProps) => {
                 aria-label="Copy email address"
               >
                 {copied ? <Check size={12} /> : <Mail size={12} />}
-                <span>{copied ? "Copied!" : "hx2313@uw.edu"}</span>
+                <span>{copied ? "Copied!" : "hannax2313@gmail.com"}</span>
               </span>
               <span className="hero-intro__cta">
                 Read more <ArrowUpRight size={14} />
@@ -528,8 +525,9 @@ const BentoHero = ({}: BentoHeroProps) => {
               sentence="Touchless Auth"
               manualMode={false}
               blurAmount={4}
-              borderColor="#1a1a18"
-              glowColor="rgba(0, 0, 0, 0.15)"
+              borderColor="#0A66C2"
+              glowColor="rgba(10, 102, 194, 0.25)"
+              textColor="#0A66C2"
               animationDuration={0.8}
               pauseBetweenAnimations={1.5}
             />
