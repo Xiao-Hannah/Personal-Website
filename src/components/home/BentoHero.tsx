@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import tmobileVideo from "@/assets/videos/tmed.mp4";
 import atypicaVideo from "@/assets/videos/atypica_0524.mp4";
 import solareaseCoverVideo from "@/assets/videos/solarease_cover.mp4";
+import bloomeVideo from "../../assets/videos/bloome.mov";
+import foraCover from "../../assets/images/fora/fora.webp";
+import fridgeFriendCover from "../../assets/images/fridgeFriend/avo3.jpg";
 import Aurora from "@/components/Aurora";
 import TrueFocus from "@/components/TrueFocus";
 import BentoExpand from "./BentoExpand";
@@ -143,11 +146,15 @@ const BentoHero = ({}: BentoHeroProps) => {
   // animations don't leak into the delta), then on the next layout play
   // an inverse-translate → 0 anim via the Web Animations API so tiles
   // glide to their new grid cell.
+  //
+  // NOTE: project cards use `.hero-experience` (without `.bento-tile`), so we
+  // must match both classes — otherwise Experience / Projects spotlights
+  // would reposition the project tiles without any animation.
   useLayoutEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
     const tiles = Array.from(
-      grid.querySelectorAll<HTMLElement>(":scope > .bento-tile")
+      grid.querySelectorAll<HTMLElement>(":scope > .bento-tile, :scope > .hero-experience")
     );
     const gridRect = grid.getBoundingClientRect();
     const next = new Map<Element, { top: number; left: number }>();
@@ -574,6 +581,132 @@ const BentoHero = ({}: BentoHeroProps) => {
               marginBottom: 4,
             }}>2024 · Solar × IoT × Mobile</div>
             <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>SolarEase</div>
+          </div>
+        </div>
+
+        {/* ───────────── Bloomè ───────────── */}
+        <div
+          className="card c-bloome hero-experience hero-experience--bloome"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/bloome')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/bloome')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 460ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
+        >
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <video
+              src={bloomeVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          <div style={{
+            background: '#ffffff',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2024 · UX Research × Social Impact</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Bloomè</div>
+          </div>
+        </div>
+
+        {/* ───────────── Fora Tools ───────────── */}
+        <div
+          className="card c-fora hero-experience hero-experience--fora"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/fora')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/fora')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 480ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
+        >
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <img
+              src={foraCover}
+              alt="Fora Tools"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          <div style={{
+            background: '#ffffff',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2026 · Onboarding Strategy</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Fora Tools</div>
+          </div>
+        </div>
+
+        {/* ───────────── Fridge Friend ───────────── */}
+        <div
+          className="card c-fridgefriend hero-experience hero-experience--fridgefriend"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/fridgeFriend')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/fridgeFriend')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
+        >
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <img
+              src={fridgeFriendCover}
+              alt="Fridge Friend"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          <div style={{
+            background: '#ffffff',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2023 · Product Design</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Fridge Friend</div>
           </div>
         </div>
 

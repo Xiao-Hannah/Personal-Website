@@ -6,3 +6,5 @@ declare module "*.pdf";
 declare module "*.svg";
 declare module "*.mov";
 declare module "*.mp4";
+declare module "*.webp";
+declare module "*.avif";

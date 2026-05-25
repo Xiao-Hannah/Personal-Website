@@ -126,7 +126,10 @@ const Navigation = () => {
             >
               Experience
             </button>
-            <button onClick={() => handleScrollSection('work')} className="nav-link">
+            <button
+              onClick={() => handleSpotlight('projects')}
+              className={`nav-link ${spotlight === 'projects' ? 'is-active' : ''}`}
+            >
               Projects
             </button>
             <button onClick={() => handleScrollSection('for-fun')} className="nav-link">
@@ -182,8 +185,11 @@ const Navigation = () => {
           >
             Experience
           </button>
-          <button onClick={() => handleScrollSection('work')} className="mobile-nav-link">
-            Work
+          <button
+            onClick={() => handleSpotlight('projects')}
+            className={`mobile-nav-link ${spotlight === 'projects' ? 'is-active' : ''}`}
+          >
+            Projects
           </button>
           <button onClick={() => handleScrollSection('for-fun')} className="mobile-nav-link">
             For Fun

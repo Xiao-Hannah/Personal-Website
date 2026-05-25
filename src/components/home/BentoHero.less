@@ -13,46 +13,62 @@
 
 .bento-hero {
   // ============ CSS Grid placements ============
-  // Desktop (12 cols, grid-auto-rows: 120px)
+  // 4-column grid with TRUE square cells. Tiles sized to actual content so
+  // nothing clips, and the grid packs snugly (20 cells = 5 rows × 4 cols).
+  // Three Selected-Work projects (Bloomè, Fora, Fridge Friend) are pulled
+  // into the hero so we don't need to inflate any single tile to fill space.
   //
-  // Three-size vocabulary:
-  //   Feature  (F) = 8 cols × 4 rows
-  //   Companion(M) = 4 cols × 4 rows
-  //   Utility  (S) = 4 cols × 2 rows
+  // Size vocabulary:
+  //   Icon   = 1×1   (LinkedIn, Email, Theme, Control, AI, Résumé, GitHub,
+  //                   SolarEase, Fora, FridgeFriend)
+  //   Strip  = 2×1   (Intro, Atypica, Zebra, Bloomè)
+  //   Tall   = 1×2   (T-Mobile — portrait video)
   //
-  // Row  1–2 : Intro(6×2)  · LinkedIn(3×2) · Email(3×2)
-  // Row  3–6 : Atypica(F)  · GitHub(M)
-  // Row  7–8 : BluePrinciple(S) · Theme(S) · YellowPrinciple(S)
-  // Row  9–12: SolarEase(M) · Zebra(F)
-  // Row 13–16: T-Mobile(F)  · Resume(M)
-  .hero-intro               { position: relative; text-align: left; font-family: inherit; grid-column: 1 / span 6;  grid-row: 1 / span 2; }
-  .hero-linkedin            { position: relative; text-decoration: none; color: inherit; grid-column: 7 / span 3;  grid-row: 1 / span 2; }
-  .hero-email               { position: relative; grid-column: 10 / span 3; grid-row: 1 / span 2; }
-  .hero-experience--atypica   { grid-column: 1 / span 8;  grid-row: 3 / span 4; }
-  .hero-github                { position: relative; text-decoration: none; color: inherit; grid-column: 9 / span 4;  grid-row: 3 / span 4; }
-  .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 1 / span 4;  grid-row: 7 / span 2; }
-  .hero-theme                 { position: relative; font-family: inherit; text-align: left; overflow: hidden; grid-column: 5 / span 4;  grid-row: 7 / span 2; }
-  .hero-principle--featured   { grid-column: 9 / span 4;  grid-row: 7 / span 2; }
-  .hero-experience--solarease { grid-column: 1 / span 4;  grid-row: 9 / span 4; }
-  .hero-experience--zebra     { grid-column: 5 / span 8;  grid-row: 9 / span 4; }
-  .hero-experience--tmobile   { grid-column: 1 / span 8;  grid-row: 13 / span 4; }
-  .hero-resume                { position: relative; text-decoration: none; color: inherit; grid-column: 9 / span 4;  grid-row: 13 / span 4; }
+  // Row layout (col1 · col2 · col3 · col4):
+  //   r1 : Intro 2×1              │ LinkedIn 1×1 │ Email 1×1
+  //   r2 : Atypica 2×1            │ Theme 1×1    │ Control 1×1
+  //   r3 : AI 1×1   │ Résumé 1×1  │ Zebra 2×1
+  //   r4 : Bloomè   │ T-Mobile 2×1                │ SolarEase 1×1
+  //   r5 :  (1×2)   │ GitHub 1×1   │ Fora 1×1   │ Fridge Friend 1×1
+  > .bento-section__grid {
+    // Square cells: row height === column width.
+    //   grid width = min(viewport - 2*sectionPad, grid max-width)
+    //   col width  = (grid width - (cols-1)*gap) / cols
+    // Escape with ~"..." so LESS passes the CSS min()/calc() through
+    // verbatim (LESS would otherwise try to evaluate min() as its own
+    // function and the inline comments inside calc() break parsing).
+    //
+    // Desktop: section padding 28px each side (56px total), 3 gaps × 20px = 60px,
+    //          grid max-width 1280px → max row ≈ 305px.
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: ~"min(calc((100vw - 116px) / 4), calc((1280px - 60px) / 4))";
+    gap: 20px;
+  }
 
-  // Tablet (6 cols) — reset explicit positions, auto-flow in source order
+  .hero-intro                  { position: relative; text-align: left; font-family: inherit; grid-column: 1 / span 2; grid-row: 1 / span 1; }
+  .hero-linkedin               { position: relative; text-decoration: none; color: inherit; grid-column: 3 / span 1; grid-row: 1 / span 1; }
+  .hero-email                  { position: relative; grid-column: 4 / span 1; grid-row: 1 / span 1; }
+  .hero-experience--atypica    { grid-column: 1 / span 2; grid-row: 2 / span 1; }
+  .hero-theme                  { position: relative; font-family: inherit; text-align: left; overflow: hidden; grid-column: 3 / span 1; grid-row: 2 / span 1; }
+  .hero-principle--featured    { grid-column: 4 / span 1; grid-row: 2 / span 1; }
+  .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 1 / span 1; grid-row: 3 / span 1; }
+  .hero-resume                 { position: relative; text-decoration: none; color: inherit; grid-column: 2 / span 1; grid-row: 3 / span 1; }
+  .hero-experience--zebra      { grid-column: 3 / span 2; grid-row: 3 / span 1; }
+  .hero-experience--tmobile    { grid-column: 2 / span 2; grid-row: 4 / span 1; }
+  .hero-experience--bloome     { grid-column: 1 / span 1; grid-row: 4 / span 2; }
+  .hero-experience--solarease  { grid-column: 4 / span 1; grid-row: 4 / span 1; }
+  .hero-github                 { position: relative; text-decoration: none; color: inherit; grid-column: 2 / span 1; grid-row: 5 / span 1; }
+  .hero-experience--fora       { grid-column: 3 / span 1; grid-row: 5 / span 1; }
+  .hero-experience--fridgefriend { grid-column: 4 / span 1; grid-row: 5 / span 1; }
+
+  // Tablet — keep the same 4-column structure (override the bento.less 6-col
+  // fallback so our snug packing is preserved).
   @media @tablet {
-    .hero-intro               { grid-column: 1 / span 6; grid-row: auto / span 2; }
-    .hero-linkedin            { grid-column: 1 / span 3; grid-row: auto / span 2; }
-    .hero-email               { grid-column: 4 / span 3; grid-row: auto / span 2; }
-    .hero-experience--atypica   { grid-column: 1 / span 4; grid-row: auto / span 4; }
-    .hero-principle--featured   { grid-column: 5 / span 2; grid-row: auto / span 4; }
-    .hero-theme                 { grid-column: 1 / span 2; grid-row: auto / span 2; }
-    .hero-experience--solarease { grid-column: 3 / span 2; grid-row: auto / span 2; }
-    .hero-reading               { grid-column: 5 / span 2; grid-row: auto / span 2; }
-    .hero-principle:not(.hero-principle--featured) { grid-column: span 3; grid-row: auto / span 3; }
-    .hero-experience--zebra     { grid-column: 1 / span 4; grid-row: auto / span 4; }
-    .hero-experience--tmobile   { grid-column: 1 / span 6; grid-row: auto / span 3; }
-    .hero-github                { grid-column: span 3; grid-row: auto / span 2; }
-    .hero-resume                { grid-column: span 3; }
+    > .bento-section__grid {
+      // tablet section padding = 16px each side (32px), gap = 16px, 3 gaps = 48px
+      grid-auto-rows: ~"calc((100vw - 80px) / 4)";
+      gap: 16px;
+    }
   }
 
   // Mobile — flex column (grid-column/row ignored), give experience cards a height
@@ -60,14 +76,18 @@
     .hero-experience--atypica,
     .hero-experience--zebra,
     .hero-experience--tmobile,
-    .hero-experience--solarease { min-height: 300px; }
+    .hero-experience--solarease,
+    .hero-experience--bloome,
+    .hero-experience--fora,
+    .hero-experience--fridgefriend { min-height: 300px; }
   }
 
   // ============ Self introduction tile ============
+  // Landscape tile (2×1): photo on the left, text on the right.
   .hero-intro {
     flex-direction: row;
-    gap: 22px;
-    padding: 24px;
+    gap: 18px;
+    padding: 20px;
     align-items: center;
 
     @media @mobile {
@@ -78,17 +98,17 @@
     &__photo-wrap {
       position: relative;
       flex-shrink: 0;
-      width: 140px;
-      height: 140px;
-      border-radius: 18px;
+      width: 120px;
+      height: 120px;
+      border-radius: 14px;
       overflow: visible;
-      @media @tablet { width: 110px; height: 110px; }
+      @media @tablet { width: 96px; height: 96px; }
     }
     &__photo {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 18px;
+      border-radius: 14px;
     }
     &__status {
       position: absolute;
@@ -670,11 +690,21 @@
 
 // ============================================================================
 // ✦ Spotlight modes (navbar-triggered) ✦
-//   Dims/highlights tile categories visually. Layout order is not changed
-//   because CSS Columns does not support the `order` property.
+//   Clicking "About", "Experience", or "Projects" in the nav pulls the
+//   matching tiles up to the top of the grid and dims/blurs everything else.
+//   The grid layout genuinely reorders (positions overridden below) so the
+//   FLIP animation in BentoHero.tsx can smoothly translate tiles between
+//   layouts.
+//
+//   Categorisation:
+//     About      → personal: intro, linkedin, email, theme, control quote,
+//                  AI quote, résumé
+//     Experience → paid roles: Atypica, T-Mobile, Zebra
+//     Projects   → portfolio: Bloomè, SolarEase, Fora, Fridge Friend
 // ============================================================================
 .bento-hero {
-  .bento-tile {
+  .bento-tile,
+  .hero-experience {
     transition:
       opacity 0.45s ease,
       filter 0.45s ease,
@@ -682,44 +712,122 @@
   }
 }
 
+// Default dim/blur applied to every tile (both `.bento-tile` and `.hero-experience`,
+// since the project cards use `.hero-experience` without `.bento-tile`) while any
+// spotlight is active. Each spotlight rule below re-enables its own category.
 .bento-hero[data-spotlight] {
-  .bento-tile {
+  .bento-tile,
+  .hero-experience {
     opacity: 0.16 !important;
     filter: blur(3px) saturate(0.4);
     pointer-events: none;
   }
+}
+
+// ─────────── ABOUT spotlight ───────────
+// Spotlighted: Intro, LinkedIn, Email, Theme, Control quote, AI quote, Résumé.
+// Layout (2 rows × 4 cols = 8 cells, exactly fills the top):
+//   r1: Intro 2×1            │ LinkedIn 1×1 │ Email 1×1
+//   r2: Theme 1×1 │ Control 1×1 │ AI 1×1    │ Résumé 1×1
+.bento-hero[data-spotlight="about"] {
+  .hero-intro      { grid-column: 1 / span 2; grid-row: 1; }
+  .hero-linkedin   { grid-column: 3 / span 1; grid-row: 1; }
+  .hero-email      { grid-column: 4 / span 1; grid-row: 1; }
+  .hero-theme      { grid-column: 1 / span 1; grid-row: 2; }
+  .hero-principle--featured { grid-column: 2 / span 1; grid-row: 2; }
+  .hero-principle:not(.hero-principle--featured) { grid-column: 3 / span 1; grid-row: 2; }
+  .hero-resume     { grid-column: 4 / span 1; grid-row: 2; }
+
+  // Bring the about tiles back to full visibility.
   .hero-intro,
   .hero-linkedin,
-  .hero-email {
+  .hero-email,
+  .hero-theme,
+  .hero-principle,
+  .hero-resume {
     opacity: 1 !important;
     filter: none !important;
     pointer-events: auto !important;
   }
-}
 
-// ─────────── ABOUT spotlight ───────────
-.bento-hero[data-spotlight="about"] {
-  .hero-principle,
-  .hero-clock {
-    opacity: 1 !important;
-    filter: none !important;
-    pointer-events: auto !important;
+  // Release every non-about tile so dense auto-flow packs them after row 2.
+  .hero-experience,
+  .hero-github {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 
 // ─────────── EXPERIENCE spotlight ───────────
+// Spotlighted: paid roles → Atypica (current), T-Mobile, Zebra.
+// Layout (2 rows × 4 cols = 8 cells, exactly fills the top):
+//   r1: Atypica 2×2 (r1-r2) │ T-Mobile 2×1
+//   r2: Atypica con't        │ Zebra 2×1
 .bento-hero[data-spotlight="experience"] {
-  .hero-intro,
-  .hero-linkedin,
-  .hero-email {
-    opacity: 0.16 !important;
-    filter: blur(3px) saturate(0.4) !important;
-    pointer-events: none !important;
-  }
-  .hero-experience {
+  .hero-experience--atypica  { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+  .hero-experience--tmobile  { grid-column: 3 / span 2; grid-row: 1; }
+  .hero-experience--zebra    { grid-column: 3 / span 2; grid-row: 2; }
+
+  // Bring the experience tiles back to full visibility.
+  .hero-experience--atypica,
+  .hero-experience--tmobile,
+  .hero-experience--zebra {
     opacity: 1 !important;
     filter: none !important;
     pointer-events: auto !important;
+  }
+
+  // Release every other tile so dense auto-flow packs them after row 2.
+  .hero-intro,
+  .hero-linkedin,
+  .hero-email,
+  .hero-theme,
+  .hero-principle,
+  .hero-resume,
+  .hero-github,
+  .hero-experience--bloome,
+  .hero-experience--solarease,
+  .hero-experience--fora,
+  .hero-experience--fridgefriend {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+// ─────────── PROJECTS spotlight ───────────
+// Spotlighted: portfolio work → Bloomè, SolarEase, Fora, Fridge Friend.
+// Layout (2 rows × 4 cols = 8 cells, exactly fills the top):
+//   r1: Bloomè 2×1          │ SolarEase 2×1
+//   r2: Fora 2×1            │ Fridge Friend 2×1
+.bento-hero[data-spotlight="projects"] {
+  .hero-experience--bloome        { grid-column: 1 / span 2; grid-row: 1; }
+  .hero-experience--solarease     { grid-column: 3 / span 2; grid-row: 1; }
+  .hero-experience--fora          { grid-column: 1 / span 2; grid-row: 2; }
+  .hero-experience--fridgefriend  { grid-column: 3 / span 2; grid-row: 2; }
+
+  // Bring the project tiles back to full visibility.
+  .hero-experience--bloome,
+  .hero-experience--solarease,
+  .hero-experience--fora,
+  .hero-experience--fridgefriend {
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+  }
+
+  // Release every other tile so dense auto-flow packs them after row 2.
+  .hero-intro,
+  .hero-linkedin,
+  .hero-email,
+  .hero-theme,
+  .hero-principle,
+  .hero-resume,
+  .hero-github,
+  .hero-experience--atypica,
+  .hero-experience--tmobile,
+  .hero-experience--zebra {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 

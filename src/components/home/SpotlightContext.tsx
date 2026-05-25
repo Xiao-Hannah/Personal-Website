@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
-export type SpotlightKey = "about" | "experience" | null;
+export type SpotlightKey = "about" | "experience" | "projects" | null;
 
 interface SpotlightCtx {
   spotlight: SpotlightKey;
