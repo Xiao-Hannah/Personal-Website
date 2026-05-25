@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/layout/Footer";
 import BentoHero from "@/components/home/BentoHero";
 import BentoWork from "@/components/home/BentoWork";
+import BentoSocial from "@/components/home/BentoSocial";
 import BentoFun from "@/components/home/BentoFun";
 import BentoContact from "@/components/home/BentoContact";
 import './Index.less';
@@ -22,6 +23,7 @@ const Index = () => {
         onScrollToContact={() => scrollToSection("contact")}
       />
       <BentoWork />
+      <BentoSocial />
       <BentoFun />
       <BentoContact />
 

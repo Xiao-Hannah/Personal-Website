@@ -1,6 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight, BookOpen, Camera, Plane } from "lucide-react";
 import thesis from "@/assets/files/thesis.pdf";
+import nmImage from "@/assets/images/newmexico.jpg";
+import bookCover from "@/assets/images/annie2.webp";
+
+const NOW_READING = {
+  title: "A Woman's Story",
+  author: "Annie Ernaux",
+  progress: 35,
+};
 import photo1 from "@/assets/images/photography/photography1.jpg";
 import photo3 from "@/assets/images/photography/photography3.jpeg";
 import photo5 from "@/assets/images/photography/photography5.jpg";
@@ -27,44 +35,8 @@ const BentoFun = () => {
           rel="noopener noreferrer"
           className="bento-tile tile-paper fun-thesis"
         >
-          <div className="fun-thesis__paper" aria-hidden>
-            <div className="fun-thesis__journal">
-              The Columbia Anthropology Review · 2022
-            </div>
-            <p className="fun-thesis__title">
-              From Sherds to Society
-            </p>
-            <p className="fun-thesis__subtitle">
-              Kwahe'e Black-on-white and Social Interaction in the Taos District
-            </p>
-            <p className="fun-thesis__byline">Hannah Xiao · Senior Thesis</p>
-            <div className="fun-thesis__cols">
-              <div className="fun-thesis__col">
-                <span className="fun-thesis__heading" />
-                <span className="fun-thesis__line w-95" />
-                <span className="fun-thesis__line w-90" />
-                <span className="fun-thesis__line w-100" />
-                <span className="fun-thesis__line w-85" />
-                <span className="fun-thesis__line w-92" />
-                <span className="fun-thesis__line w-80" />
-                <span className="fun-thesis__line w-70" />
-                <span className="fun-thesis__heading" />
-                <span className="fun-thesis__line w-100" />
-                <span className="fun-thesis__line w-88" />
-              </div>
-              <div className="fun-thesis__col">
-                <span className="fun-thesis__line w-92" />
-                <span className="fun-thesis__line w-86" />
-                <span className="fun-thesis__line w-100" />
-                <span className="fun-thesis__shard" />
-                <span className="fun-thesis__line w-80" />
-                <span className="fun-thesis__line w-95" />
-                <span className="fun-thesis__heading" />
-                <span className="fun-thesis__line w-90" />
-                <span className="fun-thesis__line w-100" />
-                <span className="fun-thesis__line w-70" />
-              </div>
-            </div>
+          <div className="fun-thesis__cover" aria-hidden>
+            <img src={nmImage} alt="" className="fun-thesis__cover-img" />
           </div>
           <div className="fun-thesis__caption">
             <div>
@@ -113,6 +85,27 @@ const BentoFun = () => {
             <Plane size={20} />
             <h3>Travelling</h3>
             <p>Always plotting the next adventure.</p>
+          </div>
+        </article>
+
+        {/* Reading */}
+        <article className="bento-tile tile-paper fun-reading">
+          <p className="eyebrow fun-reading__eyebrow"><BookOpen size={11} /> Reading</p>
+          <div className="fun-reading__book" aria-hidden>
+            <img src={bookCover} alt="" className="fun-reading__cover-img" />
+            <div className="fun-reading__spine" />
+          </div>
+          <div className="fun-reading__meta">
+            <p className="fun-reading__title">{NOW_READING.title}</p>
+            <p className="fun-reading__author">{NOW_READING.author}</p>
+            <div className="fun-reading__progress" aria-hidden>
+              <div className="fun-reading__progress-bar">
+                <span style={{ width: `${NOW_READING.progress}%` }} />
+              </div>
+              <span className="fun-reading__progress-label">
+                {NOW_READING.progress}% complete
+              </span>
+            </div>
           </div>
         </article>
 

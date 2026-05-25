@@ -1,6 +1,8 @@
 import MediaTile from "./MediaTile";
 import foraCover from "../../assets/images/fora/fora.webp";
 import solareaseCoverVideo from "../../assets/videos/solarease_cover.mp4";
+import fridgeFriendCover from "../../assets/images/fridgeFriend/avo3.jpg";
+import bloomeVideo from "../../assets/videos/bloome.mov";
 import "./BentoWork.less";
 
 interface WorkItem {
@@ -45,6 +47,8 @@ const projects: WorkItem[] = [
     link: "/bloome",
     hue: 340,
     size: "md",
+    videoSrc: bloomeVideo,
+    variant: "band",
   },
   {
     title: "Fridge Friend",
@@ -53,6 +57,8 @@ const projects: WorkItem[] = [
     link: "/fridgefriend",
     hue: 150,
     size: "lg",
+    posterSrc: fridgeFriendCover,
+    variant: "band",
   },
 ];
 

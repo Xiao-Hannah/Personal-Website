@@ -1,48 +1,24 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
-  MapPin,
   Mail,
   Github,
-  Instagram,
-  FileText,
-  Coffee,
-  Music,
-  BookOpen,
-  Heart,
-  Download,
   Check,
   Sun,
   Moon,
-  MessageCircle,
-  Play,
   Quote,
-  X,
 } from "lucide-react";
 import profileImage from "@/assets/images/profile/profile3.png";
-import albumImage from "@/assets/images/albumimage.jpg";
-import bookCover from "@/assets/images/home/book.jpg";
 import resume from "@/assets/files/resume.pdf";
-import photo1 from "@/assets/images/photography/photography1.jpg";
-import photo2 from "@/assets/images/photography/photography2.jpg";
-import photo3 from "@/assets/images/photography/photography3.jpeg";
-import photo4 from "@/assets/images/photography/photography4.jpeg";
-import photo5 from "@/assets/images/photography/photography5.jpg";
-import photo6 from "@/assets/images/photography/photography6.jpg";
-import travel1 from "@/assets/images/travelling/travelling1.jpg";
-import travel3 from "@/assets/images/travelling/travelling3.jpeg";
-import travel5 from "@/assets/images/travelling/travelling5.jpg";
-import instagram1 from "@/assets/images/instagram/instagram1.jpg";
-import instagram2 from "@/assets/images/instagram/instagram2.jpg";
-import instagram3 from "@/assets/images/instagram/instagram3.jpg";
-import instagram4 from "@/assets/images/instagram/instagram4.jpg";
+import resumeImage from "@/assets/images/resume3.png";
 import { useNavigate } from "react-router-dom";
 import tmobileVideo from "@/assets/videos/tmed.mp4";
+import atypicaVideo from "@/assets/videos/atypica_0524.mp4";
+import solareaseCoverVideo from "@/assets/videos/solarease_cover.mp4";
 import Aurora from "@/components/Aurora";
 import TrueFocus from "@/components/TrueFocus";
 import BentoExpand from "./BentoExpand";
 import IntroModalBody from "./IntroModalBody";
-import SpotifyPreview from "./SpotifyPreview";
 import { useSpotlight } from "./SpotlightContext";
 import { useTheme } from "@/hooks/useTheme";
 import "./BentoHero.less";
@@ -58,12 +34,12 @@ const STATS = {
   github:   { repos: 18, stars: 42, lastPush: "2 days ago" },
   instagram:{ handle: "@hanx0628", posts: 15 },
   nowReading: {
-    title: "Pachinko",
-    author: "Min Jin Lee",
-    year: 2017,
-    pages: 496,
-    progress: 42, // percent
-    chapter: "Book II · Chapter 4",
+    title: "A Woman's Story",
+    author: "Annie Ernaux",
+    year: 1987,
+    pages: 96,
+    progress: 35,
+    chapter: "Chapter 3",
   },
   nowPlaying: {
     title: "六號咖啡館",
@@ -74,8 +50,6 @@ const STATS = {
   },
   coffees: 2,
 };
-
-const photoStrip = [photo1, photo2, photo3, photo4, photo5, photo6, travel1, travel3, travel5];
 
 // Deterministic GitHub contribution data (7 rows × 14 cols)
 const CONTRIB = Array.from({ length: 7 * 14 }, (_, i) => {
@@ -135,7 +109,6 @@ const BentoHero = ({}: BentoHeroProps) => {
   const [copied, setCopied] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
   const [bulbPulse, setBulbPulse] = useState(false);
-  const [spotifyOpen, setSpotifyOpen] = useState(false);
   const [principleOpen, setPrincipleOpen] = useState<PrincipleKey | null>(null);
   const { isDark, toggle } = useTheme();
   const { spotlight, clearSpotlight } = useSpotlight();
@@ -209,11 +182,6 @@ const BentoHero = ({}: BentoHeroProps) => {
     lastPositions.current = next;
   }, [spotlight]);
 
-  const seattleTime = time.toLocaleTimeString("en-US", {
-    timeZone: "America/Los_Angeles",
-    hour: "numeric",
-    minute: "2-digit",
-  });
   const seattleHour = Number(
     time.toLocaleString("en-US", {
       timeZone: "America/Los_Angeles",
@@ -324,34 +292,18 @@ const BentoHero = ({}: BentoHeroProps) => {
             cursor: 'pointer',
           } as React.CSSProperties}
         >
-          <div style={{ flex: 1, position: 'relative', minHeight: 0, background: '#0a0a08' }}>
-            <Aurora
-              colorStops={["#2a4a1e", "#787897", "#2d6b30"]}
-              blend={0.5}
-              amplitude={1.0}
-              speed={2.5}
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <video
+              src={atypicaVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
-            <div style={{
-              position: 'absolute', bottom: 14, left: 14,
-              zIndex: 2, pointerEvents: 'none',
-            }}>
-              <div style={{
-                fontSize: 9, color: '#39FF14',
-                textTransform: 'uppercase', letterSpacing: '0.1em',
-                marginBottom: 5,
-              }}>• ATYPICA</div>
-              <div style={{ fontSize: 20, fontWeight: 500, color: '#ffffff', lineHeight: 1.3 }}>
-                The AI That
-              </div>
-              <div style={{ fontSize: 20, fontWeight: 500, lineHeight: 1.3 }}>
-                <span style={{ color: '#39FF14', fontStyle: 'italic' }}>Understands</span>
-                <span style={{ color: '#ffffff' }}> Humans</span>
-              </div>
-            </div>
           </div>
           <div style={{
             background: '#ffffff',
-            borderTop: '0.5px solid rgba(0,0,0,0.08)',
             padding: '12px 16px',
             flexShrink: 0,
           }}>
@@ -434,11 +386,7 @@ const BentoHero = ({}: BentoHeroProps) => {
         >
           <Quote className="hero-principle__mark" size={20} aria-hidden />
           <p className="hero-principle__quote">
-            Great products give people a{" "}
-            <span className="hero-principle__grad hero-principle__grad--amber">
-              sense of control
-            </span>
-            .
+            Great products give people a <span className="hero-principle__solid hero-principle__solid--amber">sense of control</span>.
           </p>
           <p className="eyebrow hero-principle__eyebrow">
             my product principle
@@ -510,31 +458,25 @@ const BentoHero = ({}: BentoHeroProps) => {
         >
           <div style={{
             flex: 1,
-            background: '#f8f8f6',
-            backgroundImage: [
-              'repeating-linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px)',
-              'repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)',
-            ].join(', '),
-            backgroundSize: '24px 24px',
+            background: '#faf6ee',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             minHeight: 0,
           }}>
             <TrueFocus
-              sentence="Touchless Auth"
+              sentence="Touchless Authentication"
               manualMode={false}
               blurAmount={4}
               borderColor="#0A66C2"
               glowColor="rgba(10, 102, 194, 0.25)"
-              textColor="#0A66C2"
+              fontSize="1.9rem"
               animationDuration={0.8}
               pauseBetweenAnimations={1.5}
             />
           </div>
           <div style={{
             background: '#ffffff',
-            borderTop: '0.5px solid rgba(0,0,0,0.08)',
             padding: '12px 16px',
             flexShrink: 0,
           }}>
@@ -579,7 +521,6 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
           <div style={{
             background: '#ffffff',
-            borderTop: '0.5px solid rgba(0,0,0,0.08)',
             padding: '12px 16px',
             flexShrink: 0,
           }}>
@@ -592,46 +533,64 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
         </div>
 
+        {/* ───────────── SolarEase ───────────── */}
+        <div
+          className="card c-solarease hero-experience hero-experience--solarease"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/solarease')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/solarease')}
+          style={{
+            borderRadius: '14px',
+            border: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            padding: 0,
+            gap: 0,
+            opacity: 0,
+            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 440ms forwards',
+            cursor: 'pointer',
+          } as React.CSSProperties}
+        >
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <video
+              src={solareaseCoverVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          <div style={{
+            background: '#ffffff',
+            padding: '12px 16px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              fontSize: 9, color: '#aaa',
+              letterSpacing: '0.07em', textTransform: 'uppercase',
+              marginBottom: 4,
+            }}>2024 · Solar × IoT × Mobile</div>
+            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>SolarEase</div>
+          </div>
+        </div>
+
         {/* ═════════════════════════════════════════════════════════════════
               BELOW FOLD — Résumé · GitHub · Photos · Instagram · …
             ═════════════════════════════════════════════════════════════════ */}
 
-        {/* ───────────── Résumé — mini PDF preview ───────────── */}
+        {/* ───────────── Résumé ───────────── */}
         <a
           href={resume}
           target="_blank"
           rel="noopener noreferrer"
           className="bento-tile tile-paper hero-resume"
           style={{ "--delay": "480ms" } as React.CSSProperties}
+          aria-label="View résumé"
         >
-          <div className="hero-resume__doc" aria-hidden>
-            <div className="hero-resume__doc-head">
-              <span className="hero-resume__doc-name" />
-              <span className="hero-resume__doc-title" />
-            </div>
-            <div className="hero-resume__doc-section">
-              <span className="line w-90" /> <span className="line w-70" />
-              <span className="line w-80" />
-            </div>
-            <div className="hero-resume__doc-section">
-              <span className="line w-60" /> <span className="line w-85" />
-            </div>
-            <div className="hero-resume__doc-section">
-              <span className="line w-75" /> <span className="line w-65" />
-              <span className="line w-50" />
-            </div>
-          </div>
-          <div className="hero-resume__meta">
-            <div className="hero-resume__meta-text">
-              <p className="hero-resume__label">
-                <FileText size={14} /> Résumé
-              </p>
-              <p className="hero-resume__sub">Updated May 2026</p>
-            </div>
-            <span className="hero-resume__download" aria-hidden>
-              <Download size={14} />
-            </span>
-          </div>
+          <img src={resumeImage} alt="Résumé" className="hero-resume__img" />
           <span className="tile-corner" aria-hidden>
             <ArrowUpRight size={16} />
           </span>
@@ -669,158 +628,6 @@ const BentoHero = ({}: BentoHeroProps) => {
           </span>
         </a>
 
-        {/* ───────────── Photo strip ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-photos"
-          style={{ "--delay": "600ms" } as React.CSSProperties}
-        >
-          <p className="eyebrow hero-photos__label">
-            <Heart size={11} /> Lately
-          </p>
-          <div className="hero-photos__track" aria-hidden>
-            {[...photoStrip, ...photoStrip].map((src, i) => (
-              <img key={i} src={src} alt="" />
-            ))}
-          </div>
-        </article>
-
-        {/* ───────────── Instagram — 4-photo mosaic ───────────── */}
-        <a
-          href="https://instagram.com/hanx0628"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bento-tile tile-paper hero-instagram"
-          style={{ "--delay": "660ms" } as React.CSSProperties}
-        >
-          <div className="hero-instagram__mosaic" aria-hidden>
-            <span className="hero-instagram__cell"><img src={instagram1} alt="" /></span>
-            <span className="hero-instagram__cell"><img src={instagram2} alt="" /></span>
-            <span className="hero-instagram__cell"><img src={instagram3} alt="" /></span>
-            <span className="hero-instagram__cell"><img src={instagram4} alt="" /></span>
-          </div>
-          <div className="hero-instagram__overlay">
-            <div className="hero-instagram__handle">
-              <Instagram size={16} /> {STATS.instagram.handle}
-            </div>
-            <p className="hero-instagram__count">
-              {STATS.instagram.posts} posts
-            </p>
-          </div>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </a>
-
-        {/* ───────────── Now playing — w/ album art ───────────── */}
-        <article
-          className={`bento-tile tile-paper hero-now-playing ${
-            spotifyOpen ? "is-playing" : ""
-          }`}
-          style={{ "--delay": "720ms" } as React.CSSProperties}
-        >
-          <img
-            src={albumImage}
-            alt=""
-            className="hero-now-playing__art"
-            aria-hidden
-          />
-          <div className="hero-now-playing__art-overlay" aria-hidden />
-          <div className="hero-now-playing__text">
-            <p className="hero-now-playing__label">
-              <Music size={11} /> Currently listening
-              <span className="hero-now-playing__bars" aria-hidden>
-                <span /><span /><span /><span />
-              </span>
-            </p>
-            <p className="hero-now-playing__title">{STATS.nowPlaying.title}</p>
-            <p className="hero-now-playing__album">
-              <span>{STATS.nowPlaying.album}</span> · {STATS.nowPlaying.artist}
-            </p>
-          </div>
-          <button
-            type="button"
-            className="hero-now-playing__play"
-            onClick={() => setSpotifyOpen(true)}
-            aria-label="Play preview on Spotify"
-          >
-            <Play size={14} fill="currentColor" />
-            <span>Preview</span>
-          </button>
-          {spotifyOpen && (
-            <div className="hero-now-playing__embed" role="region" aria-label="Spotify player">
-              <button
-                type="button"
-                className="hero-now-playing__close"
-                onClick={() => setSpotifyOpen(false)}
-                aria-label="Close player"
-              >
-                <X size={14} />
-              </button>
-              <SpotifyPreview
-                trackId={STATS.nowPlaying.spotifyId}
-                active={spotifyOpen}
-              />
-            </div>
-          )}
-        </article>
-
-        {/* ───────────── Seattle clock (compact) ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-clock"
-          style={{ "--delay": "780ms" } as React.CSSProperties}
-        >
-          <p className="eyebrow">
-            <MapPin size={11} /> Seattle
-          </p>
-          <h2 className="hero-clock__time">{seattleTime}</h2>
-          <p className="hero-clock__sub">
-            <span
-              className={`hero-clock__pulse ${isAwake ? "" : "is-asleep"}`}
-            />
-            {isAwake ? "Open to chat" : "Sleeping zzz"}
-          </p>
-          <div className="hero-clock__coffee">
-            <span className="hero-clock__coffee-icon" aria-hidden>
-              <Coffee size={14} />
-              <span className="hero-clock__steam">
-                <span /><span /><span />
-              </span>
-            </span>
-            <p className="hero-clock__coffee-copy">
-              <span className="hero-clock__coffee-count">{STATS.coffees}</span>
-              <span className="hero-clock__coffee-label">cups today</span>
-            </p>
-          </div>
-        </article>
-
-        {/* ───────────── Reading (compact) ───────────── */}
-        <article
-          className="bento-tile tile-paper hero-reading"
-          style={{ "--delay": "840ms" } as React.CSSProperties}
-        >
-          <div className="hero-reading__meta">
-            <p className="eyebrow"><BookOpen size={11} /> Reading</p>
-            <p className="hero-reading__title">{STATS.nowReading.title}</p>
-            <p className="hero-reading__author">{STATS.nowReading.author}</p>
-            <div className="hero-reading__progress" aria-hidden>
-              <div className="hero-reading__progress-bar">
-                <span style={{ width: `${STATS.nowReading.progress}%` }} />
-              </div>
-              <span className="hero-reading__progress-label">
-                {STATS.nowReading.progress}% complete
-              </span>
-            </div>
-          </div>
-          <div className="hero-reading__book" aria-hidden>
-            <img
-              src={bookCover}
-              alt=""
-              className="hero-reading__cover-img"
-            />
-            <div className="hero-reading__spine" />
-          </div>
-        </article>
-
         {/* ───────────── Principle · AI ───────────── */}
         <article
           className="bento-tile tile-paper hero-principle is-clickable"
@@ -834,11 +641,7 @@ const BentoHero = ({}: BentoHeroProps) => {
         >
           <Quote className="hero-principle__mark" size={20} aria-hidden />
           <p className="hero-principle__quote">
-            AI should make people{" "}
-            <span className="hero-principle__grad hero-principle__grad--indigo">
-              feel more capable
-            </span>
-            .
+            AI should make people <span className="hero-principle__solid hero-principle__solid--indigo">feel more capable</span>.
           </p>
           <p className="eyebrow hero-principle__eyebrow">
             my product principle
