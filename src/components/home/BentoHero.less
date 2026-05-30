@@ -31,68 +31,71 @@
   //   r4 : Bloomè   │ T-Mobile 2×1                │ SolarEase 1×1
   //   r5 :  (1×2)   │ GitHub 1×1   │ Fora 1×1   │ Fridge Friend 1×1
   > .bento-section__grid {
-    // Square cells: row height === column width.
-    //   grid width = min(viewport - 2*sectionPad, grid max-width)
-    //   col width  = (grid width - (cols-1)*gap) / cols
-    // Escape with ~"..." so LESS passes the CSS min()/calc() through
-    // verbatim (LESS would otherwise try to evaluate min() as its own
-    // function and the inline comments inside calc() break parsing).
-    //
-    // Desktop: section padding 28px each side (56px total), 3 gaps × 20px = 60px,
-    //          grid max-width 1280px → max row ≈ 305px.
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: ~"min(calc((100vw - 116px) / 4), calc((1280px - 60px) / 4))";
+    // 8-column grid, square cells (~142.5px at 1280px max).
+    // Layout pattern — each "block" = 4 rows × 8 cols:
+    //   cols 1-6 (6×4): main card   ~955 × 632px
+    //   cols 7-8 (2×2): sidebar tile ~305 × 305px  ×2 stacked = 305 × 632px
+    // Small squares (sidebar, 2×2) = same size as GitHub / OutsideOffice.
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: ~"min(calc((100vw - 196px) / 8), calc((1280px - 140px) / 8))";
     gap: 20px;
   }
 
-  .hero-intro                  { position: relative; text-align: left; font-family: inherit; grid-column: 1 / span 2; grid-row: 1 / span 1; }
-  .hero-linkedin               { position: relative; text-decoration: none; color: inherit; grid-column: 3 / span 1; grid-row: 1 / span 1; }
-  .hero-email                  { position: relative; grid-column: 4 / span 1; grid-row: 1 / span 1; }
-  .hero-experience--atypica    { grid-column: 1 / span 2; grid-row: 2 / span 1; }
-  .hero-theme                  { position: relative; font-family: inherit; text-align: left; overflow: hidden; grid-column: 3 / span 1; grid-row: 2 / span 1; }
-  .hero-principle--featured    { grid-column: 4 / span 1; grid-row: 2 / span 1; }
-  .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 1 / span 1; grid-row: 3 / span 1; }
-  .hero-resume                 { position: relative; text-decoration: none; color: inherit; grid-column: 2 / span 1; grid-row: 3 / span 1; }
-  .hero-experience--zebra      { grid-column: 3 / span 2; grid-row: 3 / span 1; }
-  .hero-experience--tmobile    { grid-column: 2 / span 2; grid-row: 4 / span 1; }
-  .hero-experience--bloome     { grid-column: 1 / span 1; grid-row: 4 / span 2; }
-  .hero-experience--solarease  { grid-column: 4 / span 1; grid-row: 4 / span 1; }
-  .hero-github                 { position: relative; text-decoration: none; color: inherit; grid-column: 2 / span 1; grid-row: 5 / span 1; }
-  .hero-experience--fora       { grid-column: 3 / span 1; grid-row: 5 / span 1; }
-  .hero-experience--fridgefriend { grid-column: 4 / span 1; grid-row: 5 / span 1; }
+  // ── Block 1 (r1-2): Intro (6×2) + Resume (2×2) ──
+  .hero-intro     { position: relative; text-align: left; font-family: inherit; grid-column: 1 / span 6; grid-row:  1 / span 2; }
+  .hero-resume    { position: relative; text-decoration: none; color: inherit;  grid-column: 7 / span 2; grid-row:  1 / span 2; }
 
-  // Tablet — keep the same 4-column structure (override the bento.less 6-col
-  // fallback so our snug packing is preserved).
+  // ── Block 2 (r3-6): Atypica (6×4) + GitHub (2×2) + Light Mode (2×2) ──
+  .hero-experience--atypica { grid-column: 1 / span 6; grid-row:  3 / span 4; }
+  .hero-github              { position: relative; text-decoration: none; color: inherit; grid-column: 7 / span 2; grid-row:  3 / span 2; }
+  .hero-theme               { position: relative; font-family: inherit; text-align: left; overflow: hidden; grid-column: 7 / span 2; grid-row:  5 / span 2; }
+
+  // ── Block 3 (r7-10): Outside Office (2×2) + Control (2×2) LEFT | T-Mobile (6×4) RIGHT ──
+  .hero-outside-office      { grid-column: 1 / span 2; grid-row:  7 / span 2; }
+  .hero-principle--featured { grid-column: 1 / span 2; grid-row:  9 / span 2; }
+  .hero-experience--tmobile { grid-column: 3 / span 6; grid-row:  7 / span 4; }
+
+  // ── Block 4 (r11-14): Zebra (6×4) + AI principle (2×2) + Contact-Where (2×2) ──
+  .hero-experience--zebra    { grid-column: 1 / span 6; grid-row: 11 / span 4; }
+  .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 7 / span 2; grid-row: 11 / span 2; }
+  .hero-contact-where        { grid-column: 7 / span 2; grid-row: 13 / span 2; }
+
+  // ── Block 5 (r15-18): SolarEase (4×4) + Fora (4×4) — paired medium squares ──
+  .hero-experience--solarease { grid-column: 1 / span 4; grid-row: 15 / span 4; }
+  .hero-experience--fora      { grid-column: 5 / span 4; grid-row: 15 / span 4; }
+
+  // ── Block 6 (r19-20): Contact-Main — full-width CTA banner ──
+  .hero-contact-main { grid-column: 1 / span 8; grid-row: 19 / span 2; }
+
   @media @tablet {
     > .bento-section__grid {
-      // tablet section padding = 16px each side (32px), gap = 16px, 3 gaps = 48px
-      grid-auto-rows: ~"calc((100vw - 80px) / 4)";
-      gap: 16px;
+      grid-auto-rows: ~"calc((100vw - 112px) / 8)";
+      gap: 12px;
     }
   }
 
-  // Mobile — flex column (grid-column/row ignored), give experience cards a height
   @media @mobile {
     .hero-experience--atypica,
     .hero-experience--zebra,
     .hero-experience--tmobile,
     .hero-experience--solarease,
-    .hero-experience--bloome,
-    .hero-experience--fora,
-    .hero-experience--fridgefriend { min-height: 300px; }
+    .hero-experience--fora { min-height: 220px; }
   }
 
   // ============ Self introduction tile ============
   // Landscape tile (2×1): photo on the left, text on the right.
   .hero-intro {
     flex-direction: row;
-    gap: 18px;
-    padding: 20px;
-    align-items: center;
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
 
+    @media @tablet { gap: 0; padding: 0; }
     @media @mobile {
       flex-direction: column;
       align-items: flex-start;
+      padding: 16px;
+      gap: 12px;
     }
 
     &__photo-wrap {
@@ -100,20 +103,23 @@
       flex-shrink: 0;
       width: 120px;
       height: 120px;
-      border-radius: 14px;
-      overflow: visible;
-      @media @tablet { width: 96px; height: 96px; }
+      align-self: center;
+      margin: 20px 0 20px 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      @media @tablet { width: 96px; height: 96px; margin: 16px 0 16px 16px; }
+      @media @mobile { width: 72px; height: 72px; margin: 0; border-radius: 10px; }
     }
     &__photo {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center center;
       display: block;
-      border-radius: 14px;
     }
     &__status {
       position: absolute;
       bottom: 6px; right: 6px;
-      width: 16px; height: 16px;
+      width: 14px; height: 14px;
       border-radius: 50%;
       border: 3px solid var(--b-paper);
       &.is-awake {
@@ -127,7 +133,9 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
+      padding: 20px 22px;
+      justify-content: center;
       min-width: 0;
     }
     .eyebrow {
@@ -137,7 +145,7 @@
     }
     &__greeting {
       font-family: var(--font-display);
-      font-size: clamp(20px, 1.8vw, 24px);
+      font-size: clamp(22px, 2vw, 28px);
       font-weight: 700;
       line-height: 1;
       margin-top: 2px;
@@ -149,7 +157,7 @@
     }
     &__lede {
       font-family: var(--font-body);
-      font-size: clamp(13.5px, 1.15vw, 15.5px);
+      font-size: clamp(14px, 1.2vw, 17px);
       line-height: 1.55;
       strong { font-weight: 700; }
     }
@@ -161,21 +169,20 @@
     &__actions {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: auto;
+      gap: 10px;
+      margin-top: 4px;
       flex-wrap: wrap;
     }
     &__email {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 10px 5px 8px;
+      gap: 7px;
+      padding: 7px 13px 7px 10px;
       border-radius: 999px;
       background: var(--b-bg-deep);
       border: 1px solid var(--b-line);
       font-family: var(--font-body);
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.02em;
       color: var(--b-ink);
@@ -197,7 +204,32 @@
       }
       svg { flex-shrink: 0; }
     }
+    &__linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px 7px 10px;
+      border-radius: 999px;
+      background: #0A66C2;
+      border: 1px solid #0A66C2;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.25s ease, transform 0.25s ease;
+      &:hover {
+        background: #004182;
+        border-color: #004182;
+        transform: translateY(-1px);
+      }
+      svg { flex-shrink: 0; }
+    }
     &__cta {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
       display: inline-flex;
       align-items: center;
       gap: 5px;
@@ -231,35 +263,26 @@
   .hero-resume {
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 8px;
     padding: 20px;
     overflow: hidden;
     box-shadow: none;
 
-    &__img {
-      max-width: 82%;
-      max-height: 82%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 0;
-      box-shadow: none;
-      filter: none;
+    &__emoji {
+      font-size: 52px;
+      line-height: 1;
       transition: transform 0.3s ease;
     }
-    &:hover &__img { transform: scale(1.03); }
-  }
-
-  // ============ LinkedIn (icon tile) ============
-  .hero-linkedin {
-    align-items: center;
-    justify-content: center;
-  }
-
-  // ============ Email (icon tile) ============
-  .hero-email {
-    align-items: center;
-    justify-content: center;
-    user-select: none;
+    &__label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--b-ink-soft);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    &:hover &__emoji { transform: scale(1.08) rotate(-4deg); }
   }
 
   // ============ GitHub ============
@@ -620,6 +643,117 @@
     }
   }
 
+  // ============ Outside the Office ============
+  .hero-outside-office {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 14px;
+    border: 0.5px solid var(--b-line);
+    box-shadow: var(--b-shadow-1);
+    opacity: 0;
+    animation: bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 220ms forwards;
+
+    &__cover {
+      position: absolute;
+      inset: 0;
+      img {
+        width: 100%; height: 100%;
+        object-fit: cover; object-position: center; display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+    &:hover &__cover img { transform: scale(1.04); }
+
+    &__text {
+      position: absolute;
+      bottom: 18px; left: 18px; right: 18px;
+      color: #fff;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+      display: flex; flex-direction: column; gap: 3px;
+      .eyebrow { font-size: 9px; opacity: 0.8; color: rgba(255,255,255,0.85); letter-spacing: 0.1em; }
+      h3 { font-family: var(--font-display); font-size: clamp(15px, 1.3vw, 19px); font-weight: 700; line-height: 1.1; margin: 0; }
+    }
+
+    &__arrow {
+      position: absolute; top: 14px; right: 14px;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    }
+    &:hover &__arrow { transform: translate(3px, -3px) rotate(8deg); background: rgba(255,255,255,0.32); }
+  }
+
+  // ============ Contact: Where ============
+  .hero-contact-where {
+    position: relative; overflow: hidden;
+    .eyebrow { display: inline-flex; align-items: center; gap: 4px; }
+    h3 { font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 34px); font-weight: 700; }
+    &__sub {
+      font-family: var(--font-body); font-size: 12.5px; font-weight: 600;
+      letter-spacing: 0.04em; color: var(--b-ink); margin: 0;
+      &.muted { color: var(--b-ink-soft); font-weight: 500; font-style: italic; }
+    }
+    &__globe {
+      position: absolute; top: -10px; right: -10px;
+      width: 100px; height: 100px; color: var(--b-line);
+      animation: heroSpin 18s linear infinite;
+    }
+  }
+  @keyframes heroSpin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+  // ============ Contact: Main CTA (8×2 full-width banner) ============
+  .hero-contact-main {
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: space-between;
+    padding: 28px 36px; gap: 24px;
+
+    &__top { display: flex; flex-direction: column; gap: 7px; }
+
+    &__status {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-body); font-size: 11px; font-weight: 600; color: var(--b-ink-soft);
+    }
+
+    &__dot {
+      flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%;
+      background: #29c66f;
+      box-shadow: 0 0 0 0 fade(#29c66f, 60%);
+      animation: heroContactPulse 2.4s infinite;
+    }
+
+    &__title {
+      font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 34px);
+      font-weight: 700; line-height: 1; margin: 0;
+    }
+
+    &__actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
+
+    &__send {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-body); font-size: 13.5px; font-weight: 700;
+      padding: 11px 20px; border-radius: 999px; border: none; text-decoration: none;
+      background: @bento-dark; color: #f4f0e8; cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      &:hover { transform: translateY(-2px); background: @bento-coral; color: @bento-coral-ink; }
+    }
+
+    &__copy {
+      font-family: var(--font-body); font-size: 11px; font-weight: 600;
+      color: var(--b-ink-soft); background: none; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: color 0.2s;
+      &:hover { color: var(--b-ink); }
+    }
+  }
+  @keyframes heroContactPulse {
+    0%   { box-shadow: 0 0 0 0 fade(#29c66f, 60%); }
+    70%  { box-shadow: 0 0 0 10px fade(#29c66f, 0%); }
+    100% { box-shadow: 0 0 0 0 fade(#29c66f, 0%); }
+  }
+
   // ============ Experience tiles ============
   .hero-experience {
     box-shadow: var(--b-shadow-2);
@@ -725,109 +859,53 @@
 }
 
 // ─────────── ABOUT spotlight ───────────
-// Spotlighted: Intro, LinkedIn, Email, Theme, Control quote, AI quote, Résumé.
-// Layout (2 rows × 4 cols = 8 cells, exactly fills the top):
-//   r1: Intro 2×1            │ LinkedIn 1×1 │ Email 1×1
-//   r2: Theme 1×1 │ Control 1×1 │ AI 1×1    │ Résumé 1×1
+// Intro (6×2) + Resume (2×2) stay at rows 1-2; everything else auto-flows below.
 .bento-hero[data-spotlight="about"] {
-  .hero-intro      { grid-column: 1 / span 2; grid-row: 1; }
-  .hero-linkedin   { grid-column: 3 / span 1; grid-row: 1; }
-  .hero-email      { grid-column: 4 / span 1; grid-row: 1; }
-  .hero-theme      { grid-column: 1 / span 1; grid-row: 2; }
-  .hero-principle--featured { grid-column: 2 / span 1; grid-row: 2; }
-  .hero-principle:not(.hero-principle--featured) { grid-column: 3 / span 1; grid-row: 2; }
-  .hero-resume     { grid-column: 4 / span 1; grid-row: 2; }
+  .hero-intro  { grid-column: 1 / span 6; grid-row: 1 / span 2; }
+  .hero-resume { grid-column: 7 / span 2; grid-row: 1 / span 2; }
 
-  // Bring the about tiles back to full visibility.
-  .hero-intro,
-  .hero-linkedin,
-  .hero-email,
-  .hero-theme,
-  .hero-principle,
-  .hero-resume {
-    opacity: 1 !important;
-    filter: none !important;
-    pointer-events: auto !important;
+  .hero-intro, .hero-resume {
+    opacity: 1 !important; filter: none !important; pointer-events: auto !important;
   }
 
-  // Release every non-about tile so dense auto-flow packs them after row 2.
-  .hero-experience,
-  .hero-github {
-    grid-column: auto;
-    grid-row: auto;
+  .hero-experience, .hero-github, .hero-theme, .hero-principle,
+  .hero-outside-office, .hero-contact-where, .hero-contact-main {
+    grid-column: auto; grid-row: auto;
   }
 }
 
 // ─────────── EXPERIENCE spotlight ───────────
-// Spotlighted: paid roles → Atypica (current), T-Mobile, Zebra.
-// Layout (2 rows × 4 cols = 8 cells, exactly fills the top):
-//   r1: Atypica 2×2 (r1-r2) │ T-Mobile 2×1
-//   r2: Atypica con't        │ Zebra 2×1
+// Atypica(6×4) · T-Mobile(6×4) · Zebra(6×4) at top; sidebars auto-flow.
 .bento-hero[data-spotlight="experience"] {
-  .hero-experience--atypica  { grid-column: 1 / span 2; grid-row: 1 / span 2; }
-  .hero-experience--tmobile  { grid-column: 3 / span 2; grid-row: 1; }
-  .hero-experience--zebra    { grid-column: 3 / span 2; grid-row: 2; }
+  .hero-experience--atypica { grid-column: 1 / span 6; grid-row:  1 / span 4; }
+  .hero-experience--tmobile { grid-column: 1 / span 6; grid-row:  5 / span 4; }
+  .hero-experience--zebra   { grid-column: 1 / span 6; grid-row:  9 / span 4; }
 
-  // Bring the experience tiles back to full visibility.
-  .hero-experience--atypica,
-  .hero-experience--tmobile,
-  .hero-experience--zebra {
-    opacity: 1 !important;
-    filter: none !important;
-    pointer-events: auto !important;
+  .hero-experience--atypica, .hero-experience--tmobile, .hero-experience--zebra {
+    opacity: 1 !important; filter: none !important; pointer-events: auto !important;
   }
 
-  // Release every other tile so dense auto-flow packs them after row 2.
-  .hero-intro,
-  .hero-linkedin,
-  .hero-email,
-  .hero-theme,
-  .hero-principle,
-  .hero-resume,
-  .hero-github,
-  .hero-experience--bloome,
-  .hero-experience--solarease,
-  .hero-experience--fora,
-  .hero-experience--fridgefriend {
-    grid-column: auto;
-    grid-row: auto;
+  .hero-intro, .hero-theme, .hero-principle, .hero-resume,
+  .hero-github, .hero-outside-office, .hero-contact-where, .hero-contact-main,
+  .hero-experience--solarease, .hero-experience--fora {
+    grid-column: auto; grid-row: auto;
   }
 }
 
 // ─────────── PROJECTS spotlight ───────────
-// Spotlighted: portfolio work → Bloomè, SolarEase, Fora, Fridge Friend.
-// Layout (2 rows × 4 cols = 8 cells, exactly fills the top):
-//   r1: Bloomè 2×1          │ SolarEase 2×1
-//   r2: Fora 2×1            │ Fridge Friend 2×1
+// SolarEase + Fora shown as 4×4 pairs at the top.
 .bento-hero[data-spotlight="projects"] {
-  .hero-experience--bloome        { grid-column: 1 / span 2; grid-row: 1; }
-  .hero-experience--solarease     { grid-column: 3 / span 2; grid-row: 1; }
-  .hero-experience--fora          { grid-column: 1 / span 2; grid-row: 2; }
-  .hero-experience--fridgefriend  { grid-column: 3 / span 2; grid-row: 2; }
+  .hero-experience--solarease { grid-column: 1 / span 4; grid-row: 1 / span 4; }
+  .hero-experience--fora      { grid-column: 5 / span 4; grid-row: 1 / span 4; }
 
-  // Bring the project tiles back to full visibility.
-  .hero-experience--bloome,
-  .hero-experience--solarease,
-  .hero-experience--fora,
-  .hero-experience--fridgefriend {
-    opacity: 1 !important;
-    filter: none !important;
-    pointer-events: auto !important;
+  .hero-experience--solarease, .hero-experience--fora {
+    opacity: 1 !important; filter: none !important; pointer-events: auto !important;
   }
 
-  // Release every other tile so dense auto-flow packs them after row 2.
-  .hero-intro,
-  .hero-linkedin,
-  .hero-email,
-  .hero-theme,
-  .hero-principle,
-  .hero-resume,
-  .hero-github,
-  .hero-experience--atypica,
-  .hero-experience--tmobile,
-  .hero-experience--zebra {
-    grid-column: auto;
-    grid-row: auto;
+  .hero-intro, .hero-theme, .hero-principle, .hero-resume,
+  .hero-github, .hero-outside-office, .hero-contact-where, .hero-contact-main,
+  .hero-experience--atypica, .hero-experience--tmobile, .hero-experience--zebra {
+    grid-column: auto; grid-row: auto;
   }
 }
 

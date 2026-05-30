@@ -7,6 +7,8 @@ import {
   Sun,
   Moon,
   Quote,
+  MapPin,
+  Globe,
 } from "lucide-react";
 import profileImage from "@/assets/images/profile/profile3.png";
 import resume from "@/assets/files/resume.pdf";
@@ -15,9 +17,8 @@ import { useNavigate } from "react-router-dom";
 import tmobileVideo from "@/assets/videos/tmed.mp4";
 import atypicaVideo from "@/assets/videos/atypica_0524.mp4";
 import solareaseCoverVideo from "@/assets/videos/solarease_cover.mp4";
-import bloomeVideo from "../../assets/videos/bloome.mov";
 import foraCover from "../../assets/images/fora/fora.webp";
-import fridgeFriendCover from "../../assets/images/fridgeFriend/avo3.jpg";
+import nmImage from "@/assets/images/newmexico.jpg";
 import Aurora from "@/components/Aurora";
 import TrueFocus from "@/components/TrueFocus";
 import BentoExpand from "./BentoExpand";
@@ -110,6 +111,7 @@ const BentoHero = ({}: BentoHeroProps) => {
   const navigate = useNavigate();
   const [time, setTime] = useState(() => new Date());
   const [copied, setCopied] = useState(false);
+  const [contactCopied, setContactCopied] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
   const [bulbPulse, setBulbPulse] = useState(false);
   const [principleOpen, setPrincipleOpen] = useState<PrincipleKey | null>(null);
@@ -208,6 +210,15 @@ const BentoHero = ({}: BentoHeroProps) => {
     }
   };
 
+  const copyContactEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("hx2313@uw.edu");
+      setContactCopied(true);
+      window.setTimeout(() => setContactCopied(false), 1800);
+    } catch { /* no-op */ }
+  };
+
+
   return (
     <section
       className={`bento-section bento-section--hero bento-hero ${
@@ -269,15 +280,52 @@ const BentoHero = ({}: BentoHeroProps) => {
                 }}
                 aria-label="Copy email address"
               >
-                {copied ? <Check size={12} /> : <Mail size={12} />}
+                {copied ? <Check size={12} /> : (
+                  <svg width="26" height="20" viewBox="52 42 88 66" aria-hidden>
+                    <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+                    <path fill="#34a853" d="M116 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+                    <path fill="#fbbc04" d="M116 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+                    <path fill="#ea4335" d="M72 74V48l22 16.5L116 48v26L94 90.5" />
+                    <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+                  </svg>
+                )}
                 <span>{copied ? "Copied!" : "hannax2313@gmail.com"}</span>
               </span>
-              <span className="hero-intro__cta">
-                Read more <ArrowUpRight size={14} />
-              </span>
+              <a
+                href="https://www.linkedin.com/in/hannah-x/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-intro__linkedin"
+                onClick={(e) => e.stopPropagation()}
+                aria-label="LinkedIn profile"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
             </div>
           </div>
+          <span className="hero-intro__cta" aria-hidden>
+            Read more <ArrowUpRight size={14} />
+          </span>
         </article>
+
+        {/* ───────────── Résumé ───────────── */}
+        <a
+          href={resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bento-tile tile-paper hero-resume"
+          style={{ "--delay": "60ms" } as React.CSSProperties}
+          aria-label="View résumé"
+        >
+          <span className="hero-resume__emoji" aria-hidden>📑</span>
+          <span className="hero-resume__label">Résumé</span>
+          <span className="tile-corner" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </a>
 
         {/* ───────────── Atypica AI — featured experience ───────────── */}
         <div
@@ -324,61 +372,8 @@ const BentoHero = ({}: BentoHeroProps) => {
         </div>
 
         {/* ═════════════════════════════════════════════════════════════════
-              ROW 2 — LinkedIn · Email · Quote · Theme
+              ROW 2 — Quote · Theme
             ═════════════════════════════════════════════════════════════════ */}
-
-        {/* ───────────── LinkedIn — icon tile ───────────── */}
-        <a
-          href="https://www.linkedin.com/in/hannah-x/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bento-tile tile-paper hero-linkedin"
-          style={{ "--delay": "60ms" } as React.CSSProperties}
-          aria-label="LinkedIn profile"
-        >
-          {/* LinkedIn "in" logotype */}
-          <svg width="96" height="74" viewBox="0 0 96 74" aria-hidden>
-            <text
-              x="2" y="68"
-              fontFamily="-apple-system, 'Helvetica Neue', Arial, sans-serif"
-              fontSize="76" fontWeight="800"
-              letterSpacing="-2"
-              fill="#0A66C2"
-            >in</text>
-          </svg>
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </a>
-
-        {/* ───────────── Email — Gmail icon, copy on click ───────────── */}
-        <div
-          role="button"
-          tabIndex={0}
-          className={`bento-tile tile-paper hero-email is-clickable${copied ? " is-copied" : ""}`}
-          style={{ "--delay": "120ms" } as React.CSSProperties}
-          onClick={copyEmail}
-          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && copyEmail()}
-          aria-label="Copy email address"
-        >
-          {copied ? (
-            <svg width="52" height="40" viewBox="0 0 52 40" aria-hidden>
-              <text x="26" y="30" textAnchor="middle"
-                fontFamily="-apple-system, 'Helvetica Neue', Arial, sans-serif"
-                fontSize="13" fontWeight="600"
-                fill="#1c8a4b">Copied!</text>
-            </svg>
-          ) : (
-            /* Gmail M logo */
-            <svg width="80" height="60" viewBox="52 42 88 66" aria-hidden>
-              <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
-              <path fill="#34a853" d="M116 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
-              <path fill="#fbbc04" d="M116 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
-              <path fill="#ea4335" d="M72 74V48l22 16.5L116 48v26L94 90.5" />
-              <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
-            </svg>
-          )}
-        </div>
 
         {/* ───────────── Principle · Control ───────────── */}
         <article
@@ -584,50 +579,6 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
         </div>
 
-        {/* ───────────── Bloomè ───────────── */}
-        <div
-          className="card c-bloome hero-experience hero-experience--bloome"
-          role="button"
-          tabIndex={0}
-          onClick={() => navigate('/bloome')}
-          onKeyDown={(e) => e.key === 'Enter' && navigate('/bloome')}
-          style={{
-            borderRadius: '14px',
-            border: 'none',
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-            padding: 0,
-            gap: 0,
-            opacity: 0,
-            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 460ms forwards',
-            cursor: 'pointer',
-          } as React.CSSProperties}
-        >
-          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
-            <video
-              src={bloomeVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-          </div>
-          <div style={{
-            background: '#ffffff',
-            padding: '12px 16px',
-            flexShrink: 0,
-          }}>
-            <div style={{
-              fontSize: 9, color: '#aaa',
-              letterSpacing: '0.07em', textTransform: 'uppercase',
-              marginBottom: 4,
-            }}>2024 · UX Research × Social Impact</div>
-            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Bloomè</div>
-          </div>
-        </div>
-
         {/* ───────────── Fora Tools ───────────── */}
         <div
           className="card c-fora hero-experience hero-experience--fora"
@@ -669,65 +620,10 @@ const BentoHero = ({}: BentoHeroProps) => {
           </div>
         </div>
 
-        {/* ───────────── Fridge Friend ───────────── */}
-        <div
-          className="card c-fridgefriend hero-experience hero-experience--fridgefriend"
-          role="button"
-          tabIndex={0}
-          onClick={() => navigate('/fridgeFriend')}
-          onKeyDown={(e) => e.key === 'Enter' && navigate('/fridgeFriend')}
-          style={{
-            borderRadius: '14px',
-            border: 'none',
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-            padding: 0,
-            gap: 0,
-            opacity: 0,
-            animation: 'bentoIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards',
-            cursor: 'pointer',
-          } as React.CSSProperties}
-        >
-          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
-            <img
-              src={fridgeFriendCover}
-              alt="Fridge Friend"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
-          </div>
-          <div style={{
-            background: '#ffffff',
-            padding: '12px 16px',
-            flexShrink: 0,
-          }}>
-            <div style={{
-              fontSize: 9, color: '#aaa',
-              letterSpacing: '0.07em', textTransform: 'uppercase',
-              marginBottom: 4,
-            }}>2023 · Product Design</div>
-            <div style={{ fontSize: 15, fontWeight: 500, color: '#1a1a18' }}>Fridge Friend</div>
-          </div>
-        </div>
 
         {/* ═════════════════════════════════════════════════════════════════
-              BELOW FOLD — Résumé · GitHub · Photos · Instagram · …
+              BELOW FOLD — GitHub · Photos · …
             ═════════════════════════════════════════════════════════════════ */}
-
-        {/* ───────────── Résumé ───────────── */}
-        <a
-          href={resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bento-tile tile-paper hero-resume"
-          style={{ "--delay": "480ms" } as React.CSSProperties}
-          aria-label="View résumé"
-        >
-          <img src={resumeImage} alt="Résumé" className="hero-resume__img" />
-          <span className="tile-corner" aria-hidden>
-            <ArrowUpRight size={16} />
-          </span>
-        </a>
 
         {/* ───────────── GitHub — contribution grid ───────────── */}
         <a
@@ -760,6 +656,55 @@ const BentoHero = ({}: BentoHeroProps) => {
             <ArrowUpRight size={16} />
           </span>
         </a>
+
+        {/* ───────────── Outside the Office ───────────── */}
+        <button
+          type="button"
+          className="hero-outside-office"
+          onClick={() => navigate("/for-fun")}
+        >
+          <div className="hero-outside-office__cover" aria-hidden>
+            <img src={nmImage} alt="" />
+          </div>
+          <div className="hero-outside-office__text">
+            <p className="eyebrow">Side quests</p>
+            <h3>Outside the Office</h3>
+          </div>
+          <span className="hero-outside-office__arrow" aria-hidden>
+            <ArrowUpRight size={16} />
+          </span>
+        </button>
+
+        {/* ───────────── Contact: Where ───────────── */}
+        <article className="bento-tile tile-paper hero-contact-where">
+          <Globe size={20} className="hero-contact-where__globe" />
+          <p className="eyebrow"><MapPin size={11} /> Based in</p>
+          <h3>Seattle, WA</h3>
+          <p className="hero-contact-where__sub">UTC-8 · Pacific Time</p>
+          <p className="hero-contact-where__sub muted">Travel-ready for the right team.</p>
+        </article>
+
+        {/* ───────────── Contact: Let's connect ───────────── */}
+        <article id="contact" className="bento-tile tile-paper hero-contact-main">
+          <div className="hero-contact-main__top">
+            <div className="hero-contact-main__status">
+              <span className="hero-contact-main__dot" />
+              <span>Open to PM roles &amp; freelance</span>
+            </div>
+            <h3 className="hero-contact-main__title">Let's work together.</h3>
+          </div>
+          <div className="hero-contact-main__actions">
+            <a
+              href="mailto:hx2313@uw.edu"
+              className="hero-contact-main__send"
+            >
+              <Mail size={12} /> Get in touch
+            </a>
+            <button type="button" className="hero-contact-main__copy" onClick={copyContactEmail}>
+              {contactCopied ? <><Check size={11} /> Copied</> : "or copy email"}
+            </button>
+          </div>
+        </article>
 
         {/* ───────────── Principle · AI ───────────── */}
         <article

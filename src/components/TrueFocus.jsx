@@ -11,6 +11,7 @@ export default function TrueFocus({
   borderColor = "green",
   glowColor = "rgba(0, 255, 0, 0.6)",
   textColor,
+  fontSize,
   animationDuration = 0.5,
   pauseBetweenAnimations = 1,
 }) {
@@ -53,7 +54,7 @@ export default function TrueFocus({
   };
 
   return (
-    <div className={`true-focus-container${direction === "column" ? " true-focus-container--column" : ""}`} ref={containerRef} style={textColor ? { "--text-color": textColor } : undefined}>
+    <div className={`true-focus-container${direction === "column" ? " true-focus-container--column" : ""}`} ref={containerRef} style={{ ...(textColor ? { "--text-color": textColor } : {}), ...(fontSize ? { "--font-size": fontSize } : {}) }}>
       {words.map((word, index) => (
         <span
           key={index}
