@@ -55,17 +55,21 @@
   .hero-principle--featured { grid-column: 1 / span 2; grid-row:  9 / span 2; }
   .hero-experience--zebra   { grid-column: 3 / span 6; grid-row:  7 / span 4; }
 
-  // ── Block 4 (r11-14): T-Mobile (6×4) + AI principle (2×2) + Contact-Where (2×2) ──
-  .hero-experience--tmobile  { grid-column: 1 / span 6; grid-row: 11 / span 4; }
+  // ── Block 4 (r11-14): SolarEase (6×4) + AI principle (2×2) + Contact-Where (2×2) ──
+  .hero-experience--solarease { grid-column: 1 / span 6; grid-row: 11 / span 4; }
   .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 7 / span 2; grid-row: 11 / span 2; }
   .hero-contact-where        { grid-column: 7 / span 2; grid-row: 13 / span 2; }
 
-  // ── Block 5 (r15-18): SolarEase (4×4) + Fora (4×4) — paired medium squares ──
-  .hero-experience--solarease { grid-column: 1 / span 4; grid-row: 15 / span 4; }
+  // ── Block 5 (r15-18): T-Mobile (4×4) + Fora (4×4) — paired medium squares ──
+  .hero-experience--tmobile   { grid-column: 1 / span 4; grid-row: 15 / span 4; }
   .hero-experience--fora      { grid-column: 5 / span 4; grid-row: 15 / span 4; }
 
-  // ── Block 6 (r19-20): Contact-Main — full-width CTA banner ──
-  .hero-contact-main { grid-column: 1 / span 8; grid-row: 19 / span 2; }
+  // ── Block 6 (r19-22): Bloomè (4×4) + Fridge Friend (4×4) ──
+  .hero-experience--bloome       { grid-column: 1 / span 4; grid-row: 19 / span 4; }
+  .hero-experience--fridgefriend { grid-column: 5 / span 4; grid-row: 19 / span 4; }
+
+  // ── Block 7 (r23-24): Contact-Main — full-width CTA banner ──
+  .hero-contact-main { grid-column: 1 / span 8; grid-row: 23 / span 2; }
 
   @media @tablet {
     > .bento-section__grid {
@@ -701,6 +705,15 @@
       width: 100px; height: 100px; color: var(--b-line);
       animation: heroSpin 18s linear infinite;
     }
+    &__chips {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+    }
+    &__chip {
+      font-family: var(--font-body); font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.05em; padding: 3px 9px; border-radius: 999px;
+      background: var(--b-bg-deep); border: 1px solid var(--b-line);
+      color: var(--b-ink-soft);
+    }
   }
   @keyframes heroSpin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
 
@@ -708,9 +721,9 @@
   .hero-contact-main {
     display: flex; flex-direction: row;
     align-items: center; justify-content: space-between;
-    padding: 28px 36px; gap: 24px;
+    padding: 28px 36px; gap: 32px;
 
-    &__top { display: flex; flex-direction: column; gap: 7px; }
+    &__top { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
 
     &__status {
       display: inline-flex; align-items: center; gap: 7px;
@@ -727,6 +740,29 @@
     &__title {
       font-family: var(--font-display); font-size: clamp(24px, 2.2vw, 34px);
       font-weight: 700; line-height: 1; margin: 0;
+    }
+
+    &__sub {
+      font-family: var(--font-body); font-size: 13px; line-height: 1.5;
+      color: var(--b-ink-soft); margin: 0; max-width: 44ch;
+    }
+
+    &__mid {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0;
+    }
+
+    &__social-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-body); font-size: 12px; font-weight: 600;
+      padding: 7px 13px; border-radius: 999px; text-decoration: none;
+      background: var(--b-bg-deep); border: 1px solid var(--b-line);
+      color: var(--b-ink); transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      &:hover { background: var(--b-paper); border-color: var(--b-ink-soft); transform: translateY(-1px); }
+    }
+
+    &__reply {
+      font-family: var(--font-body); font-size: 11px; font-weight: 500;
+      color: var(--b-ink-soft); white-space: nowrap;
     }
 
     &__actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
@@ -746,6 +782,16 @@
       display: inline-flex; align-items: center; gap: 4px;
       transition: color 0.2s;
       &:hover { color: var(--b-ink); }
+    }
+
+    @media @tablet {
+      gap: 20px; padding: 24px 28px;
+      &__mid { gap: 6px; }
+    }
+    @media @mobile {
+      flex-direction: column; align-items: flex-start;
+      padding: 22px 20px; gap: 16px;
+      &__sub { display: none; }
     }
   }
   @keyframes heroContactPulse {
@@ -838,7 +884,8 @@
 // ============================================================================
 .bento-hero {
   .bento-tile,
-  .hero-experience {
+  .hero-experience,
+  .hero-outside-office {
     transition:
       opacity 0.45s ease,
       filter 0.45s ease,
@@ -846,66 +893,109 @@
   }
 }
 
-// Default dim/blur applied to every tile (both `.bento-tile` and `.hero-experience`,
-// since the project cards use `.hero-experience` without `.bento-tile`) while any
-// spotlight is active. Each spotlight rule below re-enables its own category.
+// Default dim/blur applied to every tile while any spotlight is active.
+// Opacity is raised and blur increased so the blurred tiles remain readable
+// as a soft backdrop beneath the highlighted section.
 .bento-hero[data-spotlight] {
   .bento-tile,
   .hero-experience {
-    opacity: 0.16 !important;
-    filter: blur(3px) saturate(0.4);
+    opacity: 0.4 !important;
+    filter: blur(8px) saturate(0.25);
     pointer-events: none;
   }
 }
 
 // ─────────── ABOUT spotlight ───────────
-// Intro (6×2) + Resume (2×2) stay at rows 1-2; everything else auto-flows below.
+// Row 1-2:  Intro (6×2) · Resume (2×2)
+// Row 3-6:  Outside Office (4×4) | Control (2×2) · GitHub (2×2)
+//                                | AI (2×2)       · Seattle (2×2)
+// Row 7+:   blurred tiles packed tight — no gaps
 .bento-hero[data-spotlight="about"] {
-  .hero-intro  { grid-column: 1 / span 6; grid-row: 1 / span 2; }
-  .hero-resume { grid-column: 7 / span 2; grid-row: 1 / span 2; }
+  > .bento-section__grid {
+    grid-template-rows: repeat(6, ~"min(calc((100vw - 196px) / 8), calc((1280px - 140px) / 8))");
+    grid-auto-rows: ~"min(calc((100vw - 196px) / 8), calc((1280px - 140px) / 8))";
 
-  .hero-intro, .hero-resume {
+    @media @tablet {
+      grid-template-rows: repeat(6, ~"calc((100vw - 112px) / 8)");
+      grid-auto-rows: ~"calc((100vw - 112px) / 8)";
+    }
+  }
+
+  // ── Relevant tiles pinned to rows 1-6 ──
+  .hero-intro          { grid-column: 1 / span 6; grid-row: 1 / span 2; }
+  .hero-resume         { grid-column: 7 / span 2; grid-row: 1 / span 2; }
+  .hero-outside-office { grid-column: 1 / span 4; grid-row: 3 / span 4; }
+  .hero-principle--featured                      { grid-column: 5 / span 2; grid-row: 3 / span 2; }
+  .hero-github                                   { grid-column: 7 / span 2; grid-row: 3 / span 2; }
+  .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 5 / span 2; grid-row: 5 / span 2; }
+  .hero-contact-where  { grid-column: 7 / span 2; grid-row: 5 / span 2; }
+
+  // ── Reveal relevant tiles ──
+  .hero-intro, .hero-resume, .hero-principle, .hero-github, .hero-contact-where {
     opacity: 1 !important; filter: none !important; pointer-events: auto !important;
   }
 
-  .hero-experience, .hero-github, .hero-theme, .hero-principle,
-  .hero-outside-office, .hero-contact-where, .hero-contact-main {
-    grid-column: auto; grid-row: auto;
-  }
+  // ── Blurred tiles below, explicitly positioned so every cell is filled ──
+  .hero-experience--atypica      { grid-column: 1 / span 8; grid-row:  7 / span 4; }
+  .hero-experience--zebra        { grid-column: 1 / span 8; grid-row: 11 / span 4; }
+  .hero-experience--solarease    { grid-column: 1 / span 8; grid-row: 15 / span 4; }
+  .hero-experience--tmobile      { grid-column: 1 / span 4; grid-row: 19 / span 4; }
+  .hero-experience--fora         { grid-column: 5 / span 4; grid-row: 19 / span 4; }
+  .hero-experience--bloome       { grid-column: 1 / span 4; grid-row: 23 / span 4; }
+  .hero-experience--fridgefriend { grid-column: 5 / span 4; grid-row: 23 / span 4; }
+  .hero-theme                    { grid-column: 1 / span 8; grid-row: 27 / span 2; }
+  .hero-contact-main             { grid-column: 1 / span 8; grid-row: 29 / span 2; }
 }
 
 // ─────────── EXPERIENCE spotlight ───────────
-// Atypica(6×4) · Zebra(6×4) · T-Mobile(6×4) at top; sidebars auto-flow.
+// Row 1-4:  Atypica (full width)
+// Row 5-8:  Zebra (full width)
+// Row 9-12: SolarEase (full width)
+// Row 13-16: T-Mobile (4×4) · Fora (4×4)
+// Row 17-20: Bloomè (4×4) · Fridge Friend (4×4)
+// Rows 21+: irrelevant tiles auto-flow below at natural sizes, blurred.
 .bento-hero[data-spotlight="experience"] {
-  .hero-experience--atypica { grid-column: 1 / span 6; grid-row:  1 / span 4; }
-  .hero-experience--zebra   { grid-column: 1 / span 6; grid-row:  5 / span 4; }
-  .hero-experience--tmobile { grid-column: 1 / span 6; grid-row:  9 / span 4; }
+  > .bento-section__grid {
+    grid-template-rows: repeat(20, ~"min(calc((100vw - 196px) / 8), calc((1280px - 140px) / 8))");
+    grid-auto-rows: ~"min(calc((100vw - 196px) / 8), calc((1280px - 140px) / 8))";
 
-  .hero-experience--atypica, .hero-experience--tmobile, .hero-experience--zebra {
+    @media @tablet {
+      grid-template-rows: repeat(20, ~"calc((100vw - 112px) / 8)");
+      grid-auto-rows: ~"calc((100vw - 112px) / 8)";
+    }
+  }
+
+  // ── Pin all experience tiles to the top ──
+  .hero-experience--atypica      { grid-column: 1 / span 8; grid-row:  1 / span 4; }
+  .hero-experience--zebra        { grid-column: 1 / span 8; grid-row:  5 / span 4; }
+  .hero-experience--solarease    { grid-column: 1 / span 8; grid-row:  9 / span 4; }
+  .hero-experience--tmobile      { grid-column: 1 / span 4; grid-row: 13 / span 4; }
+  .hero-experience--fora         { grid-column: 5 / span 4; grid-row: 13 / span 4; }
+  .hero-experience--bloome       { grid-column: 1 / span 4; grid-row: 17 / span 4; }
+  .hero-experience--fridgefriend { grid-column: 5 / span 4; grid-row: 17 / span 4; }
+
+  // ── Reveal all experience tiles ──
+  .hero-experience {
     opacity: 1 !important; filter: none !important; pointer-events: auto !important;
   }
 
-  .hero-intro, .hero-theme, .hero-principle, .hero-resume,
-  .hero-github, .hero-outside-office, .hero-contact-where, .hero-contact-main,
-  .hero-experience--solarease, .hero-experience--fora {
-    grid-column: auto; grid-row: auto;
-  }
-}
+  // ── Blurred tiles below, explicitly positioned so every cell is filled ──
+  .hero-intro        { grid-column: 1 / span 6; grid-row: 21 / span 2; }
+  .hero-resume       { grid-column: 7 / span 2; grid-row: 21 / span 2; }
+  .hero-theme        { grid-column: 1 / span 2; grid-row: 23 / span 2; }
+  .hero-github       { grid-column: 3 / span 2; grid-row: 23 / span 2; }
+  .hero-principle--featured                      { grid-column: 5 / span 2; grid-row: 23 / span 2; }
+  .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 7 / span 2; grid-row: 23 / span 2; }
+  .hero-contact-where  { grid-column: 1 / span 4; grid-row: 25 / span 2; }
+  .hero-contact-main   { grid-column: 1 / span 8; grid-row: 27 / span 2; }
 
-// ─────────── PROJECTS spotlight ───────────
-// SolarEase + Fora shown as 4×4 pairs at the top.
-.bento-hero[data-spotlight="projects"] {
-  .hero-experience--solarease { grid-column: 1 / span 4; grid-row: 1 / span 4; }
-  .hero-experience--fora      { grid-column: 5 / span 4; grid-row: 1 / span 4; }
-
-  .hero-experience--solarease, .hero-experience--fora {
-    opacity: 1 !important; filter: none !important; pointer-events: auto !important;
-  }
-
-  .hero-intro, .hero-theme, .hero-principle, .hero-resume,
-  .hero-github, .hero-outside-office, .hero-contact-where, .hero-contact-main,
-  .hero-experience--atypica, .hero-experience--tmobile, .hero-experience--zebra {
-    grid-column: auto; grid-row: auto;
+  // hero-outside-office is not a .bento-tile — blur it manually and explicitly position it
+  .hero-outside-office {
+    grid-column: 5 / span 4;
+    grid-row: 25 / span 2;
+    opacity: 0.4 !important;
+    filter: blur(8px) saturate(0.25);
+    pointer-events: none !important;
   }
 }
 
@@ -940,3 +1030,4 @@
   color: rgba(26, 22, 18, 0.6);
   font-style: italic;
 }
+
