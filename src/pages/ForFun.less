@@ -5,7 +5,7 @@
   min-height: 100vh;
 }
 
-// Hero Section
+// Hero
 .for-fun-hero {
   padding: 8rem 0 4rem;
   text-align: center;
@@ -30,122 +30,109 @@
   }
 }
 
-// Fun Sections
-.for-fun-section {
-  padding: 4rem 0;
+// Body layout
+.for-fun-body {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
 
   @media @mobile {
-    padding: 3rem 0;
+    flex-direction: column;
+    padding: 0 1rem 3rem;
+  }
+}
+
+// Sidebar
+.for-fun-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  padding-top: 2rem;
+
+  @media @tablet {
+    width: 180px;
   }
 
-  &:nth-child(odd) {
-    background-color: var(--card);
+  @media @mobile {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
   }
 
-  .for-fun-content {
-    margin-bottom: 3rem;
-  }
-
-  .for-fun-text {
-    max-width: 48rem;
-  }
-
-  &.reverse .for-fun-text {
-    margin-left: auto;
+  &__nav {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 
     @media @mobile {
-      margin-left: 0;
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
   }
 
-  .for-fun-section-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    margin-bottom: 1rem;
-    color: var(--foreground);
-  }
-
-  .for-fun-description {
-    font-size: 1.125rem;
+  &__link {
+    display: block;
+    text-align: left;
+    padding: 0.625rem 1rem;
+    font-size: 1rem;
     color: var(--muted-foreground);
-    line-height: 1.7;
-    font-style: italic;
-  }
-
-  .for-fun-description-link {
-    font-size: 1.125rem;
-    color: var(--primary);
-    line-height: 1.7;
-    font-style: italic;
-    text-decoration: underline;
-    display: inline-block;
-    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    transition: color 0.2s;
+    width: 100%;
+    font-family: var(--font-body);
 
     &:hover {
-      color: var(--accent);
+      color: var(--foreground);
+    }
+
+    &.is-active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    @media @mobile {
+      width: auto;
+      font-size: 0.875rem;
+      padding: 0.375rem 0.75rem;
+      background: var(--muted);
+      border-radius: 999px;
+
+      &.is-active {
+        background: var(--primary);
+        color: var(--primary-foreground);
+      }
     }
   }
 }
 
-// Gallery - Horizontal Scrolling
-.for-fun-gallery {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 1rem 0 2rem;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+// Main content
+.for-fun-content {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid var(--border);
+  padding-left: 3rem;
 
-  // Custom scrollbar styling
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: var(--muted);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: var(--accent);
-    }
+  @media @tablet {
+    padding-left: 2rem;
   }
 
   @media @mobile {
-    gap: 1rem;
-    padding: 0.75rem 0 1.5rem;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 2rem;
   }
+}
 
-  .for-fun-gallery-item {
-    flex-shrink: 0;
-    width: 350px;
-    height: 280px;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-
-    @media @mobile {
-      width: 250px;
-      height: 200px;
-    }
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    }
-
-    .lazy-image {
-      transition: transform 0.4s ease;
-    }
-
-    &:hover .lazy-image {
-      transform: scale(1.05);
-    }
-  }
+// Each masonry section — no gaps, fully blended
+.for-fun-section {
+  padding: 0;
+  margin: 0;
 }
