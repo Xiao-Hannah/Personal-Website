@@ -216,39 +216,14 @@
 @fora-text-muted: #5a5a5a;
 @fora-accent: #c08a3c;
 
-// Atypica Theme (Dark)
+// Atypica Theme (Light — matches landing page)
 .navigation.theme-atypica {
-  .logo {
-    color: @atypica-text;
-    &:hover { color: @atypica-accent; }
-  }
-  .nav-link {
-    color: @atypica-text-muted;
-    &::after { background-color: @atypica-accent; }
-    &:hover { color: @atypica-text; }
-  }
-  .mobile-menu-button { color: @atypica-text; }
-
   &.scrolled {
-    background-color: rgba(10, 10, 10, 0.9);
-    border-bottom-color: @atypica-border;
+    background-color: hsla(40, 30%, 96%, 0.85);
+    border-bottom-color: hsl(35, 20%, 82%);
   }
   &.menu-open {
-    background-color: @atypica-bg;
-  }
-}
-
-.mobile-sidebar.theme-atypica {
-  background-color: @atypica-card;
-  border-left-color: @atypica-border;
-
-  .mobile-sidebar-close {
-    color: @atypica-text;
-    &:hover { color: @atypica-accent; }
-  }
-  .mobile-nav-link {
-    color: @atypica-text-muted;
-    &:hover { color: @atypica-accent; }
+    background-color: hsl(40, 30%, 96%);
   }
 }
 

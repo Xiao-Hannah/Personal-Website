@@ -14,13 +14,13 @@ import profileImage from "@/assets/images/profile/profile3.png";
 import resume from "@/assets/files/resume.pdf";
 import resumeImage from "@/assets/images/resume3.png";
 import { useNavigate } from "react-router-dom";
-import tmobileVideo from "@/assets/videos/tmed.mp4";
+import tmobileVideo from "@/assets/videos/tmed2.mp4";
 import atypicaVideo from "@/assets/videos/atypica_0524.mp4";
-import solareaseCoverVideo from "@/assets/videos/solarease_cover.mp4";
+import solareaseCoverVideo from "@/assets/videos/SOLAREASE2.mp4";
 import foraCover from "../../assets/images/fora/fora.webp";
 import nmImage from "@/assets/images/newmexico.jpg";
 import Aurora from "@/components/Aurora";
-import TrueFocus from "@/components/TrueFocus";
+import zebraNewCoverVideo from "@/assets/videos/zebra_new_cover.mp4";
 import BentoExpand from "./BentoExpand";
 import IntroModalBody from "./IntroModalBody";
 import { useSpotlight } from "./SpotlightContext";
@@ -458,23 +458,14 @@ const BentoHero = ({}: BentoHeroProps) => {
             cursor: 'pointer',
           } as React.CSSProperties}
         >
-          <div style={{
-            flex: 1,
-            background: '#faf6ee',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: 0,
-          }}>
-            <TrueFocus
-              sentence="Touchless Authentication"
-              manualMode={false}
-              blurAmount={4}
-              borderColor="#0A66C2"
-              glowColor="rgba(10, 102, 194, 0.25)"
-              fontSize="1.9rem"
-              animationDuration={0.8}
-              pauseBetweenAnimations={1.5}
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <video
+              src={zebraNewCoverVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
           </div>
           <div style={{

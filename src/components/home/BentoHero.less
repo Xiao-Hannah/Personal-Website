@@ -50,13 +50,13 @@
   .hero-github              { position: relative; text-decoration: none; color: inherit; grid-column: 7 / span 2; grid-row:  3 / span 2; }
   .hero-theme               { position: relative; font-family: inherit; text-align: left; overflow: hidden; grid-column: 7 / span 2; grid-row:  5 / span 2; }
 
-  // ── Block 3 (r7-10): Outside Office (2×2) + Control (2×2) LEFT | T-Mobile (6×4) RIGHT ──
+  // ── Block 3 (r7-10): Outside Office (2×2) + Control (2×2) LEFT | Zebra (6×4) RIGHT ──
   .hero-outside-office      { grid-column: 1 / span 2; grid-row:  7 / span 2; }
   .hero-principle--featured { grid-column: 1 / span 2; grid-row:  9 / span 2; }
-  .hero-experience--tmobile { grid-column: 3 / span 6; grid-row:  7 / span 4; }
+  .hero-experience--zebra   { grid-column: 3 / span 6; grid-row:  7 / span 4; }
 
-  // ── Block 4 (r11-14): Zebra (6×4) + AI principle (2×2) + Contact-Where (2×2) ──
-  .hero-experience--zebra    { grid-column: 1 / span 6; grid-row: 11 / span 4; }
+  // ── Block 4 (r11-14): T-Mobile (6×4) + AI principle (2×2) + Contact-Where (2×2) ──
+  .hero-experience--tmobile  { grid-column: 1 / span 6; grid-row: 11 / span 4; }
   .hero-principle:not(.hero-principle--featured) { position: relative; grid-column: 7 / span 2; grid-row: 11 / span 2; }
   .hero-contact-where        { grid-column: 7 / span 2; grid-row: 13 / span 2; }
 
@@ -875,11 +875,11 @@
 }
 
 // ─────────── EXPERIENCE spotlight ───────────
-// Atypica(6×4) · T-Mobile(6×4) · Zebra(6×4) at top; sidebars auto-flow.
+// Atypica(6×4) · Zebra(6×4) · T-Mobile(6×4) at top; sidebars auto-flow.
 .bento-hero[data-spotlight="experience"] {
   .hero-experience--atypica { grid-column: 1 / span 6; grid-row:  1 / span 4; }
-  .hero-experience--tmobile { grid-column: 1 / span 6; grid-row:  5 / span 4; }
-  .hero-experience--zebra   { grid-column: 1 / span 6; grid-row:  9 / span 4; }
+  .hero-experience--zebra   { grid-column: 1 / span 6; grid-row:  5 / span 4; }
+  .hero-experience--tmobile { grid-column: 1 / span 6; grid-row:  9 / span 4; }
 
   .hero-experience--atypica, .hero-experience--tmobile, .hero-experience--zebra {
     opacity: 1 !important; filter: none !important; pointer-events: auto !important;
