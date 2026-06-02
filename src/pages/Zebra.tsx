@@ -15,7 +15,6 @@ const Zebra = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Check if user has previously authenticated
     const storedAuth = localStorage.getItem(STORAGE_KEY);
     if (storedAuth === 'true') {
       setIsAuthenticated(true);
@@ -32,11 +31,6 @@ const Zebra = () => {
       setError('Incorrect password');
       setPassword('');
     }
-  };
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   // Show password gate if not authenticated
@@ -108,37 +102,19 @@ const Zebra = () => {
         </div>
       </section>
 
-      {/* Table of Contents */}
-      <section className="zebra-toc">
-        <div className="container">
-          <nav className="zebra-toc-nav">
-            <button onClick={() => scrollToSection('context')}>Context & Problem</button>
-            <button onClick={() => scrollToSection('approach')}>What I Did</button>
-            <button onClick={() => scrollToSection('result')}>Result</button>
-            <button onClick={() => scrollToSection('learnings')}>What I Learned</button>
-          </nav>
-        </div>
-      </section>
-
       {/* Context & Problem */}
       <section id="context" className="zebra-section">
         <div className="container">
           <h2 className="zebra-section-title">Context & Problem</h2>
-
           <div className="zebra-context-with-image">
             <div className="zebra-context-text">
               <p>
-                Zebra's Workcloud Clock App runs on ET40/45 tablets deployed across warehouses, retail floors, and distribution centers where frontline workers clock in and out of shifts on shared devices.
+                Zebra's Workcloud Clock App runs on ET40/45 tablets deployed across warehouses, retail floors, and distribution centers where frontline workers clock in and out on shared devices.
               </p>
-
-              <h3 className="zebra-subsection-title">The Challenge</h3>
-              <ul className="zebra-simple-list">
-                <li>Existing methods (manual entry, QR codes, RFID badges) created friction and left systems vulnerable to time fraud</li>
-                <li>Customers concerned about storing biometric data on shared devices</li>
-                <li>Needed stronger authentication without slowing high-volume clock-in periods</li>
-              </ul>
+              <p>
+                The existing methods — manual entry, QR codes, RFID badges — all had the same vulnerability: buddy punching. A worker could clock in for someone else with no way to verify identity. The fix seemed obvious: biometrics. But shared devices created a harder constraint. You can't store per-user biometric data on a device that rotates between dozens of workers per shift. Any solution had to authenticate without storing.
+              </p>
             </div>
-
             <div className="zebra-context-image">
               <img src={clockinImage} alt="Workcloud Clock App in use" />
             </div>
@@ -146,62 +122,35 @@ const Zebra = () => {
         </div>
       </section>
 
-      {/* What I Did */}
-      <section id="approach" className="zebra-section zebra-approach-section">
+      {/* NFC Integration */}
+      <section id="nfc" className="zebra-section">
         <div className="container">
-          <h2 className="zebra-section-title">What I Did</h2>
-
+          <h2 className="zebra-section-title">NFC Integration Feasibility</h2>
           <div className="zebra-context-main">
             <p>
-              I led two parallel initiatives to address authentication and security gaps while maintaining operational efficiency for frontline workers.
+              I evaluated NFC as a contactless alternative, assessing chip types across four dimensions: memory capacity, price, compatibility with pre-formatted cards, and security features.
             </p>
-
-            <h3 className="zebra-subsection-title">NFC Integration Feasibility</h3>
-            <p className="zebra-subsection-intro">
-              Evaluated contactless authentication as an alternative to existing methods.
+            <p>
+              MIFARE DESFire EV1 came out ahead. AES encryption, anti-collision support for high-volume clock-in periods, multi-application support, and broad compatibility with existing card infrastructure. The tradeoff was cost and a proprietary protocol, but its wide enterprise adoption made it the defensible choice. I confirmed SDK compatibility with the ET40/45 hardware directly with the device team and product owner, since all software runs tablet-bound.
             </p>
-            <ul className="zebra-simple-list">
-              <li>Assessed six NFC chip types for ET40/45 tablet compatibility, memory requirements, and security features</li>
-              <li>Designed encoding workflows for physical cards and mobile wallet provisioning</li>
-              <li>Built comparative analysis of deployment options to inform product roadmap decisions</li>
-            </ul>
-
-            <h3 className="zebra-subsection-title">Identity Guardian Integration</h3>
-            <p className="zebra-subsection-intro">
-              Integrated Zebra's facial biometric platform directly into the Clock App to eliminate on-device biometric storage.
-            </p>
-            <ul className="zebra-simple-list">
-              <li>Confirmed technical feasibility across system architecture and existing APIs</li>
-              <li>Mapped end-to-end user flows from enrollment through authentication and defined product requirements</li>
-              <li>Built working proof-of-concept in Android Studio to validate integration approach</li>
-              <li>Coordinated with engineering to resolve technical blockers and refine implementation path</li>
-            </ul>
           </div>
         </div>
       </section>
 
-      {/* Result */}
-      <section id="result" className="zebra-section zebra-result-section">
+      {/* Identity Guardian */}
+      <section id="identity" className="zebra-section">
         <div className="container">
-          <h2 className="zebra-section-title">Result</h2>
-
+          <h2 className="zebra-section-title">Identity Guardian Integration</h2>
           <div className="zebra-context-main">
             <p>
-              Both solutions addressed critical gaps in security and efficiency without disrupting the frontline worker experience. The proof-of-concept validated the technical approach and established the foundation for product rollout.
+              The cleaner long-term solution wasn't on anyone's radar when I joined. Zebra's Identity Guardian SDK offered facial biometric authentication that processes and discards data locally within 24 hours, with no cloud upload — which directly addressed the shared-device constraint that made every other biometric approach a non-starter.
             </p>
-
-            <h3 className="zebra-subsection-title">Security & Privacy</h3>
-            <ul className="zebra-simple-list">
-              <li>Eliminated on-device biometric storage through Identity Guardian integration</li>
-              <li>Enabled multifactor authentication with barcode and facial verification</li>
-              <li>Reduced fraud risk through encrypted, contactless NFC credentials</li>
-            </ul>
-
-            <h3 className="zebra-subsection-title">Operational Efficiency</h3>
-            <ul className="zebra-simple-list">
-              <li>Reduced authentication time during high-volume shift changes</li>
-              <li>Maintained seamless clock-in flow without adding operational complexity</li>
-            </ul>
+            <p>
+              I built a working proof-of-concept in Android Studio, calling the SDK's authorization and session monitoring APIs and validating the flow with a UI mock in a live demo environment. Getting there required coordinating directly with an SDE on the IG team to resolve a permissions conflict: Identity Guardian locks the device screen by default, which blocked our app from launching. Nothing in the documentation covered this case, so I tracked down the right person and got our app whitelisted.
+            </p>
+            <p>
+              The POC gave the team something concrete to evaluate. It went from an idea nobody had considered to a roadmap item with executive buy-in.
+            </p>
           </div>
         </div>
       </section>
@@ -210,16 +159,12 @@ const Zebra = () => {
       <section id="learnings" className="zebra-section">
         <div className="container">
           <h2 className="zebra-section-title">What I Learned</h2>
-
           <div className="zebra-context-main">
             <p>
-              Enterprise product work requires confirming alignment early and often. Different stakeholders can walk away from the same technical discussion with different understandings—frequent check-ins and written documentation prevent costly misalignment.
+              Enterprise product work moves through people before it moves through code. Getting the NFC evaluation right required pulling hardware specs from the device team. Getting the IG integration unblocked required finding the right engineer on a vendor team and explaining the issue clearly enough that they'd prioritize it.
             </p>
             <p>
-              Leading with "why" before defining "how" shapes better product decisions. Understanding the operational problem behind a feature request matters more than optimizing for implementation speed.
-            </p>
-            <p>
-              Working demos validate feasibility faster than documentation. Under tight timelines, a proof-of-concept that proves technical viability moves the conversation forward more effectively than polished specs.
+              The thing I underestimated was how much written documentation matters in cross-functional work. People walk away from the same technical conversation with different assumptions. I started writing up decisions and blockers after every major sync, and it consistently reduced the back-and-forth in the next one.
             </p>
           </div>
         </div>

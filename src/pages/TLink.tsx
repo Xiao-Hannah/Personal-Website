@@ -422,7 +422,7 @@ const TLink = () => {
           {/* Login */}
           <div className="tlink-portal-showcase">
             <h3>Authentication</h3>
-            <img src={loginImg} alt="Login interface" className="tlink-portal-image" />
+            <img src={loginImg} alt="Login interface" className="tlink-portal-image tlink-portal-image--auth" />
             <p>
               Secure login system with role-based routing to patient or doctor portals
             </p>

@@ -2,28 +2,29 @@
 @import '../styles/variables.less';
 @import '../styles/mixins.less';
 
+@se-blue:       #4e5280;
+@se-blue-dark:  #3b3e63;
+@se-blue-light: rgba(78, 82, 128, 0.1);
+@se-bg:         hsl(40, 30%, 96%);
+@se-card:       #ffffff;
+@se-border:     rgba(0, 0, 0, 0.08);
+@se-text:       #1a1612;
+@se-muted:      rgba(26, 22, 18, 0.55);
+
 .solarease-page {
-  --solarease-primary: #00d4ff;          // bright cyan from live site
-  --solarease-primary-dark: #0ea5e9;
-  --solarease-accent: #fbbf24;           // warm solar gold
-  --solarease-secondary: #10b981;        // sustainability green
-  --solarease-bg: #0a0a0a;
-  --solarease-card-bg: #1a1a1a;
-  --solarease-border: #2a2a2a;
-  --solarease-text: #ffffff;
-  --solarease-text-muted: #a0a0a0;
+  background: @se-bg;
+  color: @se-text;
 
-  background: var(--solarease-bg);
-  color: var(--solarease-text);
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-  // Hero
+  // ── Hero ──────────────────────────────────────────────────────────────────
   .solarease-hero {
     padding: 8rem 0 4rem;
-    background:
-      radial-gradient(ellipse at top right, rgba(0, 212, 255, 0.08), transparent 60%),
-      radial-gradient(ellipse at bottom left, rgba(251, 191, 36, 0.06), transparent 60%),
-      var(--solarease-bg);
-    border-bottom: 1px solid var(--solarease-border);
+    border-bottom: 1px solid @se-border;
 
     @media @mobile {
       padding: 6rem 0 3rem;
@@ -51,8 +52,8 @@
       max-width: 30rem;
       border-radius: 0.75rem;
       overflow: hidden;
-      border: 1px solid var(--solarease-border);
-      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.12);
+      border: 1px solid @se-border;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 
       @media @mobile {
         max-width: 100%;
@@ -71,25 +72,23 @@
       font-size: clamp(2rem, 6vw, 3.5rem);
       line-height: 1.2;
       margin-bottom: 1.5rem;
-      color: var(--solarease-text);
-      background: linear-gradient(90deg, #00d4ff 0%, #fbbf24 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: @se-blue;
     }
 
     .solarease-subtitle {
       font-size: clamp(1.125rem, 3vw, 1.375rem);
-      color: var(--solarease-text-muted);
+      color: @se-muted;
       margin-bottom: 1rem;
       line-height: 1.6;
       max-width: 36rem;
     }
 
     .solarease-role-line {
-      font-size: 0.875rem;
-      color: var(--solarease-text-muted);
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: @se-text;
       margin-bottom: 2rem;
+      letter-spacing: 0.01em;
     }
 
     .solarease-links {
@@ -99,19 +98,25 @@
     .solarease-btn {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      background: var(--solarease-primary);
-      color: var(--solarease-bg);
+      background: @se-blue;
+      color: #fff;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.938rem;
       border-radius: 0.5rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+      transition: background 0.2s ease, transform 0.2s ease;
 
       &:hover {
-        background: var(--solarease-primary-dark);
+        background: @se-blue-dark;
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0, 212, 255, 0.35);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:focus {
+        outline: none;
       }
     }
 
@@ -121,9 +126,9 @@
       gap: 0.5rem;
 
       span {
-        background: var(--solarease-card-bg);
-        border: 1px solid var(--solarease-border);
-        color: var(--solarease-text-muted);
+        background: @se-card;
+        border: 1px solid @se-border;
+        color: @se-muted;
         font-size: 0.75rem;
         padding: 0.375rem 0.75rem;
         border-radius: 999px;
@@ -132,50 +137,27 @@
     }
   }
 
-  // Table of Contents
-  .solarease-toc {
-    position: sticky;
-    top: 60px;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--solarease-border);
-    z-index: 40;
-    padding: 1rem 0;
+  // ── Reading progress bar ──────────────────────────────────────────────────
+  .solarease-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(37, 99, 235, 0.15);
+    z-index: 200;
 
-    .solarease-toc-nav {
-      display: flex;
-      gap: 2rem;
-      overflow-x: auto;
-
-      @media @mobile {
-        gap: 1.5rem;
-      }
-
-      button {
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--solarease-text-muted);
-        white-space: nowrap;
-        padding: 0.5rem 1rem;
-        border-radius: 0.375rem;
-        transition: all 0.2s ease;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-
-        &:hover {
-          color: var(--solarease-primary);
-          background: rgba(0, 212, 255, 0.1);
-        }
-      }
+    &__fill {
+      height: 100%;
+      background: @se-blue;
+      transition: width 0.1s linear;
     }
   }
 
-  // Common section
+  // ── Common section ────────────────────────────────────────────────────────
   .solarease-section {
     padding: 4rem 0;
-    border-bottom: 1px solid var(--solarease-border);
+    border-bottom: 1px solid @se-border;
 
     @media @mobile {
       padding: 3rem 0;
@@ -185,7 +167,7 @@
       font-family: var(--font-display);
       font-size: clamp(1.75rem, 4vw, 2.25rem);
       margin-bottom: 1.5rem;
-      color: var(--solarease-text);
+      color: @se-text;
     }
   }
 
@@ -194,66 +176,58 @@
 
     p {
       font-size: 1rem;
-      color: var(--solarease-text-muted);
+      color: @se-muted;
       line-height: 1.7;
       margin-bottom: 1.25rem;
     }
 
     code {
-      background: var(--solarease-card-bg);
-      border: 1px solid var(--solarease-border);
+      background: @se-card;
+      border: 1px solid @se-border;
       padding: 0.125rem 0.375rem;
       border-radius: 0.25rem;
       font-size: 0.875em;
-      color: var(--solarease-primary);
+      color: @se-blue;
     }
   }
 
-  // Problem Blocks
+  // ── Problem Cards ─────────────────────────────────────────────────────────
   .problem-blocks {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 
     @media @tablet {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
     }
   }
 
   .problem-block {
-    background: var(--solarease-card-bg);
+    background: @se-card;
+    border: 1px solid @se-border;
+    border-radius: 1rem;
     padding: 2rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--solarease-border);
-    transition: all 0.3s ease;
-
-    &:hover {
-      border-color: var(--solarease-primary);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
-      transform: translateY(-4px);
-    }
 
     h3 {
       font-family: var(--font-display);
-      font-size: 1.375rem;
+      font-size: 1.125rem;
       font-weight: 600;
-      color: var(--solarease-text);
+      color: @se-text;
       margin-bottom: 0.75rem;
     }
 
     p {
       font-size: 0.938rem;
-      color: var(--solarease-text-muted);
-      line-height: 1.6;
+      color: @se-muted;
+      line-height: 1.7;
       margin: 0;
     }
   }
 
-  // Approach
+  // ── Approach ──────────────────────────────────────────────────────────────
   .solarease-approach-section {
-    background: var(--solarease-bg);
+    background: @se-bg;
   }
 
   .approach-subsection {
@@ -268,47 +242,26 @@
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--solarease-text);
+    color: @se-text;
     margin-bottom: 2rem;
   }
 
-  .approach-blocks {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-
-    @media @tablet {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
+  // ── Approach prose items (no boxes) ──────────────────────────────────────
+  .approach-prose-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 56rem;
   }
 
-  .approach-block {
-    background: var(--solarease-card-bg);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--solarease-border);
-    transition: all 0.3s ease;
+  .approach-prose-item {
+    font-size: 1rem;
+    color: @se-muted;
+    line-height: 1.7;
 
-    &:hover {
-      border-color: var(--solarease-accent);
-      box-shadow: 0 0 20px rgba(251, 191, 36, 0.18);
-      transform: translateY(-4px);
-    }
-
-    h4 {
-      font-family: var(--font-display);
-      font-size: 1.125rem;
+    strong {
+      color: @se-text;
       font-weight: 600;
-      color: var(--solarease-accent);
-      margin-bottom: 0.75rem;
-    }
-
-    p {
-      font-size: 0.938rem;
-      color: var(--solarease-text-muted);
-      line-height: 1.7;
-      margin: 0;
     }
   }
 
@@ -320,7 +273,7 @@
 
     li {
       font-size: 1rem;
-      color: var(--solarease-text-muted);
+      color: @se-muted;
       line-height: 1.8;
       margin-bottom: 1rem;
       padding-left: 1.75rem;
@@ -330,22 +283,22 @@
         content: "→";
         position: absolute;
         left: 0;
-        color: var(--solarease-primary);
+        color: @se-blue;
         font-weight: 700;
       }
 
       code {
-        background: var(--solarease-card-bg);
-        border: 1px solid var(--solarease-border);
+        background: @se-card;
+        border: 1px solid @se-border;
         padding: 0.125rem 0.375rem;
         border-radius: 0.25rem;
         font-size: 0.875em;
-        color: var(--solarease-primary);
+        color: @se-blue;
       }
     }
   }
 
-  // Insight List
+  // ── Insight List ──────────────────────────────────────────────────────────
   .insight-list {
     list-style: none;
     padding-left: 0;
@@ -356,96 +309,113 @@
       position: relative;
       margin-bottom: 1.5rem;
       line-height: 1.7;
-      color: var(--solarease-text-muted);
+      color: @se-muted;
       font-size: 1rem;
 
       &:before {
         content: "→";
         position: absolute;
         left: 0;
-        color: var(--solarease-accent);
+        color: @se-blue;
         font-weight: 700;
       }
 
       strong {
-        color: var(--solarease-text);
+        color: @se-text;
         font-weight: 600;
       }
     }
   }
 
-  // Image Container
-  .solarease-image-container {
-    margin: 4rem 0 0;
-
-    .solarease-case-image {
-      width: 100%;
-      height: auto;
-      border-radius: 0.75rem;
-      border: 1px solid var(--solarease-border);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    .image-caption {
-      margin-top: 1rem;
-      font-size: 0.875rem;
-      color: var(--solarease-text-muted);
-      text-align: center;
-      font-style: italic;
-      line-height: 1.5;
-    }
-  }
-
-  // Impact
-  .solarease-impact-section {
-    background: var(--solarease-bg);
-  }
-
-  .impact-stats-row {
+  // ── Side-by-side image pair ───────────────────────────────────────────────
+  .solarease-image-pair {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    margin: 2rem 0 3rem;
+    margin-top: 3rem;
 
     @media @tablet {
       grid-template-columns: 1fr;
     }
   }
 
-  .stat-card {
-    background: var(--solarease-card-bg);
-    padding: 2rem 1.5rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--solarease-border);
-    text-align: center;
-    transition: all 0.3s ease;
+  .solarease-image-figure {
+    margin: 0;
 
-    &:hover {
-      border-color: var(--solarease-secondary);
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.18);
-      transform: translateY(-4px);
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.5rem;
+      border: 1px solid @se-border;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
 
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--solarease-secondary);
-      line-height: 1;
-      margin-bottom: 0.75rem;
+    figcaption {
+      margin-top: 0.75rem;
+      font-size: 0.8125rem;
+      color: @se-muted;
+      line-height: 1.5;
+      font-style: italic;
+    }
+  }
+
+  // ── Impact ────────────────────────────────────────────────────────────────
+  .solarease-impact-section {
+    background: @se-bg;
+  }
+
+  // ── Impact stats strip (no cards) ────────────────────────────────────────
+  .impact-stats-strip {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 2.5rem 0 3rem;
+
+    @media @tablet {
+      flex-direction: column;
+      gap: 2rem;
+      .impact-stat-divider { display: none; }
+    }
+  }
+
+  .impact-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 0 2.5rem;
+
+    &:first-child { padding-left: 0; }
+    &:last-child  { padding-right: 0; }
+
+    @media @tablet { padding: 0; }
+
+    &__num {
       font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: @se-blue;
+      line-height: 1;
     }
 
-    .stat-label {
-      font-size: 1rem;
+    &__label {
+      font-size: 0.9375rem;
       font-weight: 600;
-      color: var(--solarease-text);
-      margin-bottom: 0.75rem;
+      color: @se-text;
     }
 
-    .stat-context {
-      font-size: 0.875rem;
-      color: var(--solarease-text-muted);
-      line-height: 1.6;
+    &__context {
+      font-size: 0.8125rem;
+      color: @se-muted;
+      line-height: 1.55;
     }
+  }
+
+  .impact-stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: @se-border;
+    flex-shrink: 0;
   }
 }

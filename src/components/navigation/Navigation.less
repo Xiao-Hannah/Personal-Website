@@ -350,43 +350,93 @@
 // ForFun Theme (uses default with slight variation)
 .navigation.theme-forfun {
   .nav-link {
-    &::after { background-color: var(--primary); }
+    &::after { background-color: var(--foreground); }
   }
 }
 
-// SolarEase Theme (Dark)
-.navigation.theme-solarease {
-  .logo {
-    color: @solarease-text;
-    &:hover { color: @solarease-primary; }
-  }
+// ── Dark mode overrides ──────────────────────────────────────────────────────
+// The bento system applies `is-dark` to <html>. The default nav tokens
+// (`--foreground`, `--muted-foreground`) are light-mode-only values so we
+// override them here with the bento dark-mode ink tokens.
+.is-dark .navigation {
+  .logo { color: var(--b-ink); }
+  .mobile-menu-button { color: var(--b-ink); }
+
   .nav-link {
-    color: @solarease-text-muted;
-    &::after { background-color: @solarease-primary; }
-    &:hover { color: @solarease-text; }
+    color: var(--b-ink-soft);
+    &::after { background-color: var(--b-ink); }
+    &:hover  { color: var(--b-ink); }
+    &.is-active { color: var(--b-ink); }
   }
-  .mobile-menu-button { color: @solarease-text; }
 
   &.scrolled {
-    background-color: rgba(10, 10, 10, 0.9);
-    border-bottom-color: @solarease-border;
+    background-color: rgba(20, 17, 13, 0.88);
+    border-bottom-color: var(--b-line);
+  }
+
+  &.menu-open {
+    background-color: var(--b-bg);
+  }
+}
+
+.is-dark .mobile-sidebar {
+  background-color: var(--b-paper);
+  border-left-color: var(--b-line);
+
+  .mobile-sidebar-close { color: var(--b-ink); }
+
+  .mobile-nav-link {
+    color: var(--b-ink-soft);
+    &:hover    { color: var(--b-ink); }
+    &.is-active { color: var(--b-ink); }
+  }
+}
+
+.is-dark .mobile-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+// SolarEase Theme (Light warm — matches page background)
+@se-nav-bg:      hsl(40, 30%, 96%);
+@se-nav-accent:  #4e5280;
+@se-nav-border:  rgba(0, 0, 0, 0.08);
+@se-nav-text:    #1a1612;
+@se-nav-muted:   rgba(26, 22, 18, 0.5);
+
+.navigation.theme-solarease {
+  .logo {
+    color: @se-nav-text;
+    &:hover { color: @se-nav-accent; }
+  }
+  .nav-link {
+    color: @se-nav-muted;
+    &::after { background-color: @se-nav-accent; }
+    &:hover { color: @se-nav-text; }
+    &.is-active { color: @se-nav-text; }
+  }
+  .mobile-menu-button { color: @se-nav-text; }
+
+  &.scrolled {
+    background-color: rgba(246, 243, 237, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom-color: @se-nav-border;
   }
   &.menu-open {
-    background-color: @solarease-bg;
+    background-color: @se-nav-bg;
   }
 }
 
 .mobile-sidebar.theme-solarease {
-  background-color: @solarease-card;
-  border-left-color: @solarease-border;
+  background-color: @se-nav-bg;
+  border-left-color: @se-nav-border;
 
   .mobile-sidebar-close {
-    color: @solarease-text;
-    &:hover { color: @solarease-primary; }
+    color: @se-nav-text;
+    &:hover { color: @se-nav-accent; }
   }
   .mobile-nav-link {
-    color: @solarease-text-muted;
-    &:hover { color: @solarease-primary; }
+    color: @se-nav-muted;
+    &:hover { color: @se-nav-accent; }
   }
 }
 

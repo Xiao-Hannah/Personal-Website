@@ -1,10 +1,24 @@
+import { useEffect, useState } from "react";
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/layout/Footer";
-import solareaseHero from "@/assets/images/solarease/hero.png";
-import solareaseRoi from "@/assets/images/solarease/roi-simulator.png";
+import solareaseHero from "@/assets/images/solarease/hero2.png";
+import solareaseRoi from "@/assets/images/solarease/ROI2.png";
+import solareaseContract from "@/assets/images/solarease/contract.png";
 import './SolarEase.less';
 
 const SolarEase = () => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(total > 0 ? (scrolled / total) * 100 : 0);
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -54,31 +68,21 @@ const SolarEase = () => {
         </div>
       </section>
 
-      {/* Table of Contents */}
-      <section className="solarease-toc">
-        <div className="container">
-          <nav className="solarease-toc-nav">
-            <button onClick={() => scrollToSection('opportunity')}>The Opportunity</button>
-            <button onClick={() => scrollToSection('problem')}>The Problem</button>
-            <button onClick={() => scrollToSection('discovery')}>What I Uncovered</button>
-            <button onClick={() => scrollToSection('approach')}>What I Did</button>
-            <button onClick={() => scrollToSection('impact')}>Impact</button>
-            <button onClick={() => scrollToSection('learnings')}>What I Learned</button>
-          </nav>
-        </div>
-      </section>
+      {/* Reading progress bar */}
+      <div className="solarease-progress-bar" aria-hidden>
+        <div className="solarease-progress-bar__fill" style={{ width: `${progress}%` }} />
+      </div>
 
       {/* The Opportunity */}
       <section id="opportunity" className="solarease-section">
         <div className="container">
           <h2 className="solarease-section-title">The Opportunity</h2>
-
           <div className="solarease-context-main">
             <p>
-              Solar adoption is accelerating, but individual households and small communities are still negotiating with corporate energy buyers from a position of disadvantage. They face 20-year power purchase agreements, opaque ROI math, and complex group cost-sharing decisions, often without the tools or expertise to navigate them.
+              Solar projects are complex to evaluate — 20-year contracts, opaque ROI math, group cost-sharing decisions that require domain expertise most communities don't have access to. The people most likely to benefit from collective solar are often the least equipped to negotiate it.
             </p>
             <p>
-              SolarEase set out to give local communities the data, financial models, and shared language to evaluate solar projects together — and negotiate fair PPAs on equal footing.
+              SolarEase was built to close that gap: give non-technical users the tools to understand what they're signing, model the financial tradeoffs, and make a collective decision with confidence.
             </p>
           </div>
         </div>
@@ -88,7 +92,6 @@ const SolarEase = () => {
       <section id="problem" className="solarease-section">
         <div className="container">
           <h2 className="solarease-section-title">The Problem</h2>
-
           <div className="problem-blocks">
             <div className="problem-block">
               <h3>Opaque ROI</h3>
@@ -110,26 +113,13 @@ const SolarEase = () => {
       <section id="discovery" className="solarease-section">
         <div className="container">
           <h2 className="solarease-section-title">What I Uncovered</h2>
-
           <div className="solarease-context-main">
             <p>
-              I ran think-aloud usability sessions with 5 participants spanning beginner to expert solar literacy — homeowners, a retired engineer, a marketing manager, a small-business owner, and a teacher — to test the AI assistant and ROI flow.
+              I ran think-aloud usability sessions with stakeholders across different levels of solar literacy to test the AI assistant and ROI flow. A few things came back consistently:
             </p>
-
-            <ul className="insight-list">
-              <li>
-                Users with low solar literacy bounced off jargon (NPV, IRR, escalation rate) before they ever reached the answer the calculator gave them.
-              </li>
-              <li>
-                Users wanted <strong>decision support</strong>, not just calculation. They could read a number; they couldn't read what to do next.
-              </li>
-              <li>
-                Group decisions broke down on <em>fairness</em>, not math — participants needed to feel a split was fair, not just be told it was optimal.
-              </li>
-              <li>
-                Returning users dropped off when the AI assistant lost context from their previous session.
-              </li>
-            </ul>
+            <p>
+              Users with low solar literacy bounced off jargon before they ever reached the answer the calculator gave them. They could read a number; they couldn't read what to do next. Group decisions broke down on fairness, not math — participants needed to feel a split was fair, not just be told it was optimal. Returning users dropped off when the AI assistant lost context from their previous session.
+            </p>
           </div>
         </div>
       </section>
@@ -142,25 +132,15 @@ const SolarEase = () => {
           {/* Product Direction */}
           <div className="approach-subsection">
             <h3 className="approach-subsection-title">Product Direction</h3>
-
-            <div className="approach-blocks">
-              <div className="approach-block">
-                <h4>Defined three pillars</h4>
-                <p>
-                  Narrowed the surface area to ROI clarity, fair group allocation, and contract demystification — every feature had to ladder up to one of those.
-                </p>
+            <div className="approach-prose-items">
+              <div className="approach-prose-item">
+                <strong>Defined three pillars —</strong> Narrowed the surface area to ROI clarity, fair group allocation, and contract demystification. Every feature had to ladder up to one of those.
               </div>
-              <div className="approach-block">
-                <h4>Wrote the PRD &amp; sprint roadmap</h4>
-                <p>
-                  Aligned engineering, design, and GIX research on scope, milestones, and success metrics across the build cycle.
-                </p>
+              <div className="approach-prose-item">
+                <strong>Wrote the PRD &amp; sprint roadmap —</strong> Aligned engineering, design, and GIX research on scope, milestones, and success metrics across the build cycle.
               </div>
-              <div className="approach-block">
-                <h4>Prioritized from usability data</h4>
-                <p>
-                  Used think-aloud findings to re-rank the backlog — adaptive language and contextual recommendations jumped ahead of new features.
-                </p>
+              <div className="approach-prose-item">
+                <strong>Prioritized from usability data —</strong> Used think-aloud findings to re-rank the backlog — adaptive language and contextual recommendations jumped ahead of new features.
               </div>
             </div>
           </div>
@@ -168,47 +148,33 @@ const SolarEase = () => {
           {/* Full-Stack Build */}
           <div className="approach-subsection">
             <h3 className="approach-subsection-title">Full-Stack Build</h3>
-
             <ul className="approach-list">
               <li>Built the React + Vite frontend with multi-page routing for the ROI Simulator, Negotiation Tool, and Contract Transparency views.</li>
-              <li>Stood up the Express.js API and a Python (CVXPY) Nash Bargaining solver to compute fair allocations across community participants.</li>
+              <li>Stood up the Express.js API and a Python (CVXPY) Nash Bargaining solver to compute fair allocations across community participants. Nash Bargaining made the most sense here because its core property — that no participant would prefer to walk away — maps directly to what community buy-in actually requires. We validated the choice with stakeholders before building.</li>
               <li>Wrote the financial engine in <code>finance.js</code> — multi-year cashflow projections, NPV, IRR, threat-point calculation, and cooperative-surplus math.</li>
               <li>Integrated GPT-4o-mini (with Azure OpenAI fallback) for plain-language explanations and PPA contract parsing with risk-flag extraction.</li>
             </ul>
+
+            <div className="solarease-image-pair">
+              <figure className="solarease-image-figure">
+                <img src={solareaseRoi} alt="SolarEase ROI Simulator" />
+                <figcaption>ROI Simulator — location selector, configurable system parameters, and live capacity / savings / CO₂ output.</figcaption>
+              </figure>
+              <figure className="solarease-image-figure">
+                <img src={solareaseContract} alt="SolarEase contract analysis" />
+                <figcaption>Contract analysis — GPT-4o-mini parses PPA language and surfaces risk flags in plain English.</figcaption>
+              </figure>
+            </div>
           </div>
 
           {/* AI Agent */}
           <div className="approach-subsection">
             <h3 className="approach-subsection-title">AI Agent &ldquo;Soli&rdquo;</h3>
-
-            <div className="approach-blocks">
-              <div className="approach-block">
-                <h4>Adaptive language</h4>
-                <p>
-                  Soli matches response complexity to the user's stated solar literacy, so beginners get plain English and experts get the underlying math.
-                </p>
-              </div>
-              <div className="approach-block">
-                <h4>Contextual suggestions</h4>
-                <p>
-                  Smart recommendations surface the right tool — ROI sim, negotiation, or contract upload — based on where the user is stuck.
-                </p>
-              </div>
-              <div className="approach-block">
-                <h4>Persistent state</h4>
-                <p>
-                  Conversation history and project context carry across sessions so returning users don't have to re-explain themselves.
-                </p>
-              </div>
+            <div className="solarease-context-main">
+              <p>
+                Soli matches response complexity to the user's stated solar literacy — beginners get plain English, experts get the underlying math. Smart recommendations surface the right tool based on where the user is stuck: ROI sim, negotiation, or contract upload. Conversation history and project context carry across sessions so returning users don't have to re-explain themselves.
+              </p>
             </div>
-          </div>
-
-          {/* Screenshot */}
-          <div className="solarease-image-container">
-            <img src={solareaseRoi} alt="SolarEase ROI Simulator" className="solarease-case-image" />
-            <p className="image-caption">
-              ROI Simulator — location selector, configurable system parameters, and live capacity / savings / CO₂ output, with a one-click handoff into the full financial dashboard.
-            </p>
           </div>
         </div>
       </section>
@@ -218,21 +184,23 @@ const SolarEase = () => {
         <div className="container">
           <h2 className="solarease-section-title">Impact</h2>
 
-          <div className="impact-stats-row">
-            <div className="stat-card">
-              <div className="stat-number">76%</div>
-              <div className="stat-label">task completion</div>
-              <div className="stat-context">across 5 usability participants spanning beginner to expert solar literacy</div>
+          <div className="impact-stats-strip">
+            <div className="impact-stat">
+              <span className="impact-stat__num">76%</span>
+              <span className="impact-stat__label">task completion</span>
+              <span className="impact-stat__context">across 5 usability participants spanning beginner to expert solar literacy</span>
             </div>
-            <div className="stat-card">
-              <div className="stat-number">4 / 4</div>
-              <div className="stat-label">core hypotheses validated</div>
-              <div className="stat-context">AI guidance, conversational onboarding, contextual recommendations, persistent state</div>
+            <div className="impact-stat-divider" aria-hidden />
+            <div className="impact-stat">
+              <span className="impact-stat__num">4 / 4</span>
+              <span className="impact-stat__label">core hypotheses validated</span>
+              <span className="impact-stat__context">AI guidance, conversational onboarding, contextual recommendations, persistent state</span>
             </div>
-            <div className="stat-card">
-              <div className="stat-number">Live</div>
-              <div className="stat-label">deployed at gix-solarease.com</div>
-              <div className="stat-context">full ROI simulator, Nash Bargaining, and contract analysis in production</div>
+            <div className="impact-stat-divider" aria-hidden />
+            <div className="impact-stat">
+              <span className="impact-stat__num">Live</span>
+              <span className="impact-stat__label">deployed at gix-solarease.com</span>
+              <span className="impact-stat__context">full ROI simulator, Nash Bargaining, and contract analysis in production</span>
             </div>
           </div>
 
@@ -248,7 +216,6 @@ const SolarEase = () => {
       <section id="learnings" className="solarease-section">
         <div className="container">
           <h2 className="solarease-section-title">What I Learned</h2>
-
           <div className="solarease-context-main">
             <ul className="insight-list">
               <li>

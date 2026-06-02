@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/layout/Footer";
 import ImageLightbox from "@/components/layout/ImageLightbox";
@@ -12,8 +12,6 @@ import archeologyImage3 from "@/assets/images/archeology/xiao_shiba.jpg";
 import archeologyImage4 from "@/assets/images/archeology/xiao_hannah.jpg";
 import archeologyImage5 from "@/assets/images/archeology/xiao_xiao_han.jpg";
 import archeologyImage6 from "@/assets/images/archeology/xiao_zhu.jpg";
-import archeologyImage7 from "@/assets/images/archeology/IMG_3323.jpg";
-
 // Photography images
 import photographyImage1 from "@/assets/images/photography/photography1.jpg";
 import photographyImage2 from "@/assets/images/photography/photography2.jpg";
@@ -63,7 +61,6 @@ const archData    = [
   { id: "arch-4", img: archeologyImage4, height: 800 },
   { id: "arch-5", img: archeologyImage5, height: 750 },
   { id: "arch-6", img: archeologyImage6, height: 900 },
-  { id: "arch-7", img: archeologyImage7, height: 700 },
 ];
 
 const photoData   = [
@@ -109,11 +106,10 @@ const funData     = [
 ];
 
 const navSections = [
-  { id: 'anchor-archaeology', label: 'Archaeological Project', startItemId: 'arch-1' },
-  { id: 'anchor-photography', label: 'Photography',            startItemId: 'photo-1' },
-  { id: 'anchor-travelling',  label: 'Travelling',             startItemId: 'travel-1' },
-  { id: 'anchor-baking',      label: 'Baking',                 startItemId: 'baking-1' },
-  { id: 'anchor-fun',         label: 'Trying New Things',      startItemId: 'fun-2' },
+  { id: 'anchor-fieldnotes',  label: 'Field Notes',           startItemId: 'arch-1' },
+  { id: 'anchor-places',      label: 'Places & Frames',       startItemId: 'photo-1' },
+  { id: 'anchor-baking',      label: 'Baking Experiments',    startItemId: 'baking-1' },
+  { id: 'anchor-sidequests',  label: 'Side Quests',           startItemId: 'fun-2' },
 ];
 
 const sectionAnchors: SectionAnchor[] = navSections.map(s => ({
@@ -123,7 +119,9 @@ const sectionAnchors: SectionAnchor[] = navSections.map(s => ({
 
 const ForFun = () => {
   const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
-  const [activeSection, setActiveSection] = useState('anchor-archaeology');
+  const [activeSection, setActiveSection] = useState('anchor-fieldnotes');
+  const isProgrammaticScrollRef = useRef(false);
+  const scrollSuppressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Merge all items into one array with per-item click handlers
   const allItems = useMemo<MasonryItem[]>(() => [
@@ -154,6 +152,7 @@ const ForFun = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isProgrammaticScrollRef.current) return;
         entries.forEach(entry => {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
@@ -173,8 +172,12 @@ const ForFun = () => {
     const timer = setTimeout(observe, 300);
 
     const handleScroll = () => {
+      if (window.scrollY < 120) {
+        setActiveSection('anchor-fieldnotes');
+        return;
+      }
       const nearBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 80;
-      if (nearBottom) setActiveSection('anchor-fun');
+      if (nearBottom) setActiveSection('anchor-sidequests');
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -186,6 +189,16 @@ const ForFun = () => {
   }, []);
 
   const scrollToSection = (anchorId: string) => {
+    setActiveSection(anchorId);
+
+    // Suppress IntersectionObserver updates while smooth-scrolling so passing
+    // intermediate sections don't override the intended active section.
+    isProgrammaticScrollRef.current = true;
+    if (scrollSuppressTimerRef.current) clearTimeout(scrollSuppressTimerRef.current);
+    scrollSuppressTimerRef.current = setTimeout(() => {
+      isProgrammaticScrollRef.current = false;
+    }, 1200);
+
     const el = document.getElementById(anchorId);
     if (!el) return;
     const nav = document.querySelector('.navigation') as HTMLElement | null;
@@ -208,9 +221,9 @@ const ForFun = () => {
 
       <section className="for-fun-hero">
         <div className="container">
-          <h1 className="for-fun-title">Something Fun</h1>
+          <h1 className="for-fun-title">Beyond Work</h1>
           <p className="for-fun-subtitle">
-            Beyond design — exploring the world, capturing moments, and embracing new experiences.
+            Exploring the world, capturing moments, and embracing new experiences.
           </p>
         </div>
       </section>

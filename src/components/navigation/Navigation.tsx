@@ -91,6 +91,7 @@ const Navigation = () => {
   };
 
   const navigateToPage = (path: string) => {
+    clearSpotlight();
     navigate(path);
     setIsMobileMenuOpen(false);
   };
@@ -126,13 +127,7 @@ const Navigation = () => {
             >
               Experience
             </button>
-            <button
-              onClick={() => handleSpotlight('projects')}
-              className={`nav-link ${spotlight === 'projects' ? 'is-active' : ''}`}
-            >
-              Projects
-            </button>
-            <button onClick={() => handleScrollSection('for-fun')} className="nav-link">
+            <button onClick={() => navigateToPage('/for-fun')} className={`nav-link ${location.pathname === '/for-fun' ? 'is-active' : ''}`}>
               For Fun
             </button>
             <button onClick={() => handleScrollSection('contact')} className="nav-link">
@@ -185,13 +180,7 @@ const Navigation = () => {
           >
             Experience
           </button>
-          <button
-            onClick={() => handleSpotlight('projects')}
-            className={`mobile-nav-link ${spotlight === 'projects' ? 'is-active' : ''}`}
-          >
-            Projects
-          </button>
-          <button onClick={() => handleScrollSection('for-fun')} className="mobile-nav-link">
+          <button onClick={() => navigateToPage('/for-fun')} className={`mobile-nav-link ${location.pathname === '/for-fun' ? 'is-active' : ''}`}>
             For Fun
           </button>
           <button onClick={() => handleScrollSection('contact')} className="mobile-nav-link">

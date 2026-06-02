@@ -3,9 +3,9 @@
 @import '../styles/mixins.less';
 
 // T-Mobile Brand Colors
-@tmobile-magenta: #E20074;
-@tmobile-magenta-dark: #C5007A;
-@tmobile-magenta-light: #FF009E;
+@tmobile-magenta: #d4899f;
+@tmobile-magenta-dark: #c07a8e;
+@tmobile-magenta-light: #e0a8ba;
 @tmobile-gray: #5F6062;
 @tmobile-light-gray: #F5F5F5;
 @tmobile-dark: #2D2A26;
@@ -116,7 +116,7 @@
 
   // Table of Contents
   .tlink-toc {
-    background: @tmobile-dark;
+    background: @tmobile-magenta;
     padding: 20px 0;
     position: sticky;
     top: 60px;
@@ -140,7 +140,7 @@
         transition: all 0.3s ease;
 
         &:hover {
-          background: @tmobile-magenta;
+          background: rgba(255, 255, 255, 0.2);
         }
       }
     }
@@ -597,10 +597,16 @@
       }
 
       .tlink-portal-image {
+        display: block;
         width: 100%;
+        max-width: 680px;
+        margin: 0 auto 32px;
         border-radius: 16px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        margin-bottom: 32px;
+
+        &--auth {
+          max-width: 420px;
+        }
       }
 
       .tlink-portal-image-small {
@@ -670,44 +676,43 @@
 
     .tlink-outcomes {
       margin-top: 48px;
-      padding: 48px;
-      background: linear-gradient(135deg, @tmobile-magenta 0%, @tmobile-magenta-light 100%);
-      border-radius: 16px;
-      color: white;
 
       h3 {
-        font-size: 32px;
+        font-size: 24px;
         font-weight: 600;
-        text-align: center;
-        margin-bottom: 32px;
+        color: @tmobile-dark;
+        margin-bottom: 20px;
       }
 
       .tlink-outcome-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 16px;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
       }
 
       .tlink-outcome {
         display: flex;
         align-items: flex-start;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 28px;
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
+        gap: 14px;
+        padding: 20px 24px;
+        background: #fff;
+        border: 1px solid #ebebeb;
+        border-left: 3px solid @tmobile-magenta;
+        border-radius: 8px;
 
         .tlink-outcome-icon {
-          font-size: 32px;
-          flex-shrink: 0;
-          margin-top: 2px;
+          display: none;
         }
 
         p {
-          font-size: 18px;
-          line-height: 1.7;
+          font-size: 16px;
+          line-height: 1.65;
           margin: 0;
-          font-weight: 400;
+          color: @tmobile-gray;
         }
       }
     }
@@ -806,17 +811,6 @@
 
       .tlink-flow-arrow {
         transform: rotate(90deg);
-      }
-    }
-
-    .tlink-toc {
-      .tlink-toc-nav {
-        gap: 12px;
-
-        button {
-          font-size: 14px;
-          padding: 6px 12px;
-        }
       }
     }
 

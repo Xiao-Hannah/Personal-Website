@@ -140,9 +140,11 @@
     }
 
     .zebra-role-line {
-      font-size: 16px;
-      color: @zebra-gray;
+      font-size: 18px;
+      font-weight: 500;
+      color: @zebra-black;
       margin-bottom: 32px;
+      letter-spacing: 0.01em;
     }
 
     .zebra-hero-logo {
@@ -176,37 +178,6 @@
     }
   }
 
-  // Table of Contents
-  .zebra-toc {
-    background: @zebra-black;
-    padding: 20px 0;
-    position: sticky;
-    top: 60px;
-    z-index: 100;
-
-    .zebra-toc-nav {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-
-      button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-
-        &:hover {
-          background: @zebra-blue;
-        }
-      }
-    }
-  }
 
   // Common Section Styles
   .zebra-section {
@@ -249,6 +220,7 @@
         &:last-child {
           margin-bottom: 0;
         }
+
       }
 
       .zebra-subsection-title {
@@ -305,7 +277,6 @@
     }
 
     .zebra-context-main {
-      max-width: 800px;
 
       p {
         font-size: 18px;
@@ -366,16 +337,6 @@
     }
   }
 
-  // Approach Section
-  .zebra-approach-section {
-    background: @zebra-light-gray;
-  }
-
-  // Result Section
-  .zebra-result-section {
-    background: @zebra-white;
-  }
-
   // Responsive Design
   @media (max-width: 768px) {
     .zebra-hero {
@@ -383,17 +344,6 @@
 
       .zebra-hero-content {
         gap: 24px;
-      }
-    }
-
-    .zebra-toc {
-      .zebra-toc-nav {
-        gap: 12px;
-
-        button {
-          font-size: 14px;
-          padding: 6px 12px;
-        }
       }
     }
 
