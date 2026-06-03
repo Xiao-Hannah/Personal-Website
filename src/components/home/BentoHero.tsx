@@ -158,7 +158,7 @@ const BentoHero = ({}: BentoHeroProps) => {
     const grid = gridRef.current;
     if (!grid) return;
     const tiles = Array.from(
-      grid.querySelectorAll<HTMLElement>(":scope > .bento-tile, :scope > .hero-experience")
+      grid.querySelectorAll<HTMLElement>(":scope > .bento-tile, :scope > .hero-experience, :scope > .hero-outside-office")
     );
     const gridRect = grid.getBoundingClientRect();
     const next = new Map<Element, { top: number; left: number }>();
@@ -261,8 +261,7 @@ const BentoHero = ({}: BentoHeroProps) => {
               Hi! <span className="hero-intro__wave" aria-hidden>👋</span>
             </p>
             <p className="hero-intro__lede">
-              I'm <strong>Hannah Xiao</strong>, currently working as a Growth
-              Product Manager <span className="hero-intro__at">@atypica.AI</span>.
+              I'm <strong>Hannah Xiao</strong>, recently a Growth Product Manager Intern <span className="hero-intro__at">@ atypica.AI</span>.
             </p>
             <div className="hero-intro__actions">
               <span
@@ -674,7 +673,7 @@ const BentoHero = ({}: BentoHeroProps) => {
             <img
               src={fridgeFriendCover}
               alt="Fridge Friend"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '65% center', display: 'block' }}
             />
           </div>
           <div style={{ background: '#ffffff', padding: '12px 16px', flexShrink: 0 }}>
