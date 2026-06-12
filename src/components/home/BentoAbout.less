@@ -104,12 +104,15 @@
   gap: 22px;
 
   &__avatar {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center top;
+    image-rendering: auto;
     box-shadow: 0 14px 30px -14px rgba(40, 25, 15, 0.4);
     margin-top: 4px;
+    flex-shrink: 0;
   }
 
   &__lede {

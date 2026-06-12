@@ -1,0 +1,60 @@
+/* ── Hide system cursor on precise-pointer (mouse/trackpad) only ─────────── */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* ── Wrapper — zero-size position anchor, updated every rAF frame ────────── */
+.arrow-cursor-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  user-select: none;
+}
+
+/* ── Arrow SVG — tip sits at (2,2) in SVG space, offset to align with mouse ─ */
+.arrow-cursor {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  opacity: 0;
+  transform-origin: 2px 2px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.18));
+  transition:
+    opacity    180ms ease,
+    transform  180ms ease,
+    filter     180ms ease;
+}
+
+.arrow-cursor.is-visible {
+  opacity: 1;
+}
+
+.arrow-cursor.is-hovering {
+  transform: scale(1.12);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.14));
+}
+
+.arrow-cursor.is-clicking {
+  transform: scale(0.90);
+  transition-duration: 70ms;
+}
+
+/* ── Arrow path fill & stroke ─────────────────────────────────────────────── */
+.arrow-path {
+  fill: #ffffff;
+  stroke: rgba(0, 0, 0, 0.22);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+/* ── Dark mode — slightly stronger shadow so arrow reads on dark backgrounds ─ */
+.is-dark .arrow-cursor {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
+}

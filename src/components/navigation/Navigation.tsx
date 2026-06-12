@@ -101,7 +101,7 @@ const Navigation = () => {
       <nav className={`navigation ${pageTheme} ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
         <div className="container">
           <button
-            onClick={() => navigateToPage('/')}
+            onClick={handleClearAll}
             className="logo"
           >
             HX

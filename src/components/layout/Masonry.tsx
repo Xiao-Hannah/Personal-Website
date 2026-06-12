@@ -190,27 +190,41 @@ const Masonry = ({
     }
   };
 
+  // Place each section anchor at the max bottom-edge of all items that come
+  // before its startItemId. This accounts for the multi-column layout where
+  // the first item of a section can be placed in a short column far above
+  // where the section visually begins.
+  const anchorYPositions = useMemo(() => {
+    if (!sectionAnchors || !grid.length) return {} as Record<string, number>;
+    const result: Record<string, number> = {};
+    for (const anchor of sectionAnchors) {
+      const startIndex = grid.findIndex(item => item.id === anchor.startItemId);
+      if (startIndex <= 0) {
+        result[anchor.id] = 0;
+      } else {
+        result[anchor.id] = Math.max(...grid.slice(0, startIndex).map(item => item.y + item.h));
+      }
+    }
+    return result;
+  }, [grid, sectionAnchors]);
+
   return (
     <div ref={containerRef} className="list" style={{ height: totalHeight || 'auto' }}>
       {/* Invisible section anchors for IntersectionObserver */}
-      {sectionAnchors?.map(anchor => {
-        const anchorItem = grid.find(item => item.id === anchor.startItemId);
-        if (!anchorItem) return null;
-        return (
-          <div
-            key={anchor.id}
-            id={anchor.id}
-            style={{
-              position: 'absolute',
-              top: anchorItem.y,
-              left: 0,
-              width: 1,
-              height: 1,
-              pointerEvents: 'none',
-            }}
-          />
-        );
-      })}
+      {sectionAnchors?.map(anchor => (
+        <div
+          key={anchor.id}
+          id={anchor.id}
+          style={{
+            position: 'absolute',
+            top: anchorYPositions[anchor.id] ?? 0,
+            left: 0,
+            width: 1,
+            height: 1,
+            pointerEvents: 'none',
+          }}
+        />
+      ))}
 
       {grid.map(item => (
         <div

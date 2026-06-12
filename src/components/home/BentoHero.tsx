@@ -11,11 +11,12 @@ import {
   Globe,
 } from "lucide-react";
 import profileImage from "@/assets/images/profile/profile3.png";
-import resume from "@/assets/files/resume.pdf";
+import resume from "@/assets/files/HannahXiao_Resume_Product.pdf";
 import resumeImage from "@/assets/images/resume3.png";
 import { useNavigate } from "react-router-dom";
 import tmobileVideo from "@/assets/videos/tmed2.mp4";
 import atypicaVideo from "@/assets/videos/atypica_0524.mp4";
+import atypicaPoster from "@/assets/images/atypica/Hero.png";
 import solareaseCoverVideo from "@/assets/videos/solarease4.mp4";
 import foraCover from "../../assets/images/fora/fora.webp";
 import bloomeVideo from "@/assets/videos/bloome.mov";
@@ -348,9 +349,10 @@ const BentoHero = ({}: BentoHeroProps) => {
             cursor: 'pointer',
           } as React.CSSProperties}
         >
-          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <div style={{ flex: 1, overflow: 'hidden', minHeight: 0, background: '#d6eaf2' }}>
             <video
               src={atypicaVideo}
+              poster={atypicaPoster}
               autoPlay
               muted
               loop

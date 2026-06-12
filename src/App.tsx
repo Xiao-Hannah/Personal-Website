@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FilmGrain from "@/components/layout/FilmGrain";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import CustomCursor from "@/components/CustomCursor";
 import { SpotlightProvider } from "@/components/home/SpotlightContext";
 import Index from "@/pages/Index";
 import Atypica from "@/pages/Atypica";
@@ -17,6 +18,7 @@ const App = () => {
   return (
     <BrowserRouter basename="/">
       <SpotlightProvider>
+        <CustomCursor />
         <ScrollToTop />
         <FilmGrain />
         <Routes>
